@@ -1,5 +1,6 @@
 <resources>
 
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -16,5 +17,8 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <color name="card_gray">#DEDEDE</color>
+    <drawable name="actionbar_bacgkround">#ff4444</drawable>
 
 </resources>
