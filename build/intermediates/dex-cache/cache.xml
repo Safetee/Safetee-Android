@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_2f867357149c5e8fd7b5566289f20900958d30ad.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.2.1_421580763788f4e1c115824db770bc97eeb33ddb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.2.1_1deb74d7f86107869f2176d2631d1288993282dd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.2.1_421580763788f4e1c115824db770bc97eeb33ddb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_562e414244c49be744fbe06d9652ab41a55d1138.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Apex\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_1242a8ead97d51f0e8b591e6a835419ed8fbf4d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="9b9f7e2016f12720627dd865e7eeebf82a3b8042">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\instant-run_0d9f6a0e89b45a36bd57a1c88e0cb0f20b5860c5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-design-24.2.1_73c097aac50dc6a09f583361d8a0b570376d0a06.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Apex\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_1242a8ead97d51f0e8b591e6a835419ed8fbf4d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-24.2.1_23157c950a0054e3cde415b3b7a5ef8d47975829.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.2.1_024f535f338b6a807dd38467ecd86d7b8991e784.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.2.1_024f535f338b6a807dd38467ecd86d7b8991e784.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_44b5feea15edd0bf8bb18b034a1d264ea44fc5fc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-design-24.2.1_73c097aac50dc6a09f583361d8a0b570376d0a06.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_64db7f9b463a72428fd54c45edd5bdc62ea0e99e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_44c9ff9f745e1fe37a40a7690ff967a0741112d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_44c9ff9f745e1fe37a40a7690ff967a0741112d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_64db7f9b463a72428fd54c45edd5bdc62ea0e99e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-24.2.1_23157c950a0054e3cde415b3b7a5ef8d47975829.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_44b5feea15edd0bf8bb18b034a1d264ea44fc5fc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.2.1_c5c309a60f367baa4bac95a241fc3c25e7df4769.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_051c24cfc080dff4d0507ee27525c143c457995f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_051c24cfc080dff4d0507ee27525c143c457995f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_fdb648a08db19b66874f52effd2c89ce30423db1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.2.1_c5c309a60f367baa4bac95a241fc3c25e7df4769.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_fdb648a08db19b66874f52effd2c89ce30423db1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_9c15614ceed61c227ebf830c33810471e3f07566.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_562e414244c49be744fbe06d9652ab41a55d1138.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.2.1_1deb74d7f86107869f2176d2631d1288993282dd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.2.1_1ba8b5c330446f8c05e6b79b90492fd1500dca17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-24.2.1_bbafdbd1f7657269e76d241187ff8628db21ec3f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ab48162f1e5042580047ce27e16704a337fc7f04">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_216a0eea7a6889d5bbe7a1872a2701f1bc2a1729.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.2.1_1ba8b5c330446f8c05e6b79b90492fd1500dca17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_9c15614ceed61c227ebf830c33810471e3f07566.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_2f867357149c5e8fd7b5566289f20900958d30ad.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-24.2.1_bbafdbd1f7657269e76d241187ff8628db21ec3f.jar" />
+    </item>
+
+</items>
