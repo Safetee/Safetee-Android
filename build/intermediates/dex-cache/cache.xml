@@ -3,6 +3,33 @@
 
     <item
         is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.nhaarman.listviewanimations\lib-core\3.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="acf66033b1418ccf9e15c8e77750981e4809c4ea">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.nhaarman.listviewanimations-lib-core-3.1.0_19cd0b580f07d980be59adff5ce7ef0dba960493.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Apex\.gradle\caches\modules-2\files-2.1\com.android.databinding\baseLibrary\2.2.0-rc2\6fd74ef202cfb785db12a652e153ea003123c36b\baseLibrary-2.2.0-rc2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6fd74ef202cfb785db12a652e153ea003123c36b">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\baseLibrary-2.2.0-rc2_0f1e172fbe81590cb786cc7781ad72de8da77eee.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.databinding\adapters\1.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c56d29136c2257f63f08c29c4e739efb03b06c7d">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.databinding-adapters-1.2.1_6eb8878155820307085352b9fccd86755d07b189.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -12,12 +39,39 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-24.2.1_11e4b14f98666cebbc695a9f551deacbe63f9309.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.nhaarman.listviewanimations\lib-manipulation\3.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5660e4bf78904137e90e62a5d4cc2e987258f02c">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.nhaarman.listviewanimations-lib-manipulation-3.1.0_217dacbcf33d94a656c1dd37621a7f75366a0352.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
         <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_562e414244c49be744fbe06d9652ab41a55d1138.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Apex\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\library-2.4.0_88979379bc69959062fb0e9ed7b4fe1b44f0845c.jar" />
     </item>
     <item
         is-multidex="false"
@@ -36,6 +90,15 @@
         revision="24.0.2"
         sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
         <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_1242a8ead97d51f0e8b591e6a835419ed8fbf4d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.databinding\library\1.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="957dc30b1495f8689271e00d56ab09cc9192df02">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.databinding-library-1.2.1_e3cedab322158b8d7d35bb4f9ebc38e9e0e47af9.jar" />
     </item>
     <item
         is-multidex="false"
@@ -57,6 +120,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.cocosw\undobar\1.7.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="beb36f6a4b91dd74db444d79f0a97742be89ee96">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.cocosw-undobar-1.7.1_ac5baa8503fe9b3d69f9b7af1b20c5e08d27373e.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
@@ -102,12 +174,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.databinding\library\1.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="957dc30b1495f8689271e00d56ab09cc9192df02">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.databinding-library-1.2.1_e3cedab322158b8d7d35bb4f9ebc38e9e0e47af9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Apex\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_051c24cfc080dff4d0507ee27525c143c457995f.jar" />
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\library-2.4.0_88979379bc69959062fb0e9ed7b4fe1b44f0845c.jar" />
     </item>
     <item
         is-multidex="false"
@@ -117,6 +198,15 @@
         revision="24.0.2"
         sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
         <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_fdb648a08db19b66874f52effd2c89ce30423db1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_051c24cfc080dff4d0507ee27525c143c457995f.jar" />
     </item>
     <item
         is-multidex="false"
@@ -138,15 +228,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0665f60eeb86b76c3f0f9fc98c01b8c91b308f55">
-        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_216a0eea7a6889d5bbe7a1872a2701f1bc2a1729.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -165,12 +246,30 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.nhaarman.listviewanimations\lib-core\3.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="acf66033b1418ccf9e15c8e77750981e4809c4ea">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.nhaarman.listviewanimations-lib-core-3.1.0_19cd0b580f07d980be59adff5ce7ef0dba960493.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
         <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-24.2.1_bbafdbd1f7657269e76d241187ff8628db21ec3f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.nhaarman.listviewanimations\lib-manipulation\3.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5660e4bf78904137e90e62a5d4cc2e987258f02c">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.nhaarman.listviewanimations-lib-manipulation-3.1.0_217dacbcf33d94a656c1dd37621a7f75366a0352.jar" />
     </item>
     <item
         is-multidex="false"
@@ -201,6 +300,33 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.databinding\adapters\1.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c56d29136c2257f63f08c29c4e739efb03b06c7d">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.databinding-adapters-1.2.1_6eb8878155820307085352b9fccd86755d07b189.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\agency.tango.android\material-intro-screen\0.0.3\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b821bc341f62ad65334507a90a2b07c9c7cfc53d">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\agency.tango.android-material-intro-screen-0.0.3_cc6fa6191e0d497176896ff26d087acd51ce3e01.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Apex\.gradle\caches\modules-2\files-2.1\com.android.databinding\baseLibrary\2.2.0-rc2\6fd74ef202cfb785db12a652e153ea003123c36b\baseLibrary-2.2.0-rc2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6fd74ef202cfb785db12a652e153ea003123c36b">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\baseLibrary-2.2.0-rc2_0f1e172fbe81590cb786cc7781ad72de8da77eee.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Apex\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
         jumboMode="true"
         optimize="true"
@@ -210,21 +336,30 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="155ff5f54238293ac7d76f229a3adf5b05abe169">
-        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\instant-run_0d9f6a0e89b45a36bd57a1c88e0cb0f20b5860c5.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
         <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-24.2.1_11e4b14f98666cebbc695a9f551deacbe63f9309.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.cocosw\undobar\1.7.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="beb36f6a4b91dd74db444d79f0a97742be89ee96">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.cocosw-undobar-1.7.1_ac5baa8503fe9b3d69f9b7af1b20c5e08d27373e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\2.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\de.hdodenhof-circleimageview-2.1.0_626d837de19ab99fa8ab764fa5deff053e8a4a15.jar" />
     </item>
     <item
         is-multidex="false"
@@ -282,6 +417,24 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.nhaarman.listviewanimations\lib-core-slh\3.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="49223278ec2ede1d05d00868c5ce3e077b4016f8">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.nhaarman.listviewanimations-lib-core-slh-3.1.0_2c87bd0603458121db1633be5d85019b9bd763c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.nhaarman.listviewanimations\lib-core-slh\3.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="49223278ec2ede1d05d00868c5ce3e077b4016f8">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.nhaarman.listviewanimations-lib-core-slh-3.1.0_2c87bd0603458121db1633be5d85019b9bd763c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -309,12 +462,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\agency.tango.android\material-intro-screen\0.0.3\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="24.0.2"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_9c15614ceed61c227ebf830c33810471e3f07566.jar" />
+        sha1="b821bc341f62ad65334507a90a2b07c9c7cfc53d">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\agency.tango.android-material-intro-screen-0.0.3_cc6fa6191e0d497176896ff26d087acd51ce3e01.jar" />
     </item>
     <item
         is-multidex="false"
@@ -324,6 +477,15 @@
         revision="24.0.2"
         sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
         <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_562e414244c49be744fbe06d9652ab41a55d1138.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\Calistus\AndroidStudioProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_9c15614ceed61c227ebf830c33810471e3f07566.jar" />
     </item>
     <item
         is-multidex="false"

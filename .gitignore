@@ -6,8 +6,12 @@
 .DS_Store
 /build
 /captures
+<<<<<<< HEAD
 .idea/compiler.xml
 .idea/copyright/
 .idea/misc.xml
 .idea/modules.xml
 .idea/gradle.xml
+=======
+
+>>>>>>> 1da7dfba7eca89f720a51b103dd4d6c45ad6b14a

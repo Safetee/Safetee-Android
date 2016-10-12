@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.getsafetee.safetee.activities.VoiceRecorderMainActivity;
 import com.getsafetee.safetee.circle_of_friends.CustomAlertDialogFragment;
 import com.getsafetee.safetee.circle_of_friends.FriendsList;
 import com.getsafetee.safetee.circle_of_friends.LocationHelper;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity
 
         CircleImageView donateButton = (CircleImageView) findViewById(R.id.image_donate);
         CircleImageView circleOfFriends = (CircleImageView) findViewById(R.id.image_cf);
+        CircleImageView recordButton = (CircleImageView) findViewById(R.id.image_record);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -92,6 +94,12 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this,"Hello", Toast.LENGTH_SHORT).show();
+            }
+        });
+        recordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, VoiceRecorderMainActivity.class));
             }
         });
         circleOfFriends.setOnLongClickListener(new View.OnLongClickListener() {
