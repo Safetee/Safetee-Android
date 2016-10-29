@@ -29,7 +29,7 @@ dependencies {
     compile 'agency.tango.android:material-intro-screen:0.0.3'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
-    compile 'com.interswitchng:payment-android:0.0.12-Beta'
+    compile 'com.interswitchng:payment-android:0.0.9'
     compile(name: 'deviceprint-release-2.2.0', ext: 'aar')
     compile 'net.gotev:uploadservice:3.0.3'
     compile 'agency.tango.android:material-intro-screen:0.0.4'

@@ -8,6 +8,10 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+
 
     <application
         android:allowBackup="true"
@@ -44,10 +48,6 @@
         <activity
             android:name=".activities.IntroActivity"
             android:theme="@style/Theme.Intro"></activity>
-        <activity
-            android:name=".activities.DonateWithISWActivity"
-            android:label="@string/title_activity_donate_with_isw"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.getsafetee.safetee;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -27,13 +28,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.getsafetee.safetee.activities.DonateWithISWActivity;
 import com.getsafetee.safetee.activities.IntroActivity;
 import com.getsafetee.safetee.activities.VoiceRecorderMainActivity;
 import com.getsafetee.safetee.circle_of_friends.CustomAlertDialogFragment;
 import com.getsafetee.safetee.circle_of_friends.FriendsList;
 import com.getsafetee.safetee.circle_of_friends.LocationHelper;
 import com.getsafetee.safetee.circle_of_friends.MessageDialogBox;
+import com.interswitchng.sdk.auth.Passport;
+import com.interswitchng.sdk.model.RequestOptions;
+import com.interswitchng.sdk.payment.IswCallback;
+import com.interswitchng.sdk.payment.Payment;
+import com.interswitchng.sdk.payment.android.inapp.Pay;
+import com.interswitchng.sdk.payment.android.util.Util;
+import com.interswitchng.sdk.payment.model.PurchaseResponse;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,7 +69,8 @@ public class MainActivity extends AppCompatActivity
     TextView[] allTextViews;
     static Map allNames = new HashMap();
     private static final String NAME_KEY = "Friend's Name";
-
+    Activity activity = this;
+    Context context = this;
     private Vibrator vibrator;
     private static int REQUEST_CODE_TRUSTEES = 1001;
     private long VIBRATION_TIME = 300; // Length of vibration in milliseconds
@@ -84,6 +93,9 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Passport.overrideApiBase(Passport.SANDBOX_API_BASE);
+        Payment.overrideApiBase(Payment.SANDBOX_API_BASE);
+
         CircleImageView donateButton = (CircleImageView) findViewById(R.id.image_donate);
         CircleImageView circleOfFriends = (CircleImageView) findViewById(R.id.image_cf);
         CircleImageView recordButton = (CircleImageView) findViewById(R.id.image_record);
@@ -99,9 +111,25 @@ public class MainActivity extends AppCompatActivity
         donateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, DonateWithISWActivity.class);
+                RequestOptions options = RequestOptions.builder()
+                        .setClientId("IKIA9614B82064D632E9B6418DF358A6A4AEA84D7218")
+                        .setClientSecret("XCTiBtLy1G9chAnyg0z3BcaFK4cVpwDg/GTw2EmjTZ8=")
+                        .build();
 
-                startActivity(intent);
+                Pay pay = new Pay(activity, "Safetee", "Donate With Interswitch", "100", "NGN", options,
+                        new IswCallback<PurchaseResponse>()  {
+                            @Override
+                            public void onError(Exception error) {
+                                Util.notify(context,"error",error.getMessage(),"Close",false);
+                            }
+
+                            @Override
+                            public void onSuccess(PurchaseResponse response) {
+                                Util.notify(context,"Success",response.getMessage(),"Close",false);
+
+                            }
+                        });
+                pay.start();
             }
         });
         recordButton.setOnClickListener(new View.OnClickListener() {

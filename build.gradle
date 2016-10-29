@@ -18,6 +18,10 @@ allprojects {
         flatDir {
             dirs 'libs'
         }
+        maven {
+            url  'http://dl.bintray.com/techquest/maven-repo'
+        }
+
     }
 }
 
