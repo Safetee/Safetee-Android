@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\net.gotev\uploadservice\3.0.3\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="679035e7050e209cfa2bd29f08c20eecbec96063">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\net.gotev-uploadservice-3.0.3_a8539d6030cc7adf8d17215e380cb984685be81c.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\2.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"

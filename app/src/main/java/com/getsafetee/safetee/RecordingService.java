@@ -19,6 +19,9 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.UploadNotificationConfig;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -370,6 +373,22 @@ public class RecordingService extends Service {
 				newFile.getAbsolutePath(), length);
 
 		stopForeground(true);
+
+		uploadRecording(newFile);
+	}
+
+	public void uploadRecording(File newFile) {
+		Log.i("VoiceRecordingUpload", "Started");
+		try {
+			String uploadId =
+					new MultipartUploadRequest(getApplicationContext(), Constants.UPLOAD_SERVICE_URL)
+							.addFileToUpload(newFile.getAbsolutePath(), "voice-recording")
+							.setNotificationConfig(new UploadNotificationConfig())
+							.setMaxRetries(2)
+							.startUpload();
+		} catch (Exception exc) {
+			Log.e("AndroidUploadService", exc.getMessage(), exc);
+		}
 	}
 
 	public void setNextPrettyRecordingName(String fileName) {
