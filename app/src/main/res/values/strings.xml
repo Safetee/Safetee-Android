@@ -147,6 +147,8 @@
 
     <string name="recording_deleted">Recording deleted</string>
     <string name="title_activity_donate_with_isw">Donate</string>
+    <string name="dialog_message">Choose NGO</string>
+    <string name="dialog_title">Help an NGO</string>
 
 </resources>
 

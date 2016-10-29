@@ -11,6 +11,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
@@ -31,6 +32,7 @@ import android.widget.Toast;
 import com.getsafetee.safetee.activities.IntroActivity;
 import com.getsafetee.safetee.activities.VoiceRecorderMainActivity;
 import com.getsafetee.safetee.circle_of_friends.CustomAlertDialogFragment;
+import com.getsafetee.safetee.circle_of_friends.DonateDialog;
 import com.getsafetee.safetee.circle_of_friends.FriendsList;
 import com.getsafetee.safetee.circle_of_friends.LocationHelper;
 import com.getsafetee.safetee.circle_of_friends.MessageDialogBox;
@@ -111,25 +113,9 @@ public class MainActivity extends AppCompatActivity
         donateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RequestOptions options = RequestOptions.builder()
-                        .setClientId("IKIA9614B82064D632E9B6418DF358A6A4AEA84D7218")
-                        .setClientSecret("XCTiBtLy1G9chAnyg0z3BcaFK4cVpwDg/GTw2EmjTZ8=")
-                        .build();
+                DialogFragment dialog = new DonateDialog();
+                dialog.show(getSupportFragmentManager(), "DonateDialog");
 
-                Pay pay = new Pay(activity, "Safetee", "Donate With Interswitch", "100", "NGN", options,
-                        new IswCallback<PurchaseResponse>()  {
-                            @Override
-                            public void onError(Exception error) {
-                                Util.notify(context,"error",error.getMessage(),"Close",false);
-                            }
-
-                            @Override
-                            public void onSuccess(PurchaseResponse response) {
-                                Util.notify(context,"Success",response.getMessage(),"Close",false);
-
-                            }
-                        });
-                pay.start();
             }
         });
         recordButton.setOnClickListener(new View.OnClickListener() {
