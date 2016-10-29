@@ -124,9 +124,33 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, VoiceRecorderMainActivity.class));
             }
         });
-        circleOfFriends.setOnLongClickListener(new View.OnLongClickListener() {
+//        circleOfFriends.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                if (checkMobileNetworkAvailable(MainActivity.this)) {
+///*
+//                    if (vibrator.hasVibrator()) {
+//                        // Only perform success pattern one time (-1 means "do not repeat")
+//                        vibrator.vibrate(patternSuccess, -1);
+//                    }
+//*/
+//                    MessageDialogBox messageDialogBox = MessageDialogBox.newInstance(MainActivity.this, MainActivity.this);
+//                    messageDialogBox.show(MainActivity.this.getSupportFragmentManager(), getString(R.string.message_options));
+//                } else {
+//                    if (vibrator.hasVibrator()) {
+//                        // Only perform failure pattern one time (-1 means "do not repeat")
+//                        vibrator.vibrate(patternFailure, -1);
+//                    }
+//                    Toast.makeText(MainActivity.this, R.string.network_unavailable, Toast.LENGTH_LONG).show();
+//                }
+//
+//                return false;
+//            }
+//        });
+
+        circleOfFriends.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View view) {
                 if (checkMobileNetworkAvailable(MainActivity.this)) {
 /*
                     if (vibrator.hasVibrator()) {
@@ -143,15 +167,6 @@ public class MainActivity extends AppCompatActivity
                     }
                     Toast.makeText(MainActivity.this, R.string.network_unavailable, Toast.LENGTH_LONG).show();
                 }
-
-                return false;
-            }
-        });
-
-        circleOfFriends.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //
             }
         });
 
