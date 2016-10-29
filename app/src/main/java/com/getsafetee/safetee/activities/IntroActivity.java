@@ -33,7 +33,7 @@ public class IntroActivity extends MaterialIntroActivity {
 
                         .image(R.drawable.cf)
 
-                        .title("Cirlce of Friends")
+                        .title("Circle of Friends")
 
                         .description("Specify ")
 
