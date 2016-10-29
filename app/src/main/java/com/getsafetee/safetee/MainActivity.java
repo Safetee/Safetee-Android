@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 
 import com.getsafetee.safetee.activities.IntroActivity;
+import com.getsafetee.safetee.activities.ReportActivity;
 import com.getsafetee.safetee.activities.VoiceRecorderMainActivity;
 import com.getsafetee.safetee.circle_of_friends.CustomAlertDialogFragment;
 import com.getsafetee.safetee.circle_of_friends.DonateDialog;
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity
         CircleImageView donateButton = (CircleImageView) findViewById(R.id.image_donate);
         CircleImageView circleOfFriends = (CircleImageView) findViewById(R.id.image_cf);
         CircleImageView recordButton = (CircleImageView) findViewById(R.id.image_record);
+        CircleImageView reportButton = (CircleImageView) findViewById(R.id.image_ngos);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -169,7 +171,14 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
+reportButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(MainActivity.this, ReportActivity.class);
 
+        startActivity(intent);
+    }
+});
         requestWriteExternalStoragePermission();
 
         startTheIntro();

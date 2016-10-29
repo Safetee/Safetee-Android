@@ -11,8 +11,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -38,7 +36,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.getsafetee.safetee.MainActivity" />
         </activity>
-        <activity android:name=".activities.VoiceRecorderMainActivity"></activity>
+        <activity android:name=".activities.VoiceRecorderMainActivity" />
 
         <service android:name=".RecordingService" />
 
@@ -47,7 +45,11 @@
             android:label="@string/app_name" />
         <activity
             android:name=".activities.IntroActivity"
-            android:theme="@style/Theme.Intro"></activity>
+            android:theme="@style/Theme.Intro" />
+        <activity
+            android:name=".activities.ReportActivity"
+            android:label="@string/title_activity_report"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

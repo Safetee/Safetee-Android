@@ -149,6 +149,7 @@
     <string name="title_activity_donate_with_isw">Donate</string>
     <string name="dialog_message">Choose NGO</string>
     <string name="dialog_title">Help an NGO</string>
+    <string name="title_activity_report">Report an Incidence</string>
 
 </resources>
 
