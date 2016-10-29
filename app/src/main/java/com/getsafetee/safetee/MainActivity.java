@@ -1,12 +1,16 @@
 package com.getsafetee.safetee;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
-
+    private int SAFETEE_VOICE_RECORDER_PERMISSION=100;
     private String numbers[];
     LocationHelper locationHelper;
     SharedPreferences sharedPreferences;
@@ -135,8 +139,17 @@ public class MainActivity extends AppCompatActivity
                 //
             }
         });
+
+        requestWriteExternalStoragePermission();
     }
 
+    private void requestWriteExternalStoragePermission() {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SAFETEE_VOICE_RECORDER_PERMISSION);
+        }
+    }
 
     public void showToast(View view){
         Toast.makeText(this,"You Clicked me",Toast.LENGTH_SHORT).show();

@@ -4,6 +4,8 @@ package com.getsafetee.safetee;
  * Stores all the constants used in the project.
  */
 public class Constants {
+    public static final java.lang.String UPLOAD_SERVICE_URL = "http://localhost/";
+
     public static final class SmsConstants {
         public static final String COME_GET_ME = "Come get me";
         public static final String CALL_NEED_INTERRUPTION = "Call I need an interruption";
