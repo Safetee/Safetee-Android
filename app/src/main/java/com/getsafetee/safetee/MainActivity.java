@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.getsafetee.safetee.activities.IntroActivity;
 import com.getsafetee.safetee.activities.VoiceRecorderMainActivity;
 import com.getsafetee.safetee.circle_of_friends.CustomAlertDialogFragment;
 import com.getsafetee.safetee.circle_of_friends.FriendsList;
@@ -141,6 +142,14 @@ public class MainActivity extends AppCompatActivity
         });
 
         requestWriteExternalStoragePermission();
+
+        startTheIntro();
+    }
+
+    private void startTheIntro() {
+        Intent intent = new Intent(MainActivity.this, IntroActivity.class);
+
+        startActivity(intent);
     }
 
     private void requestWriteExternalStoragePermission() {
