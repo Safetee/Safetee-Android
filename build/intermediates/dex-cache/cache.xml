@@ -3,6 +3,15 @@
 
     <item
         is-multidex="false"
+        jar="C:\Users\i.Sec\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\gson-2.3.1_cde56b91ed5cea2b1ea1ef9323b228d038d55c67.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.nhaarman.listviewanimations\lib-manipulation\3.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -30,6 +39,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\deviceprint-release-2.2.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6fc9a2cf6cfc7d3ee43c18b4b2973a1f172e461b">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\intermediates-exploded-aar-deviceprint-release-2.2.0_5b5ba341cd63fea80f95f393ce00282ea0c29b41.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -48,6 +66,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\i.Sec\.gradle\caches\modules-2\files-2.1\com.interswitchng\isw-payment-sdk-android-payment\1.0.3\986c5847b2d90123a26a75af11451d536f043420\isw-payment-sdk-android-payment-1.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="986c5847b2d90123a26a75af11451d536f043420">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\isw-payment-sdk-android-payment-1.0.3_1226c07127000b2f2559112da32d903f825b6b69.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -63,6 +90,15 @@
         revision="24.0.2"
         sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
         <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_8e9acfcdef4bdd58f1c229bd1cbde8c93bba9d8b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\.gradle\caches\modules-2\files-2.1\com.interswitchng\isw-payment-sdk-android-core\1.0.0\f92be5cf14220ffecb5b7c35d604fae33eca6c3e\isw-payment-sdk-android-core-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f92be5cf14220ffecb5b7c35d604fae33eca6c3e">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\isw-payment-sdk-android-core-1.0.0_d5b5ac5069ff8da34a91a0328c94629ad1218393.jar" />
     </item>
     <item
         is-multidex="false"
@@ -180,6 +216,15 @@
         revision="24.0.2"
         sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
         <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.2.1_6cf0341428bdcab7ba9b1620b476a8f7c95771b8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.interswitchng\payment-android\0.0.12-Beta\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="2ecadd7a0aa0c1aacb00b49a3a7c651bfeb96289">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.interswitchng-payment-android-0.0.12-Beta_4f8a25281dd597cdd4edddb15e499e6e38f94b35.jar" />
     </item>
     <item
         is-multidex="false"

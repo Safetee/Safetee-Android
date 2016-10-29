@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.getsafetee.safetee.activities.DonateWithISWActivity;
 import com.getsafetee.safetee.activities.IntroActivity;
 import com.getsafetee.safetee.activities.VoiceRecorderMainActivity;
 import com.getsafetee.safetee.circle_of_friends.CustomAlertDialogFragment;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
-    private int SAFETEE_VOICE_RECORDER_PERMISSION=100;
+    private int SAFETEE_VOICE_RECORDER_PERMISSION = 100;
     private String numbers[];
     LocationHelper locationHelper;
     SharedPreferences sharedPreferences;
@@ -98,7 +99,9 @@ public class MainActivity extends AppCompatActivity
         donateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"Hello", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, DonateWithISWActivity.class);
+
+                startActivity(intent);
             }
         });
         recordButton.setOnClickListener(new View.OnClickListener() {
@@ -110,24 +113,21 @@ public class MainActivity extends AppCompatActivity
         circleOfFriends.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if(checkMobileNetworkAvailable(MainActivity.this))
-                {
+                if (checkMobileNetworkAvailable(MainActivity.this)) {
 /*
                     if (vibrator.hasVibrator()) {
                         // Only perform success pattern one time (-1 means "do not repeat")
                         vibrator.vibrate(patternSuccess, -1);
                     }
 */
-                    MessageDialogBox messageDialogBox = MessageDialogBox.newInstance(MainActivity.this,MainActivity.this);
-                    messageDialogBox.show(MainActivity.this.getSupportFragmentManager(),getString(R.string.message_options));
-                }
-                else
-                {
+                    MessageDialogBox messageDialogBox = MessageDialogBox.newInstance(MainActivity.this, MainActivity.this);
+                    messageDialogBox.show(MainActivity.this.getSupportFragmentManager(), getString(R.string.message_options));
+                } else {
                     if (vibrator.hasVibrator()) {
                         // Only perform failure pattern one time (-1 means "do not repeat")
                         vibrator.vibrate(patternFailure, -1);
                     }
-                    Toast.makeText(MainActivity.this,R.string.network_unavailable,Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.network_unavailable, Toast.LENGTH_LONG).show();
                 }
 
                 return false;
@@ -160,8 +160,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void showToast(View view){
-        Toast.makeText(this,"You Clicked me",Toast.LENGTH_SHORT).show();
+    public void showToast(View view) {
+        Toast.makeText(this, "You Clicked me", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -226,31 +226,32 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     public static boolean checkMobileNetworkAvailable(Context appcontext) {
         TelephonyManager tel = (TelephonyManager) appcontext.getSystemService(Context.TELEPHONY_SERVICE);
         return (tel.getNetworkOperator() != null && tel.getNetworkOperator().equals("") ? false : true);
     }
+
     /**
      * Sends a message to the Friend's' phone numbers
+     *
      * @param optionSelected selected option
      */
-    public void sendMessage(String optionSelected)
-    {
+    public void sendMessage(String optionSelected) {
         SmsManager sms = SmsManager.getDefault();
         String message = "";
-        switch(optionSelected)
-        {
+        switch (optionSelected) {
             case Constants.SmsConstants.COME_GET_ME:
 //                Location location = locationHelper.retrieveLocation(false);
                 Location location = null;
-                if(location == null) {
+                if (location == null) {
                     message = getString(R.string.come_get_me_message);
-                }else{
+                } else {
                     message = getString(R.string.come_get_me_message_with_location);
-                    message = message.replace(Constants.TAG_LOCATION,location.getLatitude() +"," + location.getLongitude());
-                    String locationUrl = Constants.LOCATION_URL.replace("LAT" , String.valueOf(location.getLatitude()))
-                            .replace("LON" , String.valueOf(location.getLongitude()));
-                    message = message.replace(Constants.TAG_LOCATION_URL,locationUrl);
+                    message = message.replace(Constants.TAG_LOCATION, location.getLatitude() + "," + location.getLongitude());
+                    String locationUrl = Constants.LOCATION_URL.replace("LAT", String.valueOf(location.getLatitude()))
+                            .replace("LON", String.valueOf(location.getLongitude()));
+                    message = message.replace(Constants.TAG_LOCATION_URL, locationUrl);
                 }
                 break;
             case Constants.SmsConstants.CALL_NEED_INTERRUPTION:
@@ -263,14 +264,13 @@ public class MainActivity extends AppCompatActivity
 
         sharedPreferences = this.getSharedPreferences(FriendsList.MY_PREFERENCES, Context.MODE_PRIVATE);
 
-        if(phoneNumbers == null)
-        {
+        if (phoneNumbers == null) {
             loadPhoneNumbers();
         }
         // The numbers variable holds the Comrades numbers
         numbers = phoneNumbers;
 
-        int counter=0;
+        int counter = 0;
 
         //Fix sending messages if the length is more than single sms limit
         ArrayList<String> parts = sms.divideMessage(message);
@@ -280,40 +280,36 @@ public class MainActivity extends AppCompatActivity
                     SENT), 0));
         }
         int numRegisteredComrades = 0;
-        for(String number : numbers) {
+        for (String number : numbers) {
             if (!number.isEmpty()) {
                 numRegisteredComrades++;
             }
         }
         msgParts = numParts * numRegisteredComrades;
         firstTime = true;
-        for(String number : numbers) {
+        for (String number : numbers) {
             if (!number.isEmpty()) {
-                try{
+                try {
                     sms.sendMultipartTextMessage(number, null, parts, sentIntents, null);
-                }
-                catch(Exception e){
-                    Toast.makeText(this, R.string.message_failed + (counter+1), Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(this, R.string.message_failed + (counter + 1), Toast.LENGTH_LONG).show();
                 }
                 counter++;
             }
         }
-        if(counter!=0)
-        {
+        if (counter != 0) {
             String contentToPost;
 
             //For 1 comrade
-            if(counter == 1)
-                contentToPost = getString(R.string.confirmation_message1)+ " " + counter + " "+ getString(R.string.confirmation_message3) +" " + getString(R.string.receive_log);
+            if (counter == 1)
+                contentToPost = getString(R.string.confirmation_message1) + " " + counter + " " + getString(R.string.confirmation_message3) + " " + getString(R.string.receive_log);
             else
-                contentToPost = getString(R.string.confirmation_message1)+ " " + counter + " "+ getString(R.string.confirmation_message2)+ " " + getString(R.string.receive_log);
-            CustomAlertDialogFragment customAlertDialogFragment = CustomAlertDialogFragment.newInstance(getString(R.string.msg_sent),contentToPost);
-            customAlertDialogFragment.show(this.getSupportFragmentManager(),getString(R.string.dialog_tag));
-        }
-        else
-        {
-            CustomAlertDialogFragment customAlertDialogFragment = CustomAlertDialogFragment.newInstance(getString(R.string.no_comrade_title),getString(R.string.no_comrade_msg));
-            customAlertDialogFragment.show(this.getSupportFragmentManager(),getString(R.string.dialog_tag));
+                contentToPost = getString(R.string.confirmation_message1) + " " + counter + " " + getString(R.string.confirmation_message2) + " " + getString(R.string.receive_log);
+            CustomAlertDialogFragment customAlertDialogFragment = CustomAlertDialogFragment.newInstance(getString(R.string.msg_sent), contentToPost);
+            customAlertDialogFragment.show(this.getSupportFragmentManager(), getString(R.string.dialog_tag));
+        } else {
+            CustomAlertDialogFragment customAlertDialogFragment = CustomAlertDialogFragment.newInstance(getString(R.string.no_comrade_title), getString(R.string.no_comrade_msg));
+            customAlertDialogFragment.show(this.getSupportFragmentManager(), getString(R.string.dialog_tag));
         }
     }
 
@@ -322,8 +318,8 @@ public class MainActivity extends AppCompatActivity
         try {
 
             phoneNumbers = new String[NUMBER_OF_COMRADES];
-            for(int i = 0; i < NUMBER_OF_COMRADES; i++) {
-                phoneNumbers[i] = sharedPreferences.getString( FriendsList.COMRADE_KEY.get( i ), "" );
+            for (int i = 0; i < NUMBER_OF_COMRADES; i++) {
+                phoneNumbers[i] = sharedPreferences.getString(FriendsList.COMRADE_KEY.get(i), "");
             }
 
             return true;
@@ -337,23 +333,23 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_TRUSTEES) {
+        if (requestCode == REQUEST_CODE_TRUSTEES) {
             refreshPhotos();
             Iterator it = allNames.entrySet().iterator();
             while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry)it.next();
-                allTextViews[(Integer)pair.getKey() - 1].setText(pair.getValue().toString());
-                editor.putString(NAME_KEY + ((Integer)pair.getKey()-1),pair.getValue().toString());
+                Map.Entry pair = (Map.Entry) it.next();
+                allTextViews[(Integer) pair.getKey() - 1].setText(pair.getValue().toString());
+                editor.putString(NAME_KEY + ((Integer) pair.getKey() - 1), pair.getValue().toString());
             }
 
-            for(int i = 0; i < NUMBER_OF_COMRADES; i++) {
-                if(!allNames.containsKey(i+1) && !(phoneNumbers[i].isEmpty())){
+            for (int i = 0; i < NUMBER_OF_COMRADES; i++) {
+                if (!allNames.containsKey(i + 1) && !(phoneNumbers[i].isEmpty())) {
                     allTextViews[i].setText(phoneNumbers[i]);
-                    editor.putString(NAME_KEY + i,phoneNumbers[i]);
+                    editor.putString(NAME_KEY + i, phoneNumbers[i]);
                 }
-                if(phoneNumbers[i].isEmpty()) {
+                if (phoneNumbers[i].isEmpty()) {
                     allTextViews[i].setText(getString(R.string.unregistered));
-                    editor.putString(NAME_KEY + i,getString(R.string.unregistered));
+                    editor.putString(NAME_KEY + i, getString(R.string.unregistered));
                 }
             }
             editor.commit();
@@ -362,6 +358,6 @@ public class MainActivity extends AppCompatActivity
 
     private void refreshPhotos() {
         phoneNumbers = null;
-     //   loadContactPhotos();
+        //   loadContactPhotos();
     }
 }

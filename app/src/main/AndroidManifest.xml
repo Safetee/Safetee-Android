@@ -34,19 +34,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.getsafetee.safetee.MainActivity" />
         </activity>
-        <activity android:name=".activities.VoiceRecorderMainActivity">
-
-        </activity>
+        <activity android:name=".activities.VoiceRecorderMainActivity"></activity>
 
         <service android:name=".RecordingService" />
 
         <activity
             android:name=".activities.FragmentHolderActivity"
-            android:label="@string/app_name"></activity>
-        <activity android:name=".activities.IntroActivity"
-            android:theme="@style/Theme.Intro">
-
-        </activity>
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activities.IntroActivity"
+            android:theme="@style/Theme.Intro"></activity>
+        <activity
+            android:name=".activities.DonateWithISWActivity"
+            android:label="@string/title_activity_donate_with_isw"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

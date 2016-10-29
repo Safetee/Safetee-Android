@@ -146,6 +146,7 @@
     </string-array>
 
     <string name="recording_deleted">Recording deleted</string>
+    <string name="title_activity_donate_with_isw">Donate</string>
 
 </resources>
 
