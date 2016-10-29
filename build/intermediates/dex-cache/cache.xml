@@ -3,6 +3,15 @@
 
     <item
         is-multidex="false"
+        jar="C:\Users\i.Sec\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\gson-2.3.1_cde56b91ed5cea2b1ea1ef9323b228d038d55c67.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.nhaarman.listviewanimations\lib-manipulation\3.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -39,48 +48,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.databinding\adapters\1.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="c56d29136c2257f63f08c29c4e739efb03b06c7d">
-        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.databinding-adapters-1.2.1_7add0064236c85e2cb021bf46b90973acc0f1f50.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.2"
         sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
         <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-24.2.1_d6c0ceba0135d3517eab8a724714a5303af0cd5f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_8e9acfcdef4bdd58f1c229bd1cbde8c93bba9d8b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_edb6534005f368920cae10500e33c7ed01cf860e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.cocosw\undobar\1.7.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="beb36f6a4b91dd74db444d79f0a97742be89ee96">
-        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.cocosw-undobar-1.7.1_d287d387fff545410f27ef6944ea2fe71d794cf6.jar" />
     </item>
     <item
         is-multidex="false"
@@ -156,6 +129,96 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.2.1_6cf0341428bdcab7ba9b1620b476a8f7c95771b8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_b7faa45c4386704f5c2e5ff2dd7f0b7f5e639ba7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_955a3f2d670b8541507f35182961e5eb3b82120b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\deviceprint-release-2.2.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6fc9a2cf6cfc7d3ee43c18b4b2973a1f172e461b">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\intermediates-exploded-aar-deviceprint-release-2.2.0_5b5ba341cd63fea80f95f393ce00282ea0c29b41.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.databinding\adapters\1.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c56d29136c2257f63f08c29c4e739efb03b06c7d">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.databinding-adapters-1.2.1_7add0064236c85e2cb021bf46b90973acc0f1f50.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.interswitchng\payment-android\0.0.9\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="4cfe8d155ffa87b771807df03d75ebf5a4644020">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.interswitchng-payment-android-0.0.9_8122d18ca9a1658f18afd785ed68e2482afa6594.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_8e9acfcdef4bdd58f1c229bd1cbde8c93bba9d8b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_edb6534005f368920cae10500e33c7ed01cf860e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.cocosw\undobar\1.7.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="beb36f6a4b91dd74db444d79f0a97742be89ee96">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.cocosw-undobar-1.7.1_d287d387fff545410f27ef6944ea2fe71d794cf6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\i.Sec\.gradle\caches\modules-2\files-2.1\com.interswitchng\isw-payment\0.0.5\30cc1134f619fd76b9a1d698bfa684fabdf7d55\isw-payment-0.0.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="030cc1134f619fd76b9a1d698bfa684fabdf7d55">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\isw-payment-0.0.5_40f709654cde166be9efba889f88117783b8dda2.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -171,15 +234,6 @@
         revision="24.0.2"
         sha1="30d2b12e06347ece26e565b60cb7de12ed14d13b">
         <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\baseLibrary-2.2.1_469ca66288751c240c3fb34715e66cb1aeb5ef06.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.2.1_6cf0341428bdcab7ba9b1620b476a8f7c95771b8.jar" />
     </item>
     <item
         is-multidex="false"
@@ -210,6 +264,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\i.Sec\.gradle\caches\modules-2\files-2.1\com.interswitchng\isw-core\0.0.5\ef19a31ac6b82d4d487e11046346e0940850bf1c\isw-core-0.0.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ef19a31ac6b82d4d487e11046346e0940850bf1c">
+        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\isw-core-0.0.5_73941eb8e6a5d9fdddc4d212b302400a4124e273.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="false"
         optimize="true"
@@ -234,24 +297,6 @@
         revision="24.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.2.1_541cf59366c657deec972111b30f9bbc36b55299.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_b7faa45c4386704f5c2e5ff2dd7f0b7f5e639ba7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\i.Sec\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="C:\Users\i.Sec\SafeteeProjects\Safetee-Android\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_955a3f2d670b8541507f35182961e5eb3b82120b.jar" />
     </item>
     <item
         is-multidex="false"

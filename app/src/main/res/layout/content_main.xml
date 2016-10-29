@@ -127,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="NGOs Around"
+                        android:text="Report an Incidence"
                         android:layout_gravity="bottom|center"
                         android:textSize="18dp" />
                 </LinearLayout>
