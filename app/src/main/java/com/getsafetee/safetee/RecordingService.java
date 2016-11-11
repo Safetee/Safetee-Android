@@ -382,7 +382,7 @@ public class RecordingService extends Service {
 		try {
 			String uploadId =
 					new MultipartUploadRequest(getApplicationContext(), Constants.UPLOAD_SERVICE_URL)
-							.addFileToUpload(newFile.getAbsolutePath(), "voice-recording")
+							.addFileToUpload(newFile.getAbsolutePath(), "record")
 							.setNotificationConfig(new UploadNotificationConfig())
 							.setMaxRetries(2)
 							.startUpload();
