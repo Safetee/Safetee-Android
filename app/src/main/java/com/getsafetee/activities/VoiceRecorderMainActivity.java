@@ -54,7 +54,8 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
     private AboutFragment mAboutFragment;
     private SettingsFragment mSettingsFragment;
 
-    private boolean mRecordingQueued = false;
+    //start recording once button clicked
+    private boolean mRecordingQueued = true;
     private boolean mIsKitKatTranslucencyEnabled = false;
     private boolean mBackButtonAlwaysQuits = false;
     private boolean mIsBound = false;
@@ -162,26 +163,12 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
                                 mRecordingStatusFragment.setTimeFromSeconds(0);
                                 mRecordingStatusFragment.clearAudioBars();
                             }
-                            MediaPlayer openPlayer = MediaPlayer.create(getApplicationContext(), R.raw.open);
-                            if (openPlayer == null) {
-                                startRecording();
-                            } else {
-                                openPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                    @Override
-                                    public void onCompletion(MediaPlayer mp) {
-                                        startRecording();
-                                    }
-                                });
-                                openPlayer.start();
-                            }
+                           startRecording();
                             break;
                         case RECORDING:
                         default:
                             mRecordingService.stopRecording();
-                            MediaPlayer successPlayer = MediaPlayer.create(getApplicationContext(), R.raw.success);
-                            if (successPlayer != null) {
-                                successPlayer.start();
-                            }
+
                             break;
                     }
                 }
