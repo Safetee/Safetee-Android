@@ -163,12 +163,12 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
                                 mRecordingStatusFragment.setTimeFromSeconds(0);
                                 mRecordingStatusFragment.clearAudioBars();
                             }
-                           startRecording();
+                            startRecording();
                             break;
                         case RECORDING:
                         default:
                             mRecordingService.stopRecording();
-
+                            switchToRecordings();
                             break;
                     }
                 }
@@ -216,7 +216,6 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
         getSupportActionBar().setHomeButtonEnabled(true);
 
     }
-
 
 
     @Override
