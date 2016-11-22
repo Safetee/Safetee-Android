@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.getsafetee.MainActivity;
+import com.getsafetee.circleoffriends.adapters.MessageAdapter;
 import com.getsafetee.safetee.R;
 
 /*

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 
+import com.getsafetee.circleoffriends.adapters.ContactListAdapter;
+
 /*
  * Dialog for showing multiple contact selection dialog
  *

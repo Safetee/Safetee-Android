@@ -1,4 +1,4 @@
-package com.getsafetee.circleoffriends;
+package com.getsafetee.circleoffriends.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

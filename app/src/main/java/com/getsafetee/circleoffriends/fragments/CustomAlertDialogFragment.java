@@ -1,4 +1,4 @@
-package com.getsafetee.circleoffriends;
+package com.getsafetee.circleoffriends.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

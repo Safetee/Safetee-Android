@@ -1,4 +1,4 @@
-package com.getsafetee.circleoffriends;
+package com.getsafetee.circleoffriends.helpers;
 
 import android.content.Context;
 import android.location.Location;
