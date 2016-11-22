@@ -1,4 +1,4 @@
-package com.getsafetee;
+package com.getsafetee.util;
 
 /**
  * Stores all the constants used in the project.

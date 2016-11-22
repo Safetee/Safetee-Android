@@ -1,4 +1,4 @@
-package com.getsafetee;
+package com.getsafetee.util;
 
 import android.app.Application;
 

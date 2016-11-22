@@ -19,7 +19,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.getsafetee.Constants;
+import com.getsafetee.util.Constants;
 import com.getsafetee.MainActivity;
 import com.getsafetee.audiorecorder.models.RecordingMode;
 import com.getsafetee.audiorecorder.models.RecordingsDatabase;

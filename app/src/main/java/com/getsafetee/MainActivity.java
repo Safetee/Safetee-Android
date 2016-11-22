@@ -38,6 +38,7 @@ import com.getsafetee.circleoffriends.FriendsList;
 import com.getsafetee.circleoffriends.helpers.LocationHelper;
 import com.getsafetee.circleoffriends.MessageDialogBox;
 import com.getsafetee.safetee.R;
+import com.getsafetee.util.Constants;
 import com.interswitchng.sdk.auth.Passport;
 import com.interswitchng.sdk.payment.Payment;
 
