@@ -1,4 +1,4 @@
-package com.getsafetee.activities;
+package com.getsafetee;
 
 import android.Manifest;
 import android.support.annotation.Nullable;

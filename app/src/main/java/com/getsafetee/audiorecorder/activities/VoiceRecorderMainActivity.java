@@ -1,4 +1,4 @@
-package com.getsafetee.activities;
+package com.getsafetee.audiorecorder.activities;
 
 import android.annotation.TargetApi;
 import android.app.FragmentTransaction;
@@ -11,7 +11,6 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -29,6 +28,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 
+import com.getsafetee.FragmentHolderActivity;
 import com.getsafetee.safetee.R;
 import com.getsafetee.audiorecorder.models.RecordingMode;
 import com.getsafetee.audiorecorder.services.RecordingService;

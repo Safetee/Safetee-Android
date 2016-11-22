@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.getsafetee.safetee.R;
 import com.getsafetee.audiorecorder.models.RecordingMode;
 import com.getsafetee.audiorecorder.services.RecordingService;
-import com.getsafetee.activities.VoiceRecorderMainActivity;
+import com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity;
 import com.getsafetee.audiorecorder.listeners.SimpleAnimationListener;
 import com.getsafetee.audiorecorder.views.RecordingStateView;
 import com.getsafetee.audiorecorder.views.SoundLevelBarsView;

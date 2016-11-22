@@ -1,4 +1,4 @@
-package com.getsafetee.activities;
+package com.getsafetee;
 
 import android.app.Activity;
 import android.app.Fragment;
