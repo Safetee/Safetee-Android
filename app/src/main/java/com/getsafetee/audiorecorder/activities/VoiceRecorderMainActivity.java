@@ -1,4 +1,4 @@
-package com.getsafetee.activities;
+package com.getsafetee.audiorecorder.activities;
 
 import android.annotation.TargetApi;
 import android.app.FragmentTransaction;
@@ -11,7 +11,6 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -29,6 +28,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 
+import com.getsafetee.FragmentHolderActivity;
 import com.getsafetee.safetee.R;
 import com.getsafetee.audiorecorder.models.RecordingMode;
 import com.getsafetee.audiorecorder.services.RecordingService;
@@ -73,11 +73,11 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
                 mRecordingStatusFragment.setRecordingMode(RecordingMode.RECORDING);
                 mRecordingStatusFragment.setFileName(filename.replace(".pcm", ""));
                 mRecordingControlsFragment.onRecordingStateChanged(RecordingMode.RECORDING);
-                getSupportActionBar().setTitle(R.string.state_recording);
+//                getSupportActionBar().setTitle(R.string.state_recording);
             } else if (RecordingService.INTENT_RECORDING_STOPPED.equals(intent.getAction())) {
                 mRecordingStatusFragment.setRecordingMode(RecordingMode.IDLE);
                 mRecordingControlsFragment.onRecordingStateChanged(RecordingMode.IDLE);
-                getSupportActionBar().setTitle(R.string.app_name);
+//                getSupportActionBar().setTitle(R.string.app_name);
             }
         }
     };
@@ -212,8 +212,8 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
         mDrawerArrayAdapter = new DrawerMenuArrayAdapter(getApplicationContext());
         listView.setAdapter(mDrawerArrayAdapter);
         listView.setOnItemClickListener(this);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeButtonEnabled(true);
 
     }
 
