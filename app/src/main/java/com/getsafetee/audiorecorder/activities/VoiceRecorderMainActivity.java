@@ -73,11 +73,11 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
                 mRecordingStatusFragment.setRecordingMode(RecordingMode.RECORDING);
                 mRecordingStatusFragment.setFileName(filename.replace(".pcm", ""));
                 mRecordingControlsFragment.onRecordingStateChanged(RecordingMode.RECORDING);
-                getSupportActionBar().setTitle(R.string.state_recording);
+//                getSupportActionBar().setTitle(R.string.state_recording);
             } else if (RecordingService.INTENT_RECORDING_STOPPED.equals(intent.getAction())) {
                 mRecordingStatusFragment.setRecordingMode(RecordingMode.IDLE);
                 mRecordingControlsFragment.onRecordingStateChanged(RecordingMode.IDLE);
-                getSupportActionBar().setTitle(R.string.app_name);
+//                getSupportActionBar().setTitle(R.string.app_name);
             }
         }
     };
@@ -212,8 +212,8 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
         mDrawerArrayAdapter = new DrawerMenuArrayAdapter(getApplicationContext());
         listView.setAdapter(mDrawerArrayAdapter);
         listView.setOnItemClickListener(this);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeButtonEnabled(true);
 
     }
 
