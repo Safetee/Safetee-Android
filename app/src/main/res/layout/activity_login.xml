@@ -10,6 +10,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/colorPrimary"
     tools:context="com.getsafetee.auth.LoginActivity">
+    <LinearLayout
+        android:id="@+id/auth_fragment_container"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_height="match_parent"/>
 
     <!-- Login progress -->
     <ProgressBar
@@ -67,7 +73,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/email_sign_in_button"
+                android:id="@+id/sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,13 +93,14 @@
                 android:textColor="#fff"
                 android:textStyle="bold" />
 
-            <TextView android:id="@+id/link_signup"
+            <TextView android:id="@+id/link_forgot_password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:text="Forgot password"
                 android:textColor="@color/colorWhite"
                 android:gravity="center"
+                android:clickable="true"
                 android:textSize="16dip"/>
 
         </LinearLayout>

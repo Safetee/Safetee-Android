@@ -4,7 +4,13 @@ package com.getsafetee.util;
  * Stores all the constants used in the project.
  */
 public class Constants {
+
+    //API URLs
     public static final java.lang.String UPLOAD_SERVICE_URL = "https://safetee2.herokuapp.com/api/v1/record/add";
+    public static final String LOGIN_URL = "https://safetee2.herokuapp.com/api/v1/user/login";
+    public static final String SIGN_UP_URL = "https://safetee2.herokuapp.com/api/v1/user/signup";
+
+
 
     public static final class SmsConstants {
         public static final String COME_GET_ME = "Come get me";

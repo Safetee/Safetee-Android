@@ -4,9 +4,14 @@ package com.getsafetee.auth;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -30,7 +35,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,7 +52,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.getsafetee.MainActivity;
 import com.getsafetee.safetee.R;
+import com.getsafetee.util.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,6 +70,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+    public static String FRAGMENT_TAG = SignupFragment.TAG;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -76,21 +86,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     //Instantiate RequestQueue
     //RequestQueue requestQueue = Volley.newRequestQueue(this);
-    String url = "https://safetee2.herokuapp.com/api/v1/user/login " ;
+    String url = "https://safetee2.herokuapp.com/api/v1/user/login" ;
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private TextView forgotPasswordTextView;
     private View mProgressView;
     private View mLoginFormView;
+
+
+    private String email;
+    private String password;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getServerResponse(url);
-        //getRes();
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        forgotPasswordTextView = (TextView) findViewById(R.id.link_forgot_password);
+        Button mEmailSignInButton = (Button) findViewById(R.id.sign_in_button);
+        Button signupButton = (Button) findViewById(R.id.sign_up_button);
+
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -104,14 +124,33 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
         });
-
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        forgotPasswordTextView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                android.app.FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction =
+                        fragmentManager.beginTransaction();
+                //fragmentTransaction.setCustomAnimations(R.animator.enter_anim, R.animator.exit_anim);
+                ForgotPassword forgotPassword = new ForgotPassword();
+                fragmentTransaction.add(R.id.auth_fragment_container, forgotPassword).commit();
+            }
+        });
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
             }
         });
+        signupButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.auth_fragment_container);
+                linearLayout.setVisibility(View.VISIBLE);
+                SignupFragment signupFragment = new SignupFragment();
+                swapFragmentIn(LoginActivity.this,signupFragment, signupFragment.TAG,false);
+            }
+        });
+
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -143,7 +182,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
                 params.put("Authorization", auth);*/
                 params.put("email", "janedoe@gmail.com");
-                params.put("password","janedoe");
+                params.put("password","janedo");
                 return params;
         }
         };
@@ -151,44 +190,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Volley.newRequestQueue(this).add(stringRequest);
     }
 
-    void getRes(){
-        String url = "https://safetee2.herokuapp.com/api/v1/user/login ";
-
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response).getJSONObject("form");
-                            String email = jsonResponse.getString("email"),
-                                    password = jsonResponse.getString("password");
-                            System.out.println("email: "+email+"\npassword: "+password);
-                            Log.i("SAFETEE","email: "+email+"\npassword: "+password );
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String> params = new HashMap<>();
-                // the POST parameters:
-                params.put("email", "janedoe@gmail.com");
-                params.put("password", "janedoe");
-                return params;
-            }
-        };
-        Volley.newRequestQueue(this).add(postRequest);
+    public static void swapFragmentIn(FragmentActivity activity, Fragment fragment, String TAG, boolean addToBackStack)
+    {
+        android.support.v4.app.FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        // Insert the fragment by replacing any existing fragment
+        FRAGMENT_TAG = TAG;
+        if(addToBackStack){
+            fragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.push_down_in,R.anim.push_down_out,R.anim.fade_in,R.anim.fade_out)
+                    .replace(R.id.auth_fragment_container
+                            , fragment,TAG)
+                    .addToBackStack(TAG)
+                    .commit();
+        }
+        else
+        {
+            fragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.fade_in,R.anim.fade_out,R.anim.fade_in,R.anim.fade_out)
+                    .replace(R.id.auth_fragment_container
+                            , fragment,TAG)
+                    .commit();
+        }
     }
+
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
@@ -406,8 +430,41 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
+                //Thread.sleep(2000);
+
+                StringRequest stringRequest = new StringRequest(
+                        Request.Method.GET,
+                        Constants.LOGIN_URL,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                //Return the string response
+                                Log.i("SAFETEE", "Request Response: "+response);
+                            }
+                        },
+                        new Response.ErrorListener(){
+                            @Override
+                            public void onErrorResponse(VolleyError error){
+                                Log.i("SAFETEE", "That request didn't work ");
+                                Toast.makeText(LoginActivity.this,"Login error", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }){
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        HashMap<String, String> params = new HashMap<String, String>();
+                /*String creds = String.format("%s:%s","USERNAME","PASSWORD");
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                params.put("Authorization", auth);*/
+                        params.put("email", "janedoe@gmail.com");
+                        params.put("password","janedoe");
+                        return params;
+                    }
+                };
+                //Add the request to the request queue
+                Volley.newRequestQueue(LoginActivity.this).add(stringRequest);
+            } catch (Exception e) {
+                e.printStackTrace();
                 return false;
             }
 
@@ -429,7 +486,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                finish();
+                //finish();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
