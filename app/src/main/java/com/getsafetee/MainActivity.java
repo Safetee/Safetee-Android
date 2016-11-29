@@ -29,9 +29,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.getsafetee.activities.IntroActivity;
-import com.getsafetee.activities.ReportActivity;
-import com.getsafetee.activities.VoiceRecorderMainActivity;
+import com.getsafetee.incidencereport.ReportActivity;
+import com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity;
 import com.getsafetee.circleoffriends.fragments.CustomAlertDialogFragment;
 import com.getsafetee.circleoffriends.DonateDialog;
 import com.getsafetee.circleoffriends.FriendsList;

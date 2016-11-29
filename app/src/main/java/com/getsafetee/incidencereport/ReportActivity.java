@@ -1,4 +1,4 @@
-package com.getsafetee.activities;
+package com.getsafetee.incidencereport;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
