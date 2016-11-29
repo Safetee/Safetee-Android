@@ -159,7 +159,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     //Request a String response from provided URL
     private void getServerResponse(String url){
         StringRequest stringRequest = new StringRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 url,
                 new Response.Listener<String>() {
                     @Override
@@ -178,11 +178,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
-                /*String creds = String.format("%s:%s","USERNAME","PASSWORD");
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
-                params.put("Authorization", auth);*/
                 params.put("email", "janedoe@gmail.com");
-                params.put("password","janedo");
+                params.put("password","janedoe");
                 return params;
         }
         };
