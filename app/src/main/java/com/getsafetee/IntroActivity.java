@@ -1,6 +1,8 @@
 package com.getsafetee;
 
 import android.Manifest;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.view.View;
@@ -14,83 +16,103 @@ import agency.tango.materialintroscreen.SlideFragmentBuilder;
 
 public class IntroActivity extends MaterialIntroActivity {
 
+    public SharedPreferences settings;
+    public boolean firstRun;
+
+
     @Override
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        addSlide(new SlideFragmentBuilder()
+        settings = getSharedPreferences("prefs", 0);
+        firstRun = settings.getBoolean("firstRun", true);
+        if(firstRun){
+            addSlide(new SlideFragmentBuilder()
 
-                        .backgroundColor(R.color.colorPrimary)
+                            .backgroundColor(R.color.colorPrimary)
 
-                        .buttonsColor(R.color.colorAccent)
+                            .buttonsColor(R.color.colorAccent)
 
-                        .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE,
-                                Manifest.permission.READ_SMS,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE})
+                            .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE,
+                                    Manifest.permission.READ_SMS,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE})
 
-                        .image(R.drawable.cf)
+                            .image(R.drawable.cf)
 
-                        .title("Circle of Friends")
+                            .title("Circle of Friends")
 
-                        .description("Specify ")
+                            .description("Specify ")
 
-                        .build(),
+                            .build(),
 
-                new MessageButtonBehaviour(new View.OnClickListener() {
+                    new MessageButtonBehaviour(new View.OnClickListener() {
 
-                    @Override
+                        @Override
 
-                    public void onClick(View v) {
+                        public void onClick(View v) {
 
-                        Toast.makeText(IntroActivity.this, "We provide solutions to make you love your work", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(IntroActivity.this, "We provide solutions to make you love your work", Toast.LENGTH_SHORT).show();
 
-                    }
+                        }
 
-                }, "Work with love"));
+                    }, "Work with love"));
 
-        addSlide(new SlideFragmentBuilder()
+            addSlide(new SlideFragmentBuilder()
 
-                .backgroundColor(R.color.colorPrimary)
+                    .backgroundColor(R.color.colorPrimary)
 
-                .buttonsColor(R.color.colorAccent)
+                    .buttonsColor(R.color.colorAccent)
 
-                .image(R.drawable.mic)
+                    .image(R.drawable.mic)
 
-                .title("Record the Scene")
+                    .title("Record the Scene")
 
-                .description("Provide evidence for law suits")
+                    .description("Provide evidence for law suits")
 
-                .build());
+                    .build());
 
-        addSlide(new SlideFragmentBuilder()
+            addSlide(new SlideFragmentBuilder()
 
-                .backgroundColor(R.color.colorPrimary)
+                    .backgroundColor(R.color.colorPrimary)
 
-                .buttonsColor(R.color.colorAccent)
+                    .buttonsColor(R.color.colorAccent)
 
-                .image(R.drawable.tips)
+                    .image(R.drawable.tips)
 
-                .title("Safety Tips")
+                    .title("Safety Tips")
 
-                .description("Recieve timely tips to keep you safe")
+                    .description("Recieve timely tips to keep you safe")
 
-                .build());
+                    .build());
 
-        addSlide(new SlideFragmentBuilder()
+            addSlide(new SlideFragmentBuilder()
 
-                .backgroundColor(R.color.colorPrimary)
+                    .backgroundColor(R.color.colorPrimary)
 
-                .buttonsColor(R.color.colorAccent)
+                    .buttonsColor(R.color.colorAccent)
 
-                .image(R.drawable.circle_of_friends)
+                    .image(R.drawable.circle_of_friends)
 
-                .title("NGOs Around")
+                    .title("NGOs Around")
 
-                .description("Locate a women's rights NGO around you")
+                    .description("Locate a women's rights NGO around you")
 
-                .build());
+                    .build());
 
+        }else{ loadMainActivity();}
+
+    }
+
+    private void loadMainActivity() {
+
+        settings = getSharedPreferences("prefs", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("firstRun", false);
+        editor.apply();
+        Intent intent = new Intent();
+        setResult(2, intent);
+        finish();//finishing activity
     }
 }
