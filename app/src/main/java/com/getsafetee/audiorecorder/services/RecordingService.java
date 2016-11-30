@@ -390,7 +390,11 @@ public class RecordingService extends Service {
 			String uploadId =
 					new MultipartUploadRequest(getApplicationContext(), Constants.UPLOAD_SERVICE_URL)
 							.addFileToUpload(newFile.getAbsolutePath(), "record")
-							.setNotificationConfig(new UploadNotificationConfig())
+							.addParameter("sender", "Android")
+							.addParameter("uid", "Android")
+							.addParameter("location", "Android")
+							.addParameter("category", "Android")
+							.setNotificationConfig(new UploadNotificationConfig().setRingToneEnabled(false))
 							.setMaxRetries(2)
 							.startUpload();
 		} catch (Exception exc) {
