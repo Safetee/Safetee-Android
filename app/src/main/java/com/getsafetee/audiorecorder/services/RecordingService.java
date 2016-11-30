@@ -40,6 +40,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 public class RecordingService extends Service {
 	private static final String TAG = RecordingService.class.getSimpleName();
@@ -390,10 +391,10 @@ public class RecordingService extends Service {
 			String uploadId =
 					new MultipartUploadRequest(getApplicationContext(), Constants.UPLOAD_SERVICE_URL)
 							.addFileToUpload(newFile.getAbsolutePath(), "record")
-							.addParameter("sender", "Android")
-							.addParameter("uid", "Android")
-							.addParameter("location", "Android")
-							.addParameter("category", "Android")
+							.addParameter("sender", "Cchub User")
+							.addParameter("uid", UUID.randomUUID().toString())
+							.addParameter("location", "Lagos")
+							.addParameter("category", "Sexual Harassment")
 							.setNotificationConfig(new UploadNotificationConfig().setRingToneEnabled(false))
 							.setMaxRetries(2)
 							.startUpload();
