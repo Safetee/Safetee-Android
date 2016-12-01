@@ -37,11 +37,19 @@ import com.getsafetee.circleoffriends.FriendsList;
 import com.getsafetee.circleoffriends.helpers.LocationHelper;
 import com.getsafetee.circleoffriends.MessageDialogBox;
 import com.getsafetee.safetee.R;
+import com.getsafetee.safetytips.SafetyTips;
+import com.getsafetee.safetytips.db.DBAdapter;
 import com.getsafetee.util.Constants;
 import com.interswitchng.sdk.auth.Passport;
 import com.interswitchng.sdk.payment.Payment;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -70,6 +78,7 @@ public class MainActivity extends AppCompatActivity
     private static final String NAME_KEY = "Friend's Name";
     Activity activity = this;
     Context context = this;
+    DBAdapter db;
     private Vibrator vibrator;
     private static int REQUEST_CODE_TRUSTEES = 1001;
     private long VIBRATION_TIME = 300; // Length of vibration in milliseconds
@@ -99,6 +108,7 @@ public class MainActivity extends AppCompatActivity
         CircleImageView circleOfFriends = (CircleImageView) findViewById(R.id.image_cf);
         CircleImageView recordButton = (CircleImageView) findViewById(R.id.image_record);
         CircleImageView reportButton = (CircleImageView) findViewById(R.id.image_ngos);
+        final CircleImageView safetyTipsButton = (CircleImageView) findViewById(R.id.image_tips);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -108,12 +118,39 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        String destDir = "/data/data/" + getPackageName() +
+                "/databases/";
+        String destPath = destDir + "safety_tips";
+        File f = new File(destPath);
+        if (!f.exists()) {
+        //---make sure directory exists---
+            File directory = new File(destDir);
+            directory.mkdirs();
+        //---copy the db from the assets folder into
+        // the databases folder---
+            try {
+                CopyDB(getBaseContext().getAssets().open("safety_tips"),
+                        new FileOutputStream(destPath));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        db = new DBAdapter(this);
+
         donateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment dialog = new DonateDialog();
                 dialog.show(getSupportFragmentManager(), "DonateDialog");
 
+            }
+        });
+        safetyTipsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SafetyTips.class));
             }
         });
         recordButton.setOnClickListener(new View.OnClickListener() {
@@ -196,6 +233,17 @@ reportButton.setOnClickListener(new View.OnClickListener() {
 
     public void showToast(View view) {
         Toast.makeText(this, "You Clicked me", Toast.LENGTH_SHORT).show();
+    }
+    public void CopyDB(InputStream inputStream, OutputStream outputStream)
+            throws IOException {
+//---copy 1K bytes at a time---
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) > 0) {
+            outputStream.write(buffer, 0, length);
+        }
+        inputStream.close();
+        outputStream.close();
     }
 
     @Override
