@@ -176,7 +176,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
                 params.put("email", "janedoe@gmail.com");
                 params.put("password","janedoe");
@@ -450,9 +450,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     @Override
                     public Map<String, String> getHeaders() throws AuthFailureError {
                         HashMap<String, String> params = new HashMap<String, String>();
-                /*String creds = String.format("%s:%s","USERNAME","PASSWORD");
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
-                params.put("Authorization", auth);*/
                         params.put("email", "janedoe@gmail.com");
                         params.put("password","janedoe");
                         return params;
