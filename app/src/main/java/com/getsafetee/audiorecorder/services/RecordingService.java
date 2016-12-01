@@ -436,7 +436,7 @@ public class RecordingService extends Service {
 
 	private File generateFile() {
 		String filename = Environment.getExternalStorageDirectory().getAbsolutePath();
-		filename += "/SoundRecorder";
+		filename += "/data/" + getPackageName() +"/Records";
 
 		File dir = new File(filename);
 		if (!dir.exists()) {

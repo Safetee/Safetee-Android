@@ -19,12 +19,15 @@
         android:layout_height="96dp"
         android:src="@drawable/profile"
         app:civ_border_width="2dp"
+        android:visibility="invisible"
         app:civ_border_color="#fff"/>
     <TextView
+        android:id="@+id/loggeduser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Abimbola T."
+        android:text=""
+        android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView

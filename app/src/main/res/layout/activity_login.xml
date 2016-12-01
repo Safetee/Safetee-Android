@@ -42,6 +42,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
+                    android:textColorHint="@color/colorWhite"
+                    android:textColorHighlight="@color/colorWhite"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/colorWhite"
                     android:maxLines="1"
@@ -58,6 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
+                    android:textColorHint="@color/colorWhite"
+                    android:textColorHighlight="@color/colorWhite"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
@@ -75,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimaryDark"
                 android:textColor="#fff"
                 android:textStyle="bold" />
             <Button
@@ -85,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Sign up"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimaryDark"
                 android:textColor="#fff"
                 android:onClick="gosignup"
                 android:textStyle="bold" />
@@ -98,6 +102,7 @@
                 android:textColor="@color/colorWhite"
                 android:gravity="center"
                 android:clickable="true"
+                android:visibility="invisible"
                 android:textSize="16dip"/>
 
         </LinearLayout>

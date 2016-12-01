@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
@@ -111,6 +112,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (!session.isLoggedIn()) {
             logoutUser();
         }
+        // set logged user full name to navigation drawer
+       // TextView loggeduser = (TextView) findViewById(R.id.loggeduser);
+       // loggeduser.setText(session.getUName());
 
         Passport.overrideApiBase(Passport.SANDBOX_API_BASE);
         Payment.overrideApiBase(Payment.SANDBOX_API_BASE);
@@ -129,8 +133,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        String destDir = "/data/data/" + getPackageName() +
-                "/databases/";
+        String destDir;
+        destDir = "/data/data/" + getPackageName() + "/databases/";
         String destPath = destDir + "safety_tips";
         File f = new File(destPath);
         if (!f.exists()) {
@@ -276,8 +280,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_logout) {
+            logoutUser();
         }
 
         return super.onOptionsItemSelected(item);

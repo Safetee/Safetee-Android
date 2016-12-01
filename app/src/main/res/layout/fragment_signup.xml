@@ -95,6 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sex"
+                    android:visibility="invisible"
                     android:textSize="20dp"/>
                 <RadioGroup
                     android:id="@+id/sex"
@@ -142,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Sign up"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimaryDark"
                 android:textColor="#fff"
                 android:textStyle="bold" />
             <Button
@@ -152,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimaryDark"
                 android:textColor="#fff"
                 android:onClick="gosignin"
                 android:textStyle="bold" />
@@ -164,6 +165,7 @@
                 android:text="Forgot password"
                 android:textColor="@color/colorWhite"
                 android:gravity="center"
+                android:visibility="invisible"
                 android:textSize="16dip"/>
 
         </LinearLayout>
