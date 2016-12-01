@@ -1,6 +1,5 @@
 package com.getsafetee.audiorecorder.activities;
 
-import android.annotation.TargetApi;
 import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -15,32 +14,24 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-
 
 import com.getsafetee.FragmentHolderActivity;
-import com.getsafetee.safetee.R;
-import com.getsafetee.audiorecorder.models.RecordingMode;
-import com.getsafetee.audiorecorder.services.RecordingService;
-import com.getsafetee.audiorecorder.adapters.DrawerMenuArrayAdapter;
 import com.getsafetee.audiorecorder.fragments.AboutFragment;
 import com.getsafetee.audiorecorder.fragments.RecordingControlsFragment;
 import com.getsafetee.audiorecorder.fragments.RecordingStatusFragment;
 import com.getsafetee.audiorecorder.fragments.RecordingsListFragment;
 import com.getsafetee.audiorecorder.fragments.SettingsFragment;
+import com.getsafetee.audiorecorder.models.RecordingMode;
+import com.getsafetee.audiorecorder.services.RecordingService;
+import com.getsafetee.safetee.R;
 
 
-public class VoiceRecorderMainActivity extends AppCompatActivity implements RecordingService.OnAudioLevelChangedListener, OnItemClickListener {
+public class VoiceRecorderMainActivity extends AppCompatActivity implements RecordingService.OnAudioLevelChangedListener {
     @SuppressWarnings("unused")
     private static final String TAG = VoiceRecorderMainActivity.class.getSimpleName();
 
@@ -60,11 +51,6 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
     private boolean mBackButtonAlwaysQuits = false;
     private boolean mIsBound = false;
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
-
-    private DrawerMenuArrayAdapter mDrawerArrayAdapter;
-
     private BroadcastReceiver mStateChangedReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -73,11 +59,11 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
                 mRecordingStatusFragment.setRecordingMode(RecordingMode.RECORDING);
                 mRecordingStatusFragment.setFileName(filename.replace(".pcm", ""));
                 mRecordingControlsFragment.onRecordingStateChanged(RecordingMode.RECORDING);
-//                getSupportActionBar().setTitle(R.string.state_recording);
+                getSupportActionBar().setTitle(R.string.state_recording);
             } else if (RecordingService.INTENT_RECORDING_STOPPED.equals(intent.getAction())) {
                 mRecordingStatusFragment.setRecordingMode(RecordingMode.IDLE);
                 mRecordingControlsFragment.onRecordingStateChanged(RecordingMode.IDLE);
-//                getSupportActionBar().setTitle(R.string.app_name);
+                getSupportActionBar().setTitle(R.string.app_name);
             }
         }
     };
@@ -103,6 +89,7 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
             mRecordingService = null;
         }
     };
+    private Toolbar toolbar;
 
     private void doBindService() {
         bindService(new Intent(VoiceRecorderMainActivity.this,
@@ -118,13 +105,6 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
         }
     }
 
-    @TargetApi(android.os.Build.VERSION_CODES.KITKAT)
-    private void enableKitKatTranslucency() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,10 +113,14 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mBackButtonAlwaysQuits = prefs.getBoolean(SettingsFragment.BACK_BUTTON_ALWAYS_QUITS, false);
-        mIsKitKatTranslucencyEnabled = prefs.getBoolean(SettingsFragment.KITKAT_TRANSLUCENCY_KEY, true);
+        mIsKitKatTranslucencyEnabled = prefs.getBoolean(SettingsFragment.KITKAT_TRANSLUCENCY_KEY, false);
         prefs = null;
-        if (mIsKitKatTranslucencyEnabled)
-            enableKitKatTranslucency();
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         startService(new Intent(this, RecordingService.class));
         doBindService();
@@ -178,43 +162,6 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
             transaction.commit();
         }
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, R.drawable.ic_navigation_drawer,
-                R.string.open_drawer, R.string.close_drawer) {
-
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                if (mRecordingService != null && mRecordingService.getRecordingMode() != RecordingMode.RECORDING)
-                    getSupportActionBar().setTitle(mDrawerArrayAdapter.getCurrentTitle());
-                else
-                    getSupportActionBar().setTitle(R.string.state_recording);
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                if (mRecordingService != null && mRecordingService.getRecordingMode() != RecordingMode.RECORDING)
-                    getSupportActionBar().setTitle(R.string.app_name);
-                else
-                    getSupportActionBar().setTitle(R.string.state_recording);
-            }
-        };
-
-        // Set the drawer toggle as the DrawerListener
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-        ListView listView = (ListView) findViewById(R.id.left_drawer);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT
-                && mIsKitKatTranslucencyEnabled) {
-            listView.setPadding(listView.getPaddingLeft(),
-                    listView.getPaddingTop() + getNavDrawerPadding(),
-                    listView.getPaddingRight(), listView.getPaddingBottom());
-        }
-        mDrawerArrayAdapter = new DrawerMenuArrayAdapter(getApplicationContext());
-        listView.setAdapter(mDrawerArrayAdapter);
-        listView.setOnItemClickListener(this);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeButtonEnabled(true);
-
     }
 
 
@@ -223,29 +170,11 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    private int getNavDrawerPadding() {
-        TypedValue tv = new TypedValue();
-        int actionBarHeight = 0;
-        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
-        }
-
-        return getStatusBarHeight() + actionBarHeight;
-    }
-
-    private int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
+
     }
 
     private void switchToNewRecording() {
@@ -288,7 +217,7 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+
     }
 
     protected void startRecording() {
@@ -305,21 +234,10 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
+
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (!mBackButtonAlwaysQuits
-                && mDrawerArrayAdapter.getSelectedItemPosition() != DrawerMenuArrayAdapter.NEW_RECORDING_POS) {
-            onItemClick(null, null, 0, 0);
-            return;
-        }
-        super.onBackPressed();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -358,7 +276,7 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
             mRecordingControlsFragment.onRecordingStateChanged(mRecordingService.getRecordingMode());
 
         if (mRecordingService.getRecordingMode() == RecordingMode.IDLE)
-            getSupportActionBar().setTitle(R.string.app_name);
+            getSupportActionBar().setTitle(R.string.my_recordings);
         else if (mRecordingService.getRecordingMode() == RecordingMode.RECORDING)
             getSupportActionBar().setTitle(R.string.state_recording);
     }
@@ -387,35 +305,7 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
                 FragmentHolderActivity.ActivityType.SETTINGS, REQUEST_CODE_SETTINGS, bundle);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-        if (mDrawerArrayAdapter.getSelectedItemPosition() == position) {
-            mDrawerLayout.closeDrawers();
-            return;
-        }
 
-        mDrawerLayout.closeDrawers();
-
-        switch (position) {
-            case DrawerMenuArrayAdapter.NEW_RECORDING_POS:
-                switchToNewRecording();
-                break;
-            case DrawerMenuArrayAdapter.RECORDINGS_LIST_POS:
-                switchToRecordings();
-                break;
-            case DrawerMenuArrayAdapter.SETTINGS_POS:
-                showSettings();
-                return;
-            case DrawerMenuArrayAdapter.ABOUT_POS:
-                showAbout();
-                return;
-        }
-
-        mDrawerArrayAdapter.setItemSelected(position);
-
-        if (mRecordingService != null && mRecordingService.getRecordingMode() != RecordingMode.RECORDING)
-            getSupportActionBar().setTitle(mDrawerArrayAdapter.getCurrentTitle());
-    }
 
     public void setPrettyName(String string) {
         mRecordingService.setNextPrettyRecordingName(string);

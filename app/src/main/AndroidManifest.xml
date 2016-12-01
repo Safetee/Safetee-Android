@@ -35,7 +35,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.getsafetee.MainActivity" />
         </activity>
-        <activity android:name="com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity"
+        <activity
+            android:parentActivityName="com.getsafetee.MainActivity"
+            android:name="com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <service android:name="com.getsafetee.audiorecorder.services.RecordingService" />
