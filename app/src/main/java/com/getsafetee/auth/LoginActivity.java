@@ -95,13 +95,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
 
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+
     private String email;
     private String password;
 
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getServerResponse(url);
@@ -148,6 +150,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 linearLayout.setVisibility(View.VISIBLE);
                 SignupFragment signupFragment = new SignupFragment();
                 swapFragmentIn(LoginActivity.this,signupFragment, signupFragment.TAG,false);
+
+                /*if(savedInstanceState != null)
+                {
+            *//*
+            * Check if instance of the required fragment is available
+            * in the backstack and swap it into the container
+            *//*
+                    Fragment unknownFragment = fragmentManager.findFragmentByTag(FRAGMENT_TAG);
+                    swapFragmentIn(LoginActivity.this,unknownFragment,FRAGMENT_TAG,false);
+                }
+                else
+                {
+                    Fragment signupFragment = new SignupFragment();
+                    swapFragmentIn(LoginActivity.this,signupFragment,SignupFragment.TAG,false);
+                }*/
             }
         });
 

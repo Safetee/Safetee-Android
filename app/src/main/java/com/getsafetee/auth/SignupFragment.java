@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class SignupFragment extends Fragment {
 
-    public static final String TAG = SignupFragment.class.getSimpleName();
+    public static final String TAG = "SignupFragment";
 
     private AutoCompleteTextView emailAutoComplete;
     private EditText firstNameEditText;
@@ -83,7 +83,7 @@ public class SignupFragment extends Fragment {
 
                 Log.i("SAFETEE","Name: "+firstNameEditText.getText().toString()+" "+lastNameEditText.getText().toString());
                 Log.i("SAFETEE","Email: "+ emailAutoComplete.getText().toString());
-                Log.i("SAFETEE", "Phone Number: "+ phoneNumber.getText().toString() );
+                Log.i("SAFETEE", "Phone Number: "+ phoneNumber.getText().toString());
                 Log.i("SAFETEE", "Sex: "+ getSex());
                 Log.i("SAFETEE", "Password: "+passwordEditText.getText().toString());
 
@@ -146,12 +146,12 @@ public class SignupFragment extends Fragment {
                     @Override
                     public Map<String, String> getParams() throws AuthFailureError {
                         HashMap<String, String> params = new HashMap<String, String>();
-                        params.put("name", "Ilo"+" Calistus");
-                        params.put("phone_no", "0815678883");
-                        params.put("email", "juanna3@test.com");
-                        params.put("sex", "female");
+                        params.put("name", firstNameEditText.getText().toString()+" "+lastNameEditText.getText().toString());
+                        params.put("phone_no", phoneNumber.getText().toString());
+                        params.put("email", emailAutoComplete.getText().toString());
+                        params.put("sex", getSex());
                         params.put("Location", "");
-                        params.put("password", "juanna2");
+                        params.put("password", passwordEditText.getText().toString());
                         return params;
                     }
                 };
