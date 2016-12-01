@@ -26,10 +26,6 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
-    <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -91,6 +87,7 @@
                 android:text="Sign up"
                 android:background="@color/colorAccent"
                 android:textColor="#fff"
+                android:onClick="gosignup"
                 android:textStyle="bold" />
 
             <TextView android:id="@+id/link_forgot_password"
@@ -104,5 +101,5 @@
                 android:textSize="16dip"/>
 
         </LinearLayout>
-    </ScrollView>
+
 </LinearLayout>

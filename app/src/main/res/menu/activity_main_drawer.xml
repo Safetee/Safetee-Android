@@ -3,7 +3,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_circle_friends"
             android:icon="@drawable/ic_contacts_black_24dp"
             android:title="My Circle of Friends" />
         <item
@@ -14,5 +14,10 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_info_black_24dp"
             android:title="About" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_retry"
+            android:title="Logout" />
     </group>
 </menu>

@@ -44,11 +44,11 @@ public class IntroActivity extends MaterialIntroActivity {
 
                     public void onClick(View v) {
 
-                        Toast.makeText(IntroActivity.this, "We provide solutions to make you love your work", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(IntroActivity.this, "", Toast.LENGTH_SHORT).show();
 
                     }
 
-                }, "Work with love"));
+                }, ""));
 
         addSlide(new SlideFragmentBuilder()
 
@@ -74,7 +74,7 @@ public class IntroActivity extends MaterialIntroActivity {
 
                 .title("Safety Tips")
 
-                .description("Recieve timely tips to keep you safe")
+                .description("Receive timely tips to keep you safe")
 
                 .build());
 

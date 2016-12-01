@@ -19,6 +19,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.getsafetee.SessionManager;
 import com.getsafetee.util.Constants;
 import com.getsafetee.MainActivity;
 import com.getsafetee.audiorecorder.models.RecordingMode;
@@ -40,9 +41,12 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 public class RecordingService extends Service {
 	private static final String TAG = RecordingService.class.getSimpleName();
+
+	private SessionManager session;
 
 	public static final String INTENT_RECORDING_STARTED = "com.safetee.soundrecorder.STARTED_RECORDING";
 	public static final String INTENT_RECORDING_STOPPED = "com.safetee.soundrecorder.STOPPED_RECORDING";
@@ -82,6 +86,7 @@ public class RecordingService extends Service {
 
 	private RecordingMode mRecordingMode = RecordingMode.IDLE;
 
+
 	public class ServiceBinder extends Binder {
 		public RecordingService getService() {
 			return RecordingService.this;
@@ -112,7 +117,7 @@ public class RecordingService extends Service {
 	public RecordingService getService() {
 		return RecordingService.this;
 	}
-	
+
 	private BroadcastReceiver mShutdownReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -121,9 +126,13 @@ public class RecordingService extends Service {
 	};
 
 	public void onCreate() {
+
 		mDatabase = new RecordingsDatabase(getApplicationContext());
 		sendBroadcast(new Intent("com.safetee.soundrecorder.SERVICE_STARTED"));
-		
+
+		// Session manager
+		session = new SessionManager(this);
+
 		IntentFilter iF = new IntentFilter();
 		iF.addAction(Intent.ACTION_SHUTDOWN);
 		iF.addAction("android.intent.action.QUICKBOOT_POWEROFF");
@@ -216,7 +225,7 @@ public class RecordingService extends Service {
 			return i;
 		}
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		if (mIsRecording)
@@ -390,7 +399,11 @@ public class RecordingService extends Service {
 			String uploadId =
 					new MultipartUploadRequest(getApplicationContext(), Constants.UPLOAD_SERVICE_URL)
 							.addFileToUpload(newFile.getAbsolutePath(), "record")
-							.setNotificationConfig(new UploadNotificationConfig())
+							.addParameter("sender", session.getUName())
+							.addParameter("uid", session.getUid())
+							.addParameter("location", "Lagos")
+							.addParameter("category", "Sexual Harassment")
+							.setNotificationConfig(new UploadNotificationConfig().setRingToneEnabled(false))
 							.setMaxRetries(2)
 							.startUpload();
 		} catch (Exception exc) {
@@ -410,7 +423,7 @@ public class RecordingService extends Service {
 		MediaPlayer mp = new MediaPlayer();
 		try {
 			mp.setDataSource(file.getAbsolutePath());
-			mp.prepare(); 
+			mp.prepare();
 			int length = mp.getDuration();
 			mp.release();
 			return length;
@@ -430,7 +443,7 @@ public class RecordingService extends Service {
 			if (!dir.mkdirs()) {
 				// failed to create dir
 				Toast.makeText(getApplicationContext(), R.string.failed_to_create_dir, Toast.LENGTH_SHORT).show();
-				return null; 
+				return null;
 			}
 		}
 

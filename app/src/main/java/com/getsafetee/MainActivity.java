@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.getsafetee.auth.LoginActivity;
 import com.getsafetee.incidencereport.ReportActivity;
 import com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity;
 import com.getsafetee.circleoffriends.fragments.CustomAlertDialogFragment;
@@ -51,8 +52,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.getsafetee.circleoffriends.FriendsList.NUMBER_OF_COMRADES;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     private int SAFETEE_VOICE_RECORDER_PERMISSION = 100;
@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity
     private static int REQUEST_CODE_TRUSTEES = 1001;
     private long VIBRATION_TIME = 300; // Length of vibration in milliseconds
     private long VIBRATION_PAUSE = 200;
+
+    private SessionManager session;
+
     /**
      * TODO : Add info about vibration pattern in intro activity
      */
@@ -91,6 +94,14 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Session manager
+        session = new SessionManager(this);
+
+        // Check if user is already logged in or not
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
 
         Passport.overrideApiBase(Passport.SANDBOX_API_BASE);
         Payment.overrideApiBase(Payment.SANDBOX_API_BASE);
@@ -167,24 +178,17 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-reportButton.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(MainActivity.this, ReportActivity.class);
+        reportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ReportActivity.class);
 
-        startActivity(intent);
-    }
-});
+                startActivity(intent);
+            }
+        });
         requestWriteExternalStoragePermission();
-
-        startTheIntro();
     }
 
-    private void startTheIntro() {
-        Intent intent = new Intent(MainActivity.this, IntroActivity.class);
-
-        startActivity(intent);
-    }
 
     private void requestWriteExternalStoragePermission() {
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
@@ -249,8 +253,10 @@ reportButton.setOnClickListener(new View.OnClickListener() {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_circle_friends) {
             startActivity(new Intent(MainActivity.this, FriendsList.class));
+        } else if(id == R.id.nav_logout){
+            logoutUser();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -393,5 +399,14 @@ reportButton.setOnClickListener(new View.OnClickListener() {
     private void refreshPhotos() {
         phoneNumbers = null;
         //   loadContactPhotos();
+    }
+
+    private void logoutUser() {
+        session.setLogin(false);
+
+        // Launching the login activity
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

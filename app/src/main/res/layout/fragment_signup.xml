@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/colorPrimary"
-    tools:context="com.getsafetee.auth.LoginActivity">
+    tools:context="com.getsafetee.auth.SignupActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -20,10 +20,6 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
-    <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -101,6 +97,7 @@
                     android:text="Sex"
                     android:textSize="20dp"/>
                 <RadioGroup
+                    android:id="@+id/sex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     >
@@ -108,6 +105,7 @@
                         android:id="@+id/radio_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="Female"/>
                     <RadioButton
                         android:id="@+id/radio_male"
@@ -138,16 +136,6 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:background="@color/colorAccent"
-                android:textColor="#fff"
-                android:textStyle="bold" />
-            <Button
                 android:id="@+id/sign_up_submit"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
@@ -156,6 +144,17 @@
                 android:text="Sign up"
                 android:background="@color/colorAccent"
                 android:textColor="#fff"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/email_sign_in_button"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/action_sign_in"
+                android:background="@color/colorAccent"
+                android:textColor="#fff"
+                android:onClick="gosignin"
                 android:textStyle="bold" />
 
             <TextView android:id="@+id/link_signup"
@@ -168,5 +167,5 @@
                 android:textSize="16dip"/>
 
         </LinearLayout>
-    </ScrollView>
+
 </LinearLayout>
