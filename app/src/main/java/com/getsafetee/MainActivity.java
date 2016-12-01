@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        
         String destDir;
         destDir = "/data/data/" + getPackageName() + "/databases/";
         String destPath = destDir + "safety_tips";
