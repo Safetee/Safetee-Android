@@ -9,6 +9,9 @@ public class Constants {
     public static final java.lang.String UPLOAD_SERVICE_URL = "https://safetee2.herokuapp.com/api/v1/record/add";
     public static final String LOGIN_URL = "https://safetee2.herokuapp.com/api/v1/user/login";
     public static final String SIGN_UP_URL = "https://safetee2.herokuapp.com/api/v1/user/signup";
+    public static final String SETTING_URL = "https://safetee2.herokuapp.com/api/v1/user/setting";
+    public static final String USER_RECORDS_URL = "https://safetee2.herokuapp.com/api/v1/records/get/";
+    public static final String REPORT_URL = "https://safetee2.herokuapp.com/api/v1/report/add";
 
 
 

@@ -149,6 +149,8 @@ public class SignupActivity extends AppCompatActivity {
                         String name = jObj.getString("fullname");
                         // user email
                         String email = jObj.getString("email");
+                        // user phone
+                        String phone = jObj.getString("phone_no");
 
                         // use the strings that has user info tied to them to do whatever
                         // store them to sharedpreference or to sqlite
@@ -162,6 +164,8 @@ public class SignupActivity extends AppCompatActivity {
                         session.setUName(name);
                         // set user email
                         session.setUEmail(email);
+                        // set user phone
+                        session.setUPhone(phone);
 
                         // welcome message and got main activity
                         welcomeMessage("Welcome onboard", successMsg, "Continue");

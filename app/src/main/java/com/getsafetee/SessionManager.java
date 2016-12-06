@@ -22,6 +22,7 @@ public class SessionManager {
     private static final String KEY_NAME = "name";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PHONE = "phone";
+    private static final String KEY_PIN = "pin";
     public SessionManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
@@ -57,6 +58,10 @@ public class SessionManager {
         editor.putString(KEY_PHONE, phone);
         editor.commit();
     }
+    public void setUPin(final String pin){
+        editor.putString(KEY_PIN, pin);
+        editor.commit();
+    }
     public String getUid(){
         return pref.getString(KEY_UID, "");
     }
@@ -68,5 +73,8 @@ public class SessionManager {
     }
     public String getUPhone(){
         return pref.getString(KEY_PHONE, "");
+    }
+    public String getUPin(){
+        return pref.getString(KEY_PIN, "");
     }
 }

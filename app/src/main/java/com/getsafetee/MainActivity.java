@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 
 import com.getsafetee.auth.LoginActivity;
+import com.getsafetee.auth.SettingActivity;
 import com.getsafetee.incidencereport.ReportActivity;
 import com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity;
 import com.getsafetee.circleoffriends.fragments.CustomAlertDialogFragment;
@@ -112,10 +113,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (!session.isLoggedIn()) {
             logoutUser();
         }
-        // set logged user full name to navigation drawer
-       // TextView loggeduser = (TextView) findViewById(R.id.loggeduser);
-       // loggeduser.setText(session.getUName());
 
+        // interswitch
         Passport.overrideApiBase(Passport.SANDBOX_API_BASE);
         Payment.overrideApiBase(Payment.SANDBOX_API_BASE);
 
@@ -123,17 +122,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         CircleImageView circleOfFriends = (CircleImageView) findViewById(R.id.image_cf);
         CircleImageView recordButton = (CircleImageView) findViewById(R.id.image_record);
         CircleImageView reportButton = (CircleImageView) findViewById(R.id.image_ngos);
+        //reportButton.setVisibility(View.GONE);
         final CircleImageView safetyTipsButton = (CircleImageView) findViewById(R.id.image_tips);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        //drawer.setDrawerListener(toggle);
+        //toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        
+
         String destDir;
         destDir = "/data/data/" + getPackageName() + "/databases/";
         String destPath = destDir + "safety_tips";
@@ -203,6 +202,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 if (checkMobileNetworkAvailable(MainActivity.this)) {
+
+
 /*
                     if (vibrator.hasVibrator()) {
                         // Only perform success pattern one time (-1 means "do not repeat")
@@ -223,9 +224,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         reportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ReportActivity.class);
-
-                startActivity(intent);
+                startActivity(new Intent(MainActivity.this, ReportActivity.class));
             }
         });
         requestWriteExternalStoragePermission();
@@ -283,6 +282,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
             logoutUser();
+        } else if (id == R.id.nav_circle_friends) {
+            startActivity(new Intent(MainActivity.this, FriendsList.class));
+        } else if(id == R.id.nav_settings){
+            startActivity(new Intent(MainActivity.this, SettingActivity.class));
+        } else if(id == R.id.nav_about){
+            startActivity(new Intent(MainActivity.this, AboutActivity.class));
+        } else if(id == R.id.nav_records){
+            startActivity(new Intent(MainActivity.this, RecordsActivity.class));
+        } else if (id == R.id.nav_circle) {
+            startActivity(new Intent(MainActivity.this, FriendsList.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -311,10 +320,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(MainActivity.this, FriendsList.class));
         } else if(id == R.id.nav_logout){
             logoutUser();
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

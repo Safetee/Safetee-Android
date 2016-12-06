@@ -6,6 +6,15 @@
     <color name="colorWhite">#fff</color>
     <color name="colorGrey">#f3f3f3</color>
     <color name="colorBlack">#000</color>
+
+    <color name="genre">#666666</color>
+    <color name="year">#888888</color>
+    <color name="list_divider">#d9d9d9</color>
+    <color name="list_row_start_color">#90000000</color>
+    <color name="list_row_end_color">#90000000</color>
+    <color name="list_row_hover_start_color">#90800080</color>
+    <color name="list_row_hover_end_color">#90800080</color>
+
 </resources>
 
 

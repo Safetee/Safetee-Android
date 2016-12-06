@@ -1,29 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_report"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.getsafetee.incidencereport.ReportActivity"
-    tools:showIn="@layout/activity_report">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select clip"
+        android:drawableLeft="@drawable/ic_menu_camera"
+        android:id="@+id/buttonChoose" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create clip"
+        android:visibility="gone"
+        android:id="@+id/buttonCreate" />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:id="@+id/imageView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Phone Number"
-        android:inputType="number"
-        android:layout_marginBottom="32dp"/>
+        android:maxLines="4"
+        android:hint="Details"
+        android:textSize="25sp"
+        android:id="@+id/about" />
 
-    <EditText
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Incidence"
-        android:lines="5"
-        android:inputType="textMultiLine"/>
+        android:text="SEND"
+        android:id="@+id/buttonUpload" />
+
+    </LinearLayout>
+
+
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:id="@+id/videoView" />
+
 </RelativeLayout>

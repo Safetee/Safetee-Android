@@ -108,7 +108,7 @@
 
     <!-- Navigation drawer items -->
     <string name="record">Record</string>
-    <string name="my_recordings">My recordings</string>
+    <string name="my_recordings">Records</string>
     <string name="about">About</string>
 
     <!-- Content description for ImageViews -->
@@ -148,8 +148,8 @@
     <string name="recording_deleted">Recording deleted</string>
     <string name="title_activity_donate_with_isw">Donate</string>
     <string name="dialog_message">Choose NGO</string>
-    <string name="dialog_title">Help an NGO</string>
-    <string name="title_activity_report">Report an Incidence</string>
+    <string name="dialog_title">Support an NGO</string>
+    <string name="title_activity_report">Report</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->

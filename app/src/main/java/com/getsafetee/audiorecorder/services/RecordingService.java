@@ -1,11 +1,13 @@
 package com.getsafetee.audiorecorder.services;
 
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioFormat;
@@ -26,6 +28,7 @@ import com.getsafetee.audiorecorder.models.RecordingMode;
 import com.getsafetee.audiorecorder.models.RecordingsDatabase;
 import com.getsafetee.audiorecorder.helpers.WavConverter;
 import com.getsafetee.safetee.R;
+import com.getsafetee.util.LocationManager;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
@@ -47,6 +50,9 @@ public class RecordingService extends Service {
 	private static final String TAG = RecordingService.class.getSimpleName();
 
 	private SessionManager session;
+	private LocationManager location;
+    private String  uniqueid;
+    private int length;
 
 	public static final String INTENT_RECORDING_STARTED = "com.safetee.soundrecorder.STARTED_RECORDING";
 	public static final String INTENT_RECORDING_STOPPED = "com.safetee.soundrecorder.STOPPED_RECORDING";
@@ -132,6 +138,10 @@ public class RecordingService extends Service {
 
 		// Session manager
 		session = new SessionManager(this);
+		// Location manager
+		location = new LocationManager(this);
+        // record uniqueid
+        uniqueid = UUID.randomUUID().toString()+System.currentTimeMillis();
 
 		IntentFilter iF = new IntentFilter();
 		iF.addAction(Intent.ACTION_SHUTDOWN);
@@ -382,11 +392,11 @@ public class RecordingService extends Service {
 
 		mFilePath = null;
 
-		int length = getWavDuration(newFile);
+		length = getWavDuration(newFile);
 		mElpasedSeconds = 0;
 
 		mDatabase.addRecording(mPrettyRecordingName,
-				newFile.getAbsolutePath(), length);
+				newFile.getAbsolutePath(), length, uniqueid);
 
 		stopForeground(true);
 
@@ -394,6 +404,7 @@ public class RecordingService extends Service {
 	}
 
 	public void uploadRecording(File newFile) {
+
 		Log.i("VoiceRecordingUpload", "Started");
 		try {
 			String uploadId =
@@ -401,14 +412,19 @@ public class RecordingService extends Service {
 							.addFileToUpload(newFile.getAbsolutePath(), "record")
 							.addParameter("sender", session.getUName())
 							.addParameter("uid", session.getUid())
-							.addParameter("location", "Lagos")
-							.addParameter("category", "Sexual Harassment")
+							.addParameter("location", String.valueOf(location.getLat()) + "," + String.valueOf(location.getLong()))
+							.addParameter("category", "")
+                            .addParameter("uniqueid", uniqueid)
+                            .addParameter("length", String.valueOf(length))
+                            .addParameter("recordname", mPrettyRecordingName)
 							.setNotificationConfig(new UploadNotificationConfig().setRingToneEnabled(false))
 							.setMaxRetries(2)
 							.startUpload();
 		} catch (Exception exc) {
 			Log.e("AndroidUploadService", exc.getMessage(), exc);
 		}
+		// delete off user device
+		//newFile.delete();
 	}
 
 	public void setNextPrettyRecordingName(String fileName) {
@@ -436,7 +452,7 @@ public class RecordingService extends Service {
 
 	private File generateFile() {
 		String filename = Environment.getExternalStorageDirectory().getAbsolutePath();
-		filename += "/data/" + getPackageName() +"/Records";
+		filename += "/data/data/" + getPackageName() +"/Records";
 
 		File dir = new File(filename);
 		if (!dir.exists()) {

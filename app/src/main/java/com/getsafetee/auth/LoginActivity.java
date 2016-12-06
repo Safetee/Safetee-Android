@@ -137,6 +137,8 @@ public class LoginActivity extends AppCompatActivity {
                         String name = jObj.getString("fullname");
                         // user email
                         String email = jObj.getString("email");
+                        // user phone
+                        String phone = jObj.getString("phone_no");
 
                         // use the strings that has user info tied to them to do whatever
                         // store them to sharedpreference or to sqlite
@@ -150,6 +152,8 @@ public class LoginActivity extends AppCompatActivity {
                         session.setUName(name);
                         // set user email
                         session.setUEmail(email);
+                        // set user phone
+                        session.setUPhone(phone);
 
                         // redirect to main activity
 
@@ -192,27 +196,6 @@ public class LoginActivity extends AppCompatActivity {
         Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
 
    }
-
-
-    public String getSex(View view) {
-        String sex = null;
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radio_female:
-                if (checked)
-                    sex = "female";
-                break;
-            case R.id.radio_male:
-                if (checked)
-                    sex = "male";
-                break;
-        }
-        return sex;
-    }
-
 
     private void startTheIntro() {
         Intent intent = new Intent(getApplicationContext(), IntroActivity.class);

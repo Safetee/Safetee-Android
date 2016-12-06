@@ -9,6 +9,7 @@ public class RecordingItem implements Parcelable {
 	private long mTime;
 	private String mFilePath;
 	private String mName;
+	private String mUniqueid;
 
 	public RecordingItem() {
 
@@ -20,6 +21,7 @@ public class RecordingItem implements Parcelable {
 		mTime = in.readLong();
 		mFilePath = in.readString();
 		mName = in.readString();
+		mUniqueid = in.readString();
 	}
 
 	public String getFilePath() {
@@ -28,6 +30,14 @@ public class RecordingItem implements Parcelable {
 
 	public void setFilePath(String filePath) {
 		mFilePath = filePath;
+	}
+
+	public String getUniqueid() {
+		return mUniqueid;
+	}
+
+	public void setUniqueid(String uniqueid) {
+		mUniqueid = uniqueid;
 	}
 
 	public int getLength() {

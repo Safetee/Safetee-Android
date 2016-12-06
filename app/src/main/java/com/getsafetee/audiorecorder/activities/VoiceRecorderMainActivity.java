@@ -1,9 +1,11 @@
 package com.getsafetee.audiorecorder.activities;
 
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
@@ -21,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.getsafetee.FragmentHolderActivity;
+import com.getsafetee.MainActivity;
 import com.getsafetee.audiorecorder.fragments.AboutFragment;
 import com.getsafetee.audiorecorder.fragments.RecordingControlsFragment;
 import com.getsafetee.audiorecorder.fragments.RecordingStatusFragment;
@@ -152,7 +155,8 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
                         case RECORDING:
                         default:
                             mRecordingService.stopRecording();
-                            switchToRecordings();
+                            //switchToRecordings();
+                            showMessage("Safetee", "Saving record", "Ok");
                             break;
                     }
                 }
@@ -310,5 +314,22 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
     public void setPrettyName(String string) {
         mRecordingService.setNextPrettyRecordingName(string);
         mRecordingStatusFragment.setFileName(string);
+    }
+
+    public void showMessage(String title, String msg, String btn){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(msg)
+                .setTitle(title)
+                .setCancelable(false)
+                .setPositiveButton(btn, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent(VoiceRecorderMainActivity.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
+
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

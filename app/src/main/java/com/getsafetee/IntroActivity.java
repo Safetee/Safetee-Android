@@ -26,15 +26,37 @@ public class IntroActivity extends MaterialIntroActivity {
 
                         .buttonsColor(R.color.colorAccent)
 
-                        .possiblePermissions(new String[]{Manifest.permission.CALL_PHONE,
-                                Manifest.permission.READ_SMS,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE})
-
                         .image(R.drawable.cf)
 
-                        .title("Circle of Friends")
+                        .title("Get Help")
 
-                        .description("Specify ")
+                        .description("Add your friends as emergency contacts")
+
+                        .build(),
+
+                new MessageButtonBehaviour(new View.OnClickListener() {
+
+                    @Override
+
+                    public void onClick(View v) {
+
+                        Toast.makeText(IntroActivity.this, "", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }, ""));
+
+        addSlide(new SlideFragmentBuilder()
+
+                        .backgroundColor(R.color.colorPrimary)
+
+                        .buttonsColor(R.color.colorAccent)
+
+                        .image(R.drawable.pin)
+
+                        .title("Pin Code")
+
+                        .description("Protect your records")
 
                         .build(),
 
@@ -58,9 +80,9 @@ public class IntroActivity extends MaterialIntroActivity {
 
                 .image(R.drawable.mic)
 
-                .title("Record the Scene")
+                .title("Record")
 
-                .description("Provide evidence for law suits")
+                .description("Provide evidence for law suit")
 
                 .build());
 
@@ -72,7 +94,7 @@ public class IntroActivity extends MaterialIntroActivity {
 
                 .image(R.drawable.tips)
 
-                .title("Safety Tips")
+                .title("Tips")
 
                 .description("Receive timely tips to keep you safe")
 
@@ -86,9 +108,9 @@ public class IntroActivity extends MaterialIntroActivity {
 
                 .image(R.drawable.circle_of_friends)
 
-                .title("NGOs Around")
+                .title("Report")
 
-                .description("Locate a women's rights NGO around you")
+                .description("Report as an eye witness")
 
                 .build());
 
