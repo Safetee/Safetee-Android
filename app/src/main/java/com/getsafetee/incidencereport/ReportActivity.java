@@ -215,7 +215,7 @@ public class ReportActivity extends AppCompatActivity implements View.OnClickLis
         Log.i("Report sending", "Started");
         try {
             String sendreport =
-                    new MultipartUploadRequest(getApplicationContext(), Constants.UPLOAD_SERVICE_URL)
+                    new MultipartUploadRequest(getApplicationContext(), Constants.REPORT_URL)
                             .addFileToUpload(report.getAbsolutePath(), "clip")
                             .addParameter("about", about)
                             .addParameter("sender", session.getUName())
