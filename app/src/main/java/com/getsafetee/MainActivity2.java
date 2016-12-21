@@ -263,6 +263,7 @@ public class MainActivity2 extends AppCompatActivity{
         // Launching the login activity
         Intent intent = new Intent(MainActivity2.this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private void gotoSettings() {
