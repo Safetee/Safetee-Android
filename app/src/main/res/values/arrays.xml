@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gnos">
+    <item>Mirabel Center</item>
+    <item>Stop Scann</item>
+    <item>Project Alert</item>
+    </string-array>
+
+    <string-array name="paymentsmethods">
+        <item>Interswitch</item>
+    </string-array>
+
+</resources>

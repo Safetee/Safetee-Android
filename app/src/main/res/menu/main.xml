@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="100"
+        android:title="Log Out"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/nav_circle_friends"
+        android:icon="@drawable/ic_action_users_h"
+        android:title="My Circle of Friends"
+        app:showAsAction="always"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/nav_circle"
+        android:icon="@drawable/ic_contacts_black_24dp"
+        android:title="Circle Of Friends"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/nav_records"
+        android:icon="@drawable/ic_action_mic_normal"
+        android:title="Records"/>
+
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="Account" />
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="About" />
+
+</menu>

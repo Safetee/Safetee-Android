@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGrey">
+
+    <LinearLayout
+        android:id="@+id/enterpin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorWhite">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/pin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Pin"
+                android:inputType="numberPassword"
+                android:textColor="@color/colorBlack"
+                android:maxLines="1"
+                android:maxLength="4"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/continuebtn"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Continue"
+            android:onClick="validatepin"
+            android:textAllCaps="false"
+            android:background="@color/colorTealDark"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/player"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible"
+        android:background="@color/colorTeal">
+
+    <ImageButton
+        android:id="@+id/play"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@color/colorTeal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/ic_action_playback_play_big"/>
+
+        <ImageButton
+            android:id="@+id/stop"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@color/colorTeal"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible"
+            android:src="@drawable/ic_action_playback_stop_big"/>
+
+    <TextView
+        android:id="@+id/recordtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/play"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorWhite"/>
+
+        <ImageButton
+            android:id="@+id/rename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTeal"
+            android:layout_below="@id/play"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="renameItem"
+            android:src="@drawable/ic_action_edit"/>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/privacy"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:layout_below="@id/player"
+        android:visibility="invisible"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:id="@+id/privacyheading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTeal"
+            android:text="PRIVACY"
+            android:textSize="10dp"
+            android:layout_marginBottom="5dp"/>
+
+        <ImageView
+            android:id="@+id/sharedicon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/privacy"
+            android:layout_below="@id/privacyheading"/>
+
+        <TextView
+            android:id="@+id/shared"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/privacyheading"
+            android:layout_toRightOf="@id/sharedicon"
+            android:layout_toEndOf="@id/sharedicon"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorBlack"
+            android:text="..."/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/location"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:layout_below="@id/privacy"
+        android:visibility="invisible"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:id="@+id/locationheading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTeal"
+            android:text="LOCATION"
+            android:textSize="10dp"
+            android:layout_marginBottom="5dp"/>
+
+        <ImageView
+            android:id="@+id/locationicon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ic_action_location_big"
+            android:layout_below="@id/locationheading"/>
+
+        <TextView
+            android:id="@+id/place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/locationheading"
+            android:layout_toRightOf="@id/locationicon"
+            android:layout_toEndOf="@id/locationicon"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorBlack"
+            android:text="..."/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/support"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/location"
+        android:background="@color/colorWhite"
+        android:layout_margin="10dp"
+        android:visibility="invisible"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTeal"
+            android:text="GET SUPPORT"
+            android:textSize="10dp"
+            android:layout_marginBottom="5dp"/>
+
+        <RadioGroup
+            android:id="@+id/category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/sexual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Sexual Violence"/>
+            <RadioButton
+                android:id="@+id/domestic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Domestic Violence"/>
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/needphelp"
+            android:visibility="visible"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="Request Support"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

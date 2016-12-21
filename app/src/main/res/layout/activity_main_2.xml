@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorTeal"
+    android:padding="5dp">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/launchrecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:onClick="launchrecord"
+        android:src="@drawable/ic_action_mic_pressed" />
+
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:background="@color/colorWhite"
+        android:layout_alignParentTop="true"
+        android:divider="@color/colorTeal"
+        android:dividerHeight="4dp">
+    </ListView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list"
+        android:background="@color/colorGrey"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/descrup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="Add your circle of friends as emergency contacts."/>
+
+        <Button
+            android:id="@+id/addcontact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/descrup"
+            android:text="ADD FRIENDS" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

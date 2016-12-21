@@ -1,0 +1,105 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorTealDarker"
+    android:orientation="vertical"
+    tools:context="com.getsafetee.auth.LoginActivity">
+
+
+    <LinearLayout
+        android:id="@+id/sign_up_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            android:textColorHint="@color/colorWhiteLight"
+            android:textSize="13dp"
+            android:inputType="text"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorTealDark"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:textColorHint="@color/colorWhiteLight"
+            android:textSize="13dp"
+            android:inputType="phone"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorTealDark"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp"
+            android:maxLines="1"
+            android:maxLength="11"
+            android:singleLine="true" />
+
+
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_pin"
+            android:textColorHint="@color/colorWhiteLight"
+            android:imeActionId="@+id/login"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionUnspecified"
+            android:textColor="@color/colorWhite"
+            android:inputType="numberPassword"
+            android:background="@color/colorTealDark"
+            android:textSize="13dp"
+            android:maxLines="1"
+            android:maxLength="4"
+            android:padding="15dp"
+            android:singleLine="true" />
+
+
+        <Button
+            android:id="@+id/sign_up_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/action_sign_up"
+            android:background="@color/colorGrey"
+            android:textAllCaps="false"
+            android:textColor="#000"/>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/link_to_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/sign_in_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Have an account? Sign in."
+            android:background="@color/colorTealDarker"
+            android:textColor="#fff"
+            android:onClick="gosignin"
+            android:textAllCaps="false" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

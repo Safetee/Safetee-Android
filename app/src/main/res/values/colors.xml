@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1565C0</color>
+    <color name="colorAccent">#E65100</color>
+    <color name="colorWhite">#fff</color>
+    <color name="colorWhiteLight">#90ffffff</color>
+    <color name="colorGrey">#f3f3f3</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorBlackDarker">#90000000</color>
+    <color name="colorBlackDark">#80000000</color>
+    <color name="colorBlack2">#333</color>
+    <color name="colorTeal">#008080</color>
+    <color name="colorTealDark">#80008080</color>
+    <color name="colorTealDarker">#90008080</color>
+
+    <color name="genre">#666666</color>
+    <color name="year">#888888</color>
+    <color name="list_divider">#d9d9d9</color>
+    <color name="list_row_start_color">#90000000</color>
+    <color name="list_row_end_color">#90000000</color>
+    <color name="list_row_hover_start_color">#90800080</color>
+    <color name="list_row_hover_end_color">#90800080</color>
+
+</resources>
+
+
