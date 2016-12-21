@@ -256,6 +256,7 @@ public class MainActivity2 extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    //
     private void logoutUser() {
         session.setLogin(false);
         session.freeUser();
@@ -264,6 +265,7 @@ public class MainActivity2 extends AppCompatActivity{
         Intent intent = new Intent(MainActivity2.this, LoginActivity.class);
         startActivity(intent);
         finish();
+
     }
 
     private void gotoSettings() {
