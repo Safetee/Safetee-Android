@@ -11,4 +11,5 @@ local.properties
 .idea/misc.xml
 .idea/modules.xml
 .idea/gradle.xml
-
+.idea/
+ffmpeg4android_lib/build/
