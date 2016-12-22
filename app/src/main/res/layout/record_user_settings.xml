@@ -21,10 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTeal"
-            android:text="AUTO UPLOAD [?]"
+            android:text="AUTO UPLOAD"
             android:textSize="10dp"
             android:clickable="true"
-            android:onClick="viewAutouploadWhy"
             android:layout_marginBottom="5dp"/>
 
         <RadioGroup
@@ -37,11 +36,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
+                android:textColor="@color/colorBlack2"
                 android:text="Upload when recording stops"/>
             <RadioButton
                 android:id="@+id/noautoupload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack2"
                 android:text="No don't upload"/>
 
         </RadioGroup>

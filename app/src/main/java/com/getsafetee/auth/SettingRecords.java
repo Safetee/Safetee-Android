@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.getsafetee.SessionManager;
 import com.getsafetee.safetee.R;
@@ -26,7 +27,7 @@ public class SettingRecords extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record_user_settings);
         session = new SessionManager(getApplicationContext());
-        message = new ShowMessage(getApplicationContext());
+        message = new ShowMessage(this);
 
         uploadoption = (RadioGroup) findViewById(R.id.uploadoption);
         autoupload = (RadioButton) findViewById(R.id.autoupload);
@@ -56,6 +57,18 @@ public class SettingRecords extends AppCompatActivity {
         });
 
 
+    }
+
+    // yes auto upload please
+    public void yesupload(View view){
+        session.setAutoupload(true);
+        Toast.makeText(getApplicationContext(), "Your recordings will now be uploaded to safetee immediately after recording stops.", Toast.LENGTH_LONG).show();
+    }
+
+    // no auto upload please
+    public void noupload(View view){
+        session.setAutoupload(false);
+        Toast.makeText(getApplicationContext(),"Your recordings will not be uploaded to safetee immediately after recording stops.", Toast.LENGTH_LONG).show();
     }
 
     public void viewAutouploadWhy(View v){

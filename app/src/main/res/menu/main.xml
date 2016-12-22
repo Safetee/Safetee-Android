@@ -5,7 +5,8 @@
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:title="Log Out"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:visible="false"/>
 
     <item
         android:id="@+id/nav_circle_friends"
@@ -28,10 +29,11 @@
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings_black_24dp"
-        android:title="Account" />
+        android:title="Settings" />
     <item
         android:id="@+id/nav_about"
         android:icon="@drawable/ic_info_black_24dp"
-        android:title="About" />
+        android:title="About"
+        android:visible="false"/>
 
 </menu>

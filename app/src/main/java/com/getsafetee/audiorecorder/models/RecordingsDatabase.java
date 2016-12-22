@@ -146,6 +146,7 @@ public class RecordingsDatabase extends SQLiteOpenHelper {
 		}
 	}
 
+
 	public void renameItem(RecordingItem item, String recordingName) {
 		SQLiteDatabase db = getWritableDatabase();
 
@@ -163,6 +164,18 @@ public class RecordingsDatabase extends SQLiteOpenHelper {
 
 		ContentValues values = new ContentValues();
 		values.put(RecordingDatabaseItem.COLUMN_NAME_RECORDING_NAME, recordingName);
+		db.update(RecordingDatabaseItem.TABLE_NAME, values,
+				RecordingDatabaseItem._ID + "=" + id, null);
+
+		if (mOnDatabaseChangedListener != null)
+			mOnDatabaseChangedListener.onDatabaseEntryUpdated();
+	}
+
+	public void setItemShared(String id, String shared) {
+		SQLiteDatabase db = getWritableDatabase();
+
+		ContentValues values = new ContentValues();
+		values.put(RecordingDatabaseItem.COLUMN_SHARED, shared);
 		db.update(RecordingDatabaseItem.TABLE_NAME, values,
 				RecordingDatabaseItem._ID + "=" + id, null);
 

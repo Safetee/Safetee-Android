@@ -63,7 +63,7 @@ public class SettingActivity extends AppCompatActivity {
 
         // Session manager
         session = new SessionManager(this);
-        message = new ShowMessage(getApplicationContext());
+        message = new ShowMessage(this);
 
         if (session.getUPin().length() != 4 || session.getUName().isEmpty()) {
             showMessage("Account", "You are required to complete account.", "Dismiss");

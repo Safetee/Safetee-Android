@@ -47,6 +47,9 @@ import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.ProgressCallback;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class RecordView extends AppCompatActivity{
 
@@ -155,9 +158,11 @@ public class RecordView extends AppCompatActivity{
                 // Check for empty data in the form
                 if (cat_f.isEmpty()) {
                     // Prompt user to enter credentials
-                    showMessage("Oops", "Please all fields are required", "Ok");
+                    Toast.makeText(RecordView.this, "Please all fields are required", Toast.LENGTH_LONG).show();
                 } else {
-                    // ge help
+                    pDialog.setMessage("Please wait...");
+                    pDialog.show();
+                    // get help
                     Ion.with(RecordView.this)
                             .load("POST", Constants.UPLOAD_SERVICE_URL)
                             .setMultipartFile("record", new File(audio))
@@ -169,29 +174,32 @@ public class RecordView extends AppCompatActivity{
                             .setMultipartParameter("length", String.valueOf(lengthr))
                             .setMultipartParameter("recordname", title)
                             .setMultipartParameter("share", "true")
-                            .asJsonObject();
-
-
-                        /*
+                            .asJsonObject()
+                        ///*
                         .setCallback(new FutureCallback<JsonObject>() {
 
                             @Override
-                            public void onCompleted(Exception e, JSONObject result) {
-                                if (e != null) {
-                                    Toast.makeText(RecordView.this, "Support could not be requested, try again.", Toast.LENGTH_LONG).show();
+                            public void onCompleted(Exception err, JsonObject result) {
+                                if (err != null) {
+                                    pDialog.hide();
+                                    Toast.makeText(RecordView.this, "Support could not be requested, try again. " + err.getMessage().toString(), Toast.LENGTH_LONG).show();
                                 } else {
-                                    try {
-                                        Toast.makeText(RecordView.this, result.getString("message"), Toast.LENGTH_LONG).show();
-                                    } catch (JSONException exep) {
+                                    //try {
+                                    pDialog.hide();
+                                    // set record as shared
+                                    mAdapter.getDatabase().setItemShared(rid, "true");
+                                    Toast.makeText(RecordView.this, "Your request for support was successfully received, an agency will get in touch you shortly.", Toast.LENGTH_LONG).show();
+                                    showMessage("Support", "Your request for support was successfully received, an agency will get in touch you shortly.", "Dismiss");
+                                    //} catch (JSONException exep) {
 
-                                    }
+                                    //}
 
                                 }
 
                             }
 
                         });
-                        */
+                        //*/
                     //
                 }
             }
