@@ -220,7 +220,7 @@ public class MainActivity2 extends AppCompatActivity{
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SAFETEE_VOICE_RECORDER_PERMISSION);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, SAFETEE_VOICE_RECORDER_PERMISSION);
         }
     }
 

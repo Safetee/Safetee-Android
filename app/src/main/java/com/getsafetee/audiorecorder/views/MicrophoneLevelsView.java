@@ -37,6 +37,7 @@ public class MicrophoneLevelsView extends View {
 
 	private int mTouchRadius = MICROPHONE_CIRCLE_RADIUS;
 	private int mAudioLevel = 0;
+	private Bitmap mStopBitmap;
 
 	public MicrophoneLevelsView(Context context) {
 		super(context);
@@ -57,6 +58,7 @@ public class MicrophoneLevelsView extends View {
 		mMicBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_mic_out_grey);
 		mMicLightBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_mic_out_light);
 		mMicPressedBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_mic_out_pressed);
+		mStopBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_recording_stop);
 	}
 
 	@Override
@@ -137,27 +139,27 @@ public class MicrophoneLevelsView extends View {
 		}
 
 		if (mAudioLevel > 0 && mRecordingMode != RecordingMode.IDLE) {
-			double radius = mAudioLevel * (getWidth() / 3) / 100;
-			if (radius > getWidth() / 3)
-				radius = getWidth() / 3;
+			double radius = (getWidth() / 3) / 100;
+
 			mTouchRadius = (int) radius;
-			canvas.drawCircle(getWidth() / 2, getHeight() / 2, (int) radius, mAudioLevelCirclePaint);
+			mTouchRadius = MICROPHONE_CIRCLE_RADIUS;
+
 		} else {
 			mTouchRadius = MICROPHONE_CIRCLE_RADIUS;
-		}
 
 		canvas.drawCircle(getWidth() / 2, getHeight() / 2, MICROPHONE_CIRCLE_RADIUS, mInnerCirclePaint);
 		canvas.drawCircle(getWidth() / 2, getHeight() / 2, MICROPHONE_CIRCLE_RADIUS+5, mOuterCirclePaint);
+		}
 
 		Bitmap bitmap = null;
 
 		if (mRecordingMode == RecordingMode.RECORDING)
-			bitmap = mMicLightBitmap;
+			bitmap = mStopBitmap;
 		else if (mRecordingMode == RecordingMode.IDLE)
 			bitmap = mMicBitmap;
 
-		if (isDown()) {
-			bitmap = mMicPressedBitmap;
+		if (isDown() ){
+			bitmap = mStopBitmap;
 		}
 
 		if (bitmap != null) {
