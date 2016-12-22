@@ -35,6 +35,7 @@ import android.widget.Toast;
 import com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity;
 import com.getsafetee.auth.LoginActivity;
 import com.getsafetee.auth.SettingActivity;
+import com.getsafetee.auth.SettingMain;
 import com.getsafetee.circleoffriends.FriendsList;
 import com.getsafetee.circleoffriends.MessageDialogBox;
 import com.getsafetee.circleoffriends.fragments.CustomAlertDialogFragment;
@@ -42,6 +43,8 @@ import com.getsafetee.circleoffriends.helpers.LocationHelper;
 import com.getsafetee.incidencereport.ReportActivity;
 import com.getsafetee.safetee.R;
 import com.getsafetee.safetytips.SafetyTips;
+import com.getsafetee.safetytips.TipsLocal;
+import com.getsafetee.safetytips.TipsUpdate;
 import com.getsafetee.safetytips.db.DBAdapter;
 import com.getsafetee.util.Constants;
 import com.getsafetee.util.LocationManager;
@@ -139,8 +142,12 @@ public class MainActivity2 extends AppCompatActivity{
 
         // Check if user is already logged in or not
         if (!session.isLoggedIn()) {
-            logoutUser();
+
         }
+        // tips update service
+        Intent tipsUpdateService = new Intent(Intent.ACTION_SYNC, null, this, TipsUpdate.class);
+        //startService(tipsUpdateService);
+        //
         // check if pin code and full name is set before allowing access to menu
         if (session.isLoggedIn()){
             if (session.getUName().isEmpty()) {
@@ -178,7 +185,7 @@ public class MainActivity2 extends AppCompatActivity{
                         startActivity(new Intent(MainActivity2.this, ReportActivity.class));
                         break;
                     case "Tips":
-                        startActivity(new Intent(MainActivity2.this, SafetyTips.class));
+                        startActivity(new Intent(MainActivity2.this, TipsLocal.class));
                         break;
                     case "Donate":
                         startActivity(new Intent(MainActivity2.this, DonateToNGO.class));
@@ -239,12 +246,10 @@ public class MainActivity2 extends AppCompatActivity{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_logout) {
-            logoutUser();
-        } else if (id == R.id.nav_circle_friends) {
+        if (id == R.id.nav_circle_friends) {
             startActivity(new Intent(MainActivity2.this, FriendsList.class));
         } else if(id == R.id.nav_settings){
-            startActivity(new Intent(MainActivity2.this, SettingActivity.class));
+            startActivity(new Intent(MainActivity2.this, SettingMain.class));
         } else if(id == R.id.nav_about){
             startActivity(new Intent(MainActivity2.this, AboutActivity.class));
         } else if(id == R.id.nav_records){
@@ -256,21 +261,10 @@ public class MainActivity2 extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    //
-    private void logoutUser() {
-        session.setLogin(false);
-        session.freeUser();
-        session.freeCircleFriends();
-        // Launching the login activity
-        Intent intent = new Intent(MainActivity2.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-
-    }
 
     private void gotoSettings() {
         // Launching the setting activity
-        Intent intent = new Intent(MainActivity2.this, SettingActivity.class);
+        Intent intent = new Intent(MainActivity2.this, SettingMain.class);
         startActivity(intent);
     }
 

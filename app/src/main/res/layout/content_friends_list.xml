@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.getsafetee.circleoffriends.FriendsList"
+    android:background="@color/colorWhite"
     tools:showIn="@layout/activity_friends_list">
 
 <RelativeLayout
@@ -15,7 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar_trustees"
+            android:id="@+id/toolbar_trustees"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
@@ -33,9 +34,17 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"/>
 
+            <TextView
+                android:id="@+id/comrade1EditTextName"
+                android:layout_below="@id/comradeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack2"
+                android:visibility="gone"/>
+
             <EditText
                 android:id="@+id/comrade1EditText"
-                android:layout_below="@id/comradeTitle"
+                android:layout_below="@id/comrade1EditTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/trustee_margin"
@@ -68,9 +77,17 @@
                 android:onClick="addContact"
                 android:tag="1"/>
 
+            <TextView
+                android:id="@+id/comrade2EditTextName"
+                android:layout_below="@id/comrade1EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack2"
+                android:visibility="gone"/>
+
             <EditText
                 android:id="@+id/comrade2EditText"
-                android:layout_below="@id/comrade1EditText"
+                android:layout_below="@id/comrade2EditTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/trustee_margin"
@@ -102,9 +119,17 @@
                 android:onClick="addContact"
                 android:tag="2"/>
 
+            <TextView
+                android:id="@+id/comrade3EditTextName"
+                android:layout_below="@id/comrade2EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack2"
+                android:visibility="gone"/>
+
             <EditText
                 android:id="@+id/comrade3EditText"
-                android:layout_below="@id/comrade2EditText"
+                android:layout_below="@id/comrade3EditTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/trustee_margin"
@@ -136,9 +161,17 @@
                 android:onClick="addContact"
                 android:tag="3"/>
 
+            <TextView
+                android:id="@+id/comrade4EditTextName"
+                android:layout_below="@id/comrade3EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack2"
+                android:visibility="gone"/>
+
             <EditText
                 android:id="@+id/comrade4EditText"
-                android:layout_below="@id/comrade3EditText"
+                android:layout_below="@id/comrade4EditTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/trustee_margin"
@@ -170,9 +203,17 @@
                 android:onClick="addContact"
                 android:tag="4"/>
 
+            <TextView
+                android:id="@+id/comrade5EditTextName"
+                android:layout_below="@id/comrade4EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack2"
+                android:visibility="gone"/>
+
             <EditText
                 android:id="@+id/comrade5EditText"
-                android:layout_below="@id/comrade4EditText"
+                android:layout_below="@id/comrade5EditTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/trustee_margin"
@@ -204,9 +245,17 @@
                 android:onClick="addContact"
                 android:tag="5"/>
 
+            <TextView
+                android:id="@+id/comrade6EditTextName"
+                android:layout_below="@id/comrade5EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack2"
+                android:visibility="gone"/>
+
             <EditText
                 android:id="@+id/comrade6EditText"
-                android:layout_below="@id/comrade5EditText"
+                android:layout_below="@id/comrade6EditTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/trustee_margin"
@@ -240,16 +289,24 @@
 
             <Button
                 android:id="@+id/okButton"
-                android:layout_width="@dimen/layout_width"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/trustee_button_height"
                 android:layout_gravity="center"
                 android:layout_centerHorizontal="true"
                 android:text="@string/add_comrades_save"
                 android:layout_below="@id/comrade6EditText"
+                android:background="@color/colorTeal"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="@dimen/trustee_margin_bottom"/>
+                android:layout_alignParentBottom="true"/>
 
 
         </RelativeLayout>
+
+
+
     </RelativeLayout>
+
+
 </ScrollView>

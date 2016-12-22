@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getsafetee.safetee.R;
@@ -31,6 +32,7 @@ public class FriendsList extends AppCompatActivity {
     public static final int REQUEST_SELECT_CONTACT = 100;
     public static final int NUMBER_OF_COMRADES = 6;
     List<EditText> comradeEditText = new ArrayList<>(NUMBER_OF_COMRADES);
+    List<TextView> comradeEditTextName = new ArrayList<>(NUMBER_OF_COMRADES);
     List<Integer> indexesUpdated = new ArrayList<>();
     Toolbar toolbar;
 
@@ -39,6 +41,7 @@ public class FriendsList extends AppCompatActivity {
 
     public static final String MY_PREFERENCES = "Safetee_rock_eagle_2"; // don't change, it controls all app prefs
     public static final List<String> COMRADE_KEY = Arrays.asList("comrade1Key", "comrade2Key", "comrade3Key", "comrade4Key", "comrade5Key", "comrade6Key");
+    public static final List<String> COMRADE_NAME = Arrays.asList("comrade1Name", "comrade2Name", "comrade3Name", "comrade4Name", "comrade5Name", "comrade6Name");
 
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
@@ -60,15 +63,27 @@ public class FriendsList extends AppCompatActivity {
         comradeEditText.add((EditText) findViewById(R.id.comrade5EditText));
         comradeEditText.add((EditText) findViewById(R.id.comrade6EditText));
 
+        //comradeEditTextName.add((TextView) findViewById(R.id.comrade1EditTextName));
+        //comradeEditTextName.add((TextView) findViewById(R.id.comrade2EditTextName));
+        //comradeEditTextName.add((TextView) findViewById(R.id.comrade3EditTextName));
+        //comradeEditTextName.add((TextView) findViewById(R.id.comrade4EditTextName));
+        //comradeEditTextName.add((TextView) findViewById(R.id.comrade5EditTextName));
+        //comradeEditTextName.add((TextView) findViewById(R.id.comrade6EditTextName));
+
         okButton = (Button) findViewById(R.id.okButton);
         okButton.setFocusable(true);
 
         sharedpreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
 
-        for(int i = 0; i < NUMBER_OF_COMRADES; i++)
-            comradeEditText.get(i).setText(Html.fromHtml("<font color='black'>" + sharedpreferences.getString(COMRADE_KEY.get(i), "") + "</font>"));
-
+        for(int i = 0; i < NUMBER_OF_COMRADES; i++) {
+            //comradeEditTextName.get(i).setText(sharedpreferences.getString(COMRADE_NAME.get(i), ""));
+             String spacer = "";
+            if(!sharedpreferences.getString(COMRADE_NAME.get(i), "").isEmpty() && !sharedpreferences.getString(COMRADE_KEY.get(i), "").isEmpty()){
+                spacer = " ";
+            }
+            comradeEditText.get(i).setText(sharedpreferences.getString(COMRADE_NAME.get(i), "") + spacer +  sharedpreferences.getString(COMRADE_KEY.get(i), ""));
+        }
         okButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -78,23 +93,40 @@ public class FriendsList extends AppCompatActivity {
 
                 //To store previous values (numbers) of comrades
                 List<String> old_comrade = new ArrayList<String>(NUMBER_OF_COMRADES);
+                //To store names
+                List<String> old_comrade_name = new ArrayList<String>(NUMBER_OF_COMRADES);
 
                 //To store newly entered values (numbers) of comrades, if any
                 List<String> new_comrade = new ArrayList<String>(NUMBER_OF_COMRADES);
+                //To store names
+                List<String> new_comrade_name = new ArrayList<String>(NUMBER_OF_COMRADES);
 
                 //Retrieving stored values
-                for(int i = 0; i < NUMBER_OF_COMRADES; i++)
+                for(int i = 0; i < NUMBER_OF_COMRADES; i++) {
                     old_comrade.add(sharedpreferences.getString(COMRADE_KEY.get(i), ""));
+                    old_comrade_name.add(sharedpreferences.getString(COMRADE_NAME.get(i), ""));
+                }
 
                 //Retrieving new values
-                for(int i = 0; i < NUMBER_OF_COMRADES; i++)
-                    new_comrade.add(comradeEditText.get(i).getText().toString());
+                for(int i = 0; i < NUMBER_OF_COMRADES; i++) {
+                    final String comradeInfo = comradeEditText.get(i).getText().toString();
+                    if(comradeInfo.isEmpty() || comradeInfo.length() < 11){
+                        new_comrade.add("");
+                        new_comrade_name.add("");
+                    }else {
+                        final String[] comradeInfo_f = comradeInfo.split(" ");
+                        new_comrade.add(comradeInfo_f[1].toString());
+                        new_comrade_name.add(comradeInfo_f[0].toString());
+                    }
+                }
 
 
                 if (noDuplicateNumber) {
 
-                    for(int i = 0; i < NUMBER_OF_COMRADES; i++)
+                    for(int i = 0; i < NUMBER_OF_COMRADES; i++) {
                         editor.putString(COMRADE_KEY.get(i), new_comrade.get(i));
+                        editor.putString(COMRADE_NAME.get(i), new_comrade_name.get(i));
+                    }
 
                     boolean status = editor.commit();
                     if (status) {
@@ -180,9 +212,11 @@ public class FriendsList extends AppCompatActivity {
             }
             Cursor cursor = null;
             String phoneNumber = "";
+            String phoneName = "No Name";
             Set<String> allNumbers = new HashSet<>();
+            Set<String> allNames = new HashSet<>();
             int phoneIdx;
-            String contactDisplayName;
+            String contactDisplayName = "No Name";
             try {
                 Uri result = data.getData();
                 String id = result.getLastPathSegment();
@@ -190,11 +224,13 @@ public class FriendsList extends AppCompatActivity {
                 phoneIdx = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA);
                 if (cursor.moveToFirst()) {
                     contactDisplayName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-//                    CircleOfTrustFragment.allNames.put(tag,contactDisplayName);
+                    //CircleOfTrustFragment.allNames.put(tag,contactDisplayName);
                     indexesUpdated.add(tag-1);
                     while (!cursor.isAfterLast()) {
                         phoneNumber = cursor.getString(phoneIdx);
+                        phoneName = contactDisplayName;
                         allNumbers.add(phoneNumber);
+                        allNames.add(contactDisplayName);
                         cursor.moveToNext();
                     }
                 } else {
@@ -210,6 +246,7 @@ public class FriendsList extends AppCompatActivity {
 
                 if (allNumbers.size() > 1) {
                     final CharSequence[] items = allNumbers.toArray(new String[allNumbers.size()]);
+                    final CharSequence[] itemsname = allNames.toArray(new String[allNames.size()]);
                     new Handler().post(new Runnable() {
                         public void run() {
 
@@ -218,9 +255,13 @@ public class FriendsList extends AppCompatActivity {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     String selectedNumber = items[position - 1].toString();
+                                    String selectedName = itemsname[position - 1].toString();
                                     selectedNumber = selectedNumber.replace("-", "");
+                                    if(selectedName.equals(selectedNumber)){
+                                        //selectedName = "No Name";
+                                    }
                                     if (noDuplicateContactNumber(selectedNumber)) {
-                                        phoneInput.setText(selectedNumber);
+                                        phoneInput.setText(selectedName + " " + selectedNumber);
                                         setFocusOnNextView();
                                     } else {
                                         Toast.makeText(getApplicationContext(), getString(R.string.duplicate_number_errormessage), Toast.LENGTH_LONG).show();
@@ -234,18 +275,24 @@ public class FriendsList extends AppCompatActivity {
 
                 } else {
                     String selectedNumber = phoneNumber;
+                    String selectedName = phoneName;
                     selectedNumber = selectedNumber.replace("-", "");
+                    if(selectedName.equals(selectedNumber)){
+                        //selectedName = "No Name";
+                    }
                     if(noDuplicateContactNumber(selectedNumber)) {
-                        phoneInput.setText(selectedNumber);
+                        phoneInput.setText(selectedName + " " + selectedNumber);
                         setFocusOnNextView();
                     }
                     else {
+
                         Toast.makeText(getApplicationContext(), getString(R.string.duplicate_number_errormessage), Toast.LENGTH_LONG).show();
                     }
                 }
 
                 if (phoneNumber.length() == 0) {
                     //no numbers found actions
+                    phoneInput.setText("" + "" + "");
                     showNoPhoneNumberToast();
                 }
             }

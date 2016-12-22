@@ -17,6 +17,7 @@ public class Constants {
     public static final String GET_HELP_URL = API_DNS + API_V1 + "user/gethelp";
     public static final String GET_AGENCIES_NGO = API_DNS + API_V1 + "agencies/get/NGO";
     public static final String DONATE_URL = API_DNS + API_V1 + "donate";
+    public static final String TIPS_URL = API_DNS + API_V1 + "tips/get";
     // INTERSWITCH IDS
     public static final String ISW_CLIENT_ID = "IKIA9614B82064D632E9B6418DF358A6A4AEA84D7218";
     public static final String ISW_CLIENT_SECRET = "XCTiBtLy1G9chAnyg0z3BcaFK4cVpwDg/GTw2EmjTZ8=";
