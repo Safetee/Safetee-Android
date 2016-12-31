@@ -26,7 +26,7 @@ public class IntroActivity extends MaterialIntroActivity {
 
                         .buttonsColor(R.color.colorAccent)
 
-                        .image(R.drawable.cf)
+                        .image(R.drawable.gethelp4)
 
                         .title("Get Help")
 
@@ -52,7 +52,7 @@ public class IntroActivity extends MaterialIntroActivity {
 
                 .buttonsColor(R.color.colorAccent)
 
-                .image(R.drawable.mic)
+                .image(R.drawable.record1)
 
                 .title("Record")
 
@@ -66,7 +66,7 @@ public class IntroActivity extends MaterialIntroActivity {
 
                         .buttonsColor(R.color.colorAccent)
 
-                        .image(R.drawable.pin)
+                        .image(R.drawable.pincode)
 
                         .title("Pin Code")
 
@@ -93,7 +93,7 @@ public class IntroActivity extends MaterialIntroActivity {
 
                 .buttonsColor(R.color.colorAccent)
 
-                .image(R.drawable.tips)
+                .image(R.drawable.tips1)
 
                 .title("Tips")
 
@@ -107,7 +107,7 @@ public class IntroActivity extends MaterialIntroActivity {
 
                 .buttonsColor(R.color.colorAccent)
 
-                .image(R.drawable.circle_of_friends)
+                .image(R.drawable.report2)
 
                 .title("Report")
 

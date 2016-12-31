@@ -17,7 +17,9 @@
             android:layout_marginLeft="6dp"
             android:layout_marginTop="5dp"
             android:padding="2dp"
-            android:textColor="@color/colorTeal" />
+            android:fontFamily="sans-serif-light"
+            android:textSize="17sp"
+            android:textColor="#333"/>
 
         <TextView
             android:id="@+id/textView1"

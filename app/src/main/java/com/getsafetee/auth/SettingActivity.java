@@ -61,12 +61,13 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+
         // Session manager
         session = new SessionManager(this);
         message = new ShowMessage(this);
 
         if (session.getUPin().length() != 4 || session.getUName().isEmpty()) {
-            showMessage("Account", "You are required to complete account.", "Dismiss");
+            message.message("Error", "You are required to complete settings.", "Dismiss");
         }
 
         fullnameed = (EditText) findViewById(R.id.fullname);
@@ -95,24 +96,25 @@ public class SettingActivity extends AppCompatActivity {
 
 
                 // Check for empty data in the form
-                if (fullname.isEmpty() || phone.isEmpty() || pin.isEmpty()) {
+                if (fullname.isEmpty() || pin.isEmpty()) {
                     // Prompt user to enter credentials
-                    showMessage("Error", "All fields are required", "Dismiss");
+                    message.message("Error", "All fields are required", "Dismiss");
                 } else if(pin.length() != 4){
-                    showMessage("Error", "Pin must not be less or more than 4 digits", "Dismiss");
+                    message.message("Error", "Pin must not be less or more than 4 digits", "Dismiss");
                 } else {
                     // if it's only pin user change then no need to go online
                     if(session.getUName().equals(fullname) && session.getUPhone().equals(phone)){
                         // save user pin
                         session.setUPin(pin);
                         pined.setText(pin);
-                        showMessage("Account", "Pin changed successfully", "Dismiss");
+                        message.message("Success", "Pin changed successfully", "Click Here to Get Started");
                     } else {
                         // go online and save user new setting
                         // save user pin
                         session.setUPin(pin);
                         pined.setText(pin);
                         saveSetting(fullname, phone);
+
                     }
                 }
             }
@@ -164,7 +166,7 @@ public class SettingActivity extends AppCompatActivity {
 
 
                         // Prompt user
-                        showMessage("Account", successMsg, "Dismiss");
+                        message.message("Success", "Pin changed successfully", "Click Here to Get Started");
 
 
                     } else {
@@ -174,7 +176,7 @@ public class SettingActivity extends AppCompatActivity {
                         String errorMsg = jObj.getString("message");
                         // show error message to user
 
-                        showMessage("Error", errorMsg, "Dismiss");
+                        message.message("Error", errorMsg, "Dismiss");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -185,7 +187,7 @@ public class SettingActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof NoConnectionError){
                     Log.i("SAFETEE", "Request Response: " + "Network connection failed");
-                    showMessage("Error", "Network connection failed", "Dismiss");
+                    message.message("Error", "Network connection failed", "Dismiss");
                 }
             }
         }
@@ -193,9 +195,22 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
+                final String getfname;
+                final String getfphone;
+                if(fullname.isEmpty() || fullname.length() < 0){
+                    getfname = session.getUName();
+                }else{
+                    getfname = fullname;
+                }
+                //
+                if(phone.isEmpty() || phone.length() < 11){
+                    getfphone = session.getUPhone();
+                }else{
+                    getfphone = phone;
+                }
                 params.put("uid", session.getUid());
-                params.put("fullname", fullname);
-                params.put("phone_no", phone);
+                params.put("fullname", getfname);
+                params.put("phone_no", getfphone);
                 return params;
             }
         };

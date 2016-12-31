@@ -104,7 +104,7 @@ public class TipsLocal extends AppCompatActivity {
                                     //Toast.makeText(getApplicationContext(), String.valueOf(mDatabase.findTip(obj.getString("_id"))), Toast.LENGTH_LONG).show();
                                     if(mDatabase.findTip(obj.getString("_id")) == 0) {
                                         update += mDatabase.findTip(obj.getString("_id"));
-                                        mDatabase.addTip(obj.getString("title"), obj.getString("body"), obj.getString("_id"));
+                                        mDatabase.addTip(obj.getString("title"), obj.getString("body"), obj.getString("_id"), obj.getString("sender"));
                                     }
 
                                 } catch (JSONException e) {

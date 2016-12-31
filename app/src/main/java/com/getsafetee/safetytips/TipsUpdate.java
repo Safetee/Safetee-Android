@@ -43,16 +43,7 @@ public class TipsUpdate extends IntentService {
     protected void onHandleIntent(Intent intent){
         mDatabase = new TipsDatabase(getApplicationContext());
         session = new SessionManager(getApplicationContext());
-        mHandler = new Handler();
-
-        mHandlerTask = new Runnable() {
-            @Override
-            public void run() {
-                checkUpdate();
-                mHandler.postDelayed(mHandlerTask, INTERVAL);
-            }
-        };
-        mHandlerTask.run();
+        checkUpdate();
 
     }
 
@@ -75,7 +66,7 @@ public class TipsUpdate extends IntentService {
                                 //Toast.makeText(getApplicationContext(), String.valueOf(mDatabase.findTip(obj.getString("_id"))), Toast.LENGTH_LONG).show();
                                 if(mDatabase.findTip(obj.getString("_id")) == 0) {
                                     update = update + mDatabase.findTip(obj.getString("_id"));
-                                    mDatabase.addTip(obj.getString("title"), obj.getString("body"), obj.getString("_id"));
+                                    mDatabase.addTip(obj.getString("title"), obj.getString("body"), obj.getString("_id"), obj.getString("sender"));
                                 }
 
                             } catch (JSONException e) {
@@ -94,9 +85,9 @@ public class TipsUpdate extends IntentService {
                             alertUser("Hello "+ session.getUName() + ", " + updateCount);
                         }else{
                             //Toast.makeText(getApplicationContext(), "No new safety tips downloaded", Toast.LENGTH_LONG).show();
-                            alertUser("No new safety tips");
+                            //alertUser("No new safety tips");
                         }
-                        Toast.makeText(getApplicationContext(), String.valueOf(update), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), String.valueOf(update), Toast.LENGTH_LONG).show();
                         // reset update to 0 back
                         update = 0;
                     }

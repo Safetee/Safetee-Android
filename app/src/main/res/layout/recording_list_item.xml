@@ -28,10 +28,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:textColor="@color/colorTeal"
-                android:textStyle="bold"
-                android:text="@string/recording_name"
-                android:textSize="16sp" />
+                android:textColor="@color/colorBlack2"
+                android:textStyle="normal"
+                android:text=""
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-light" />
 
             <TextView
                 android:id="@android:id/summary"

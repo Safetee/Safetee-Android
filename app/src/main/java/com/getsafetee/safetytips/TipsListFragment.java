@@ -18,12 +18,14 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCa
 import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.SwipeDismissAdapter;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 
 public class TipsListFragment extends ListFragment implements OnDismissCallback {
     private TipsAdapter mAdapter;
     private MediaPlayer mPlayer;
+    private static final SimpleDateFormat mDateAddedFormatter = new SimpleDateFormat("MMMM d, yyyy - hh:mm a", Locale.getDefault());
 
 
     @Override
@@ -57,15 +59,20 @@ public class TipsListFragment extends ListFragment implements OnDismissCallback 
     }
 
     private void gotoTipView(final View v, final TipItem item){
-        Intent i = new Intent(v.getContext(), RecordView.class);
+        Intent i = new Intent(v.getContext(), TipView.class);
         i.putExtra("title", item.getName());
         i.putExtra("body", item.getBody());
         i.putExtra("uniid", item.getUniqueid());
         i.putExtra("Tid", String.valueOf(item.getId()));
+        i.putExtra("date", getTime(item.getTime()));
+        i.putExtra("sender", item.getBy());
         startActivity(i);
     }
 
-
+    public static String getTime(long milliSeconds) {
+        Date date = new Date(milliSeconds);
+        return mDateAddedFormatter.format(date);
+    }
 
     @Override
     public void onDismiss(@NonNull ViewGroup listView, @NonNull int[] reverseSortedPositions) {

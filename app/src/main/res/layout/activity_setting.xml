@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,17 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/colorGrey"
+    android:background="@color/colorTealDarker"
     tools:context="com.getsafetee.auth.SettingActivity">
-
-
-    <LinearLayout
-        android:id="@+id/setting_form"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@color/colorWhite">
 
 
             <EditText
@@ -26,10 +17,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_fullname"
+                android:textColorHint="@color/colorWhiteLight"
                 android:inputType="text"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:maxLines="1"
                 android:layout_marginBottom="5dp"
+                android:background="@color/colorTealDark"
+                android:padding="15dp"
                 android:singleLine="true" />
 
 
@@ -42,7 +36,10 @@
                 android:textColor="@color/colorBlack"
                 android:maxLines="1"
                 android:layout_marginBottom="5dp"
-                android:singleLine="true" />
+                android:visibility="gone"
+                android:singleLine="true"
+                android:padding="15dp"
+                android:layout_below="@id/fullname"/>
 
 
             <EditText
@@ -50,12 +47,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Set Pin"
+                android:textColorHint="@color/colorWhiteLight"
                 android:inputType="numberPassword"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:maxLines="1"
                 android:maxLength="4"
                 android:layout_marginBottom="5dp"
-                android:singleLine="true" />
+                android:background="@color/colorTealDark"
+                android:singleLine="true"
+                android:padding="15dp"
+                android:layout_below="@id/phone"/>
 
 
 
@@ -69,9 +70,9 @@
             android:textAllCaps="false"
             android:background="@color/colorTealDark"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:layout_alignParentBottom="true"
+            android:textStyle="normal" />
 
 
-    </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

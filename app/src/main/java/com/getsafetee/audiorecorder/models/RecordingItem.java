@@ -11,6 +11,7 @@ public class RecordingItem implements Parcelable {
 	private String mName;
 	private String mUniqueid;
 	private String mShared;
+	private String mUser;
 	private String mLocation;
 
 	public RecordingItem() {
@@ -25,6 +26,7 @@ public class RecordingItem implements Parcelable {
 		mName = in.readString();
 		mUniqueid = in.readString();
 		mShared = in.readString();
+		mUser = in.readString();
 		mLocation = in.readString();
 	}
 
@@ -50,6 +52,14 @@ public class RecordingItem implements Parcelable {
 
 	public void setLocation(String location) {
 		mLocation = location;
+	}
+
+	public String getUser() {
+		return mUser;
+	}
+
+	public void setUser(String user) {
+		mUser = user;
 	}
 
 	public String getShared() {

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="@color/colorGrey">
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/enterpin"
         android:layout_width="match_parent"
@@ -44,7 +47,8 @@
             android:textAllCaps="false"
             android:background="@color/colorTealDark"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:textStyle="normal"
+            android:fontFamily="sans-serif-light"/>
 
 
     </LinearLayout>
@@ -61,22 +65,25 @@
         android:visibility="invisible"
         android:background="@color/colorTeal">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/play"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@color/colorTeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
+        android:clickable="true"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_action_playback_play_big"/>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/stop"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:background="@color/colorTeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
             android:layout_centerHorizontal="true"
             android:visibility="invisible"
+            android:clickable="true"
             android:src="@drawable/ic_action_playback_stop_big"/>
 
     <TextView
@@ -91,7 +98,7 @@
             android:id="@+id/rename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorTeal"
+            android:background="@null"
             android:layout_below="@id/play"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -233,11 +240,16 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
-            android:background="@color/colorTeal"
+            android:background="@color/colorTealDark"
             android:textAllCaps="false"
             android:textColor="@color/colorWhite"
+            android:textStyle="normal"
+            android:padding="5dp"
+            android:fontFamily="sans-serif-light"
             android:text="Request Support"/>
 
     </LinearLayout>
 
 </RelativeLayout>
+
+    </ScrollView>

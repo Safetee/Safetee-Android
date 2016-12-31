@@ -24,6 +24,7 @@ public class TipsDatabase extends SQLiteOpenHelper {
         public static final String COLUMN_BODY = "body";
         public static final String COLUMN_TIME_ADDED = "time_added";
         public static final String COLUMN_UNIQUE_ID = "unique_id";
+        public static final String COLUMN_BY = "by";
     }
 
     public interface OnDatabaseChangedListener {
@@ -39,6 +40,7 @@ public class TipsDatabase extends SQLiteOpenHelper {
                     TipDatabaseItem._ID + " INTEGER PRIMARY KEY" + COMMA_SEP +
                     TipDatabaseItem.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
                     TipDatabaseItem.COLUMN_UNIQUE_ID + TEXT_TYPE + COMMA_SEP +
+                    TipDatabaseItem.COLUMN_BY + TEXT_TYPE + COMMA_SEP +
                     TipDatabaseItem.COLUMN_BODY + TEXT_TYPE + COMMA_SEP +
                     TipDatabaseItem.COLUMN_TIME_ADDED + " INTEGER " + ")";
 
@@ -50,11 +52,12 @@ public class TipsDatabase extends SQLiteOpenHelper {
         mContext = context;
     }
 
-    public long addTip(String title, String body, String uniqueid) {
+    public long addTip(String title, String body, String uniqueid, String by) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(TipDatabaseItem.COLUMN_TITLE, title);
         values.put(TipDatabaseItem.COLUMN_UNIQUE_ID, uniqueid);
+        values.put(TipDatabaseItem.COLUMN_BY, by);
         values.put(TipDatabaseItem.COLUMN_BODY, body);
         values.put(TipDatabaseItem.COLUMN_TIME_ADDED, System.currentTimeMillis());
 
@@ -82,16 +85,18 @@ public class TipsDatabase extends SQLiteOpenHelper {
                 TipDatabaseItem._ID,
                 TipDatabaseItem.COLUMN_TITLE,
                 TipDatabaseItem.COLUMN_UNIQUE_ID,
+                TipDatabaseItem.COLUMN_BY,
                 TipDatabaseItem.COLUMN_BODY,
                 TipDatabaseItem.COLUMN_TIME_ADDED
         };
 
-        Cursor c = db.query(TipDatabaseItem.TABLE_NAME, projection, null, null, null, null, null, null);
+        Cursor c = db.query(TipDatabaseItem.TABLE_NAME, projection, null, null, null, null, TipDatabaseItem._ID + " DESC", null);
         if (c.moveToPosition(position)) {
             TipItem item = new TipItem();
             item.setId(c.getInt(c.getColumnIndex(TipDatabaseItem._ID)));
             item.setName(c.getString(c.getColumnIndex(TipDatabaseItem.COLUMN_TITLE)));
             item.setUniqueid(c.getString(c.getColumnIndex(TipDatabaseItem.COLUMN_UNIQUE_ID)));
+            item.setBy(c.getString(c.getColumnIndex(TipDatabaseItem.COLUMN_BY)));
             item.setBody(c.getString(c.getColumnIndex(TipDatabaseItem.COLUMN_BODY)));
             item.setTime(c.getLong(c.getColumnIndex(TipDatabaseItem.COLUMN_TIME_ADDED)));
             c.close();

@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -42,6 +43,7 @@ import java.util.UUID;
 import java.util.concurrent.Future;
 import java.util.logging.Handler;
 
+import com.getsafetee.util.ShowMessage;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -53,16 +55,14 @@ import org.json.JSONObject;
 
 public class RecordView extends AppCompatActivity{
 
-
-
     private String title;
     private String rid;
     private String uniid;
     private String audio;
     private RadioGroup category;
     private Button needhelp;
-    ImageButton buttonPlay;
-    ImageButton buttonStop;
+    ImageView buttonPlay;
+    ImageView buttonStop;
     private ProgressDialog pDialog;
     private String cat_f;
     private TextView recordtitle;
@@ -80,6 +80,7 @@ public class RecordView extends AppCompatActivity{
 
     static MediaPlayer mPlayer;
     SessionManager session;
+    private ShowMessage message;
 
     LinearLayout enterpin;
     RelativeLayout player;
@@ -104,6 +105,7 @@ public class RecordView extends AppCompatActivity{
         mAdapter = new RecordingsAdapter(RecordView.this);
         geocoder = new Geocoder(this, Locale.getDefault());
         mlocation = new LocationManager(this);
+        message = new ShowMessage(this);
         // Enable global Ion logging
         Ion.getDefault(RecordView.this).configure().setLogging("ion-sample", Log.DEBUG);
         //
@@ -158,14 +160,15 @@ public class RecordView extends AppCompatActivity{
                 // Check for empty data in the form
                 if (cat_f.isEmpty()) {
                     // Prompt user to enter credentials
-                    Toast.makeText(RecordView.this, "Please all fields are required", Toast.LENGTH_LONG).show();
+                    message.message("Error", "Please all fields are required", "Dismiss");
+                    //Toast.makeText(RecordView.this, "Please all fields are required", Toast.LENGTH_LONG).show();
                 } else {
                     pDialog.setMessage("Please wait...");
                     pDialog.show();
                     // get help
                     Ion.with(RecordView.this)
-                            .load("POST", Constants.UPLOAD_SERVICE_URL)
-                            .setMultipartFile("record", new File(audio))
+                            .load(Constants.UPLOAD_SERVICE_URL)
+                            .setMultipartFile("record", "audio/wav", new File(audio))
                             .setMultipartParameter("sender", session.getUName())
                             .setMultipartParameter("uid", session.getUid())
                             .setMultipartParameter("location", String.valueOf(mlocation.getLat()) + "," + String.valueOf(mlocation.getLong()))
@@ -182,14 +185,16 @@ public class RecordView extends AppCompatActivity{
                             public void onCompleted(Exception err, JsonObject result) {
                                 if (err != null) {
                                     pDialog.hide();
-                                    Toast.makeText(RecordView.this, "Support could not be requested, try again. " + err.getMessage().toString(), Toast.LENGTH_LONG).show();
+                                    message.message("Error", "An error occurred. " + err.getMessage().toString(), "Dismiss");
+                                    //Toast.makeText(RecordView.this, "Support could not be requested, try again. " + err.getMessage().toString() + audio, Toast.LENGTH_LONG).show();
                                 } else {
                                     //try {
                                     pDialog.hide();
                                     // set record as shared
                                     mAdapter.getDatabase().setItemShared(rid, "true");
-                                    Toast.makeText(RecordView.this, "Your request for support was successfully received, an agency will get in touch you shortly.", Toast.LENGTH_LONG).show();
-                                    showMessage("Support", "Your request for support was successfully received, an agency will get in touch you shortly.", "Dismiss");
+                                    //reportsent();
+                                    //Toast.makeText(RecordView.this, "Your request for support was successfully received, an agency will get in touch you shortly.", Toast.LENGTH_LONG).show();
+                                    message.message("Success", getString(R.string.reportsent), "Dismiss");
                                     //} catch (JSONException exep) {
 
                                     //}
@@ -206,8 +211,8 @@ public class RecordView extends AppCompatActivity{
         });
 
         //
-        buttonPlay = (ImageButton) findViewById(R.id.play);
-        buttonStop = (ImageButton) findViewById(R.id.stop);
+        buttonPlay = (ImageView) findViewById(R.id.play);
+        buttonStop = (ImageView) findViewById(R.id.stop);
         //
         buttonPlay.setOnClickListener(new View.OnClickListener() {
 
@@ -362,6 +367,10 @@ public class RecordView extends AppCompatActivity{
 
     }
 
+    public void reportsent() {
+        Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
+        startActivity(intent);
+    }
 
 
 

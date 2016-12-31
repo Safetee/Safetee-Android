@@ -2,12 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".ReportActivity">
 
    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:background="@color/colorTeal"
+       android:background="@null"
        android:gravity="center"
        android:padding="40dp">
 
@@ -15,7 +16,6 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="Select clip"
-           android:drawableLeft="@drawable/ic_menu_camera"
            android:id="@+id/buttonChoose"/>
 
 
@@ -54,12 +54,14 @@
         android:id="@+id/about" />
 
     <Button
+
+        android:id="@+id/buttonUpload"
+        style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SEND"
-        android:drawableRight="@drawable/ic_menu_send"
-        android:drawableEnd="@drawable/ic_menu_send"
-        android:id="@+id/buttonUpload" />
+        android:background="@color/colorTealDark"
+        android:textColor="@color/colorWhite"/>
 
     </LinearLayout>
 

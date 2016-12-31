@@ -7,15 +7,88 @@
     android:gravity="center"
     tools:context="com.getsafetee.auth.LoginActivity">
 
+    <LinearLayout
+        android:id="@+id/verification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/confirming"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text=""
+            android:textColor="@color/colorWhite"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-light"
+            android:textSize="16sp"/>
+
+     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/sign_up_form"
+        android:id="@+id/verified"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ok"/>
+
+        <TextView
+            android:id="@+id/verifying"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text=""
+            android:textColor="@color/colorWhite"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-light"
+            android:textSize="16sp"/>
+
+        <Button
+            android:id="@+id/verified_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/action_sign_in"
+            android:background="@color/colorGrey"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-light"
+            android:onClick="gotoHome"
+            android:textColor="@color/colorTeal"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="20dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/login_message"
@@ -27,8 +100,8 @@
             android:padding="10dp"
             android:layout_gravity="center"
             android:textAlignment="center"
-
-            android:textSize="16dip"/>
+            android:fontFamily="sans-serif-light"
+            android:textSize="15sp"/>
 
 
                 <EditText
@@ -44,7 +117,6 @@
                     android:layout_marginBottom="5dp"
                     android:padding="15dp"
                     android:maxLines="1"
-                    android:maxLength="11"
                     android:singleLine="true" />
 
 
@@ -77,6 +149,7 @@
                 android:text="@string/action_sign_in"
                 android:background="@color/colorTeal"
                 android:textAllCaps="false"
+                android:fontFamily="sans-serif-light"
                 android:textColor="#fff"/>
 
         <TextView android:id="@+id/link_tour"
@@ -89,7 +162,8 @@
         android:clickable="true"
         android:onClick="tour"
         android:visibility="visible"
-        android:textSize="16dip"/>
+        android:fontFamily="sans-serif-light"
+        android:textSize="14sp"/>
 
     </LinearLayout>
 

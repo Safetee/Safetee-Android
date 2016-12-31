@@ -9,6 +9,7 @@ public class TipItem implements Parcelable {
     private String mName;
     private String mUniqueid;
     private String mBody;
+    private String mBy;
 
     public TipItem() {
 
@@ -20,11 +21,20 @@ public class TipItem implements Parcelable {
         mName = in.readString();
         mUniqueid = in.readString();
         mBody = in.readString();
+        mBy = in.readString();
     }
 
 
     public String getUniqueid() {
         return mUniqueid;
+    }
+
+    public void setBy(String by) {
+        mBy = by;
+    }
+
+    public String getBy() {
+        return mBy;
     }
 
     public void setUniqueid(String uniqueid) {

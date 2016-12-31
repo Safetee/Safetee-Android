@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.getsafetee.circleoffriends.FriendsList"
             android:label="@string/title_activity_friends_list"
@@ -97,6 +101,15 @@
                 android:value="com.getsafetee.MainActivity2" />
         </activity>
 
+        <activity
+            android:name="com.getsafetee.safetytips.TipView"
+            android:label="Tip"
+            android:parentActivityName="com.getsafetee.safetytips.TipsLocal">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.getsafetee.safetytips.TipsLocal" />
+        </activity>
+
         <service
             android:name="com.getsafetee.safetytips.TipsUpdate" android:exported="false"/>
 
@@ -112,6 +125,7 @@
         <activity
             android:name="com.getsafetee.auth.SettingActivity"
             android:label="Account"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.getsafetee.MainActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -172,6 +186,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.getsafetee.MainActivity2" />
+        </activity>
+
+        <activity
+            android:name="com.getsafetee.OrganizationView"
+            android:label=""
+            android:parentActivityName="com.getsafetee.auth.SettingMain">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.getsafetee.auth.SettingMain" />
         </activity>
 
     </application>

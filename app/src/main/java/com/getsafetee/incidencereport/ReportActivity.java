@@ -43,6 +43,7 @@ import com.getsafetee.util.Constants;
 import com.getsafetee.util.GPSTracker;
 import com.getsafetee.util.LocationManager;
 import com.getsafetee.util.RealPathUtil;
+import com.getsafetee.util.ShowMessage;
 import com.netcompss.ffmpeg4android.GeneralUtils;
 import com.netcompss.loader.LoadJNI;
 
@@ -59,6 +60,8 @@ import java.util.Hashtable;
 import java.util.Map;
 
 public class ReportActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private ShowMessage message;
 
     private Button buttonUpload;
     private Button buttonChoose, buttonCreate;
@@ -84,6 +87,8 @@ public class ReportActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_report);
+
+        message = new ShowMessage(ReportActivity.this);
 
         session = new SessionManager(ReportActivity.this);
         location = new LocationManager(ReportActivity.this);
@@ -212,7 +217,7 @@ public class ReportActivity extends AppCompatActivity implements View.OnClickLis
     public void sendReport(File report) {
         //clip = compressVideo();
         String about = editText.getText().toString().trim();
-        showMessage("Safetee", "Report is being sent", "Ok");
+        message.message("Success", "Report is being sent", "Dismiss");
         Log.i("Report sending", "Started");
         try {
             String sendreport =
@@ -222,12 +227,15 @@ public class ReportActivity extends AppCompatActivity implements View.OnClickLis
                             .addParameter("sender", session.getUName())
                             .addParameter("uid", session.getUid())
                             .addParameter("location", String.valueOf(location.getLat()) + "," + String.valueOf(location.getLong()))
-                            .setNotificationConfig(new UploadNotificationConfig().setRingToneEnabled(false))
-                            .setMaxRetries(2)
+                            //.setNotificationConfig(new UploadNotificationConfig().setRingToneEnabled(false))
+                            .setMaxRetries(5)
                             .startUpload();
         } catch (Exception exc) {
             Log.e("AndroidUploadService", exc.getMessage(), exc);
         }
+        Intent i = new Intent(ReportActivity.this, MainActivity2.class);
+        startActivity(i);
+        finish();
     }
 
     @Override
@@ -246,20 +254,5 @@ public class ReportActivity extends AppCompatActivity implements View.OnClickLis
             sendReport(reportfile);
             }
         }
-    }
-    public void showMessage(String title, String msg, String btn){
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(msg)
-                .setTitle(title)
-                .setCancelable(false)
-                .setPositiveButton(btn, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent i = new Intent(ReportActivity.this, MainActivity2.class);
-                        startActivity(i);
-                        finish();
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 }

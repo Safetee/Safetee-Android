@@ -115,6 +115,8 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice_recorder_main);
 
+        findViewById(R.id.launchrecord).setVisibility(View.GONE);
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mBackButtonAlwaysQuits = prefs.getBoolean(SettingsFragment.BACK_BUTTON_ALWAYS_QUITS, false);
         mIsKitKatTranslucencyEnabled = prefs.getBoolean(SettingsFragment.KITKAT_TRANSLUCENCY_KEY, false);

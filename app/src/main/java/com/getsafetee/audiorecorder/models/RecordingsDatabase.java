@@ -7,11 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
+import com.getsafetee.SessionManager;
+
 import java.util.Comparator;
 import java.util.UUID;
 
 public class RecordingsDatabase extends SQLiteOpenHelper {
 	private Context mContext;
+	private SessionManager session;
 
 	public static final String DATABASE_NAME = "safeteerecords.db";
 	private static final int DATABASE_VERSION = 1;
@@ -25,6 +28,7 @@ public class RecordingsDatabase extends SQLiteOpenHelper {
 		public static final String COLUMN_NAME_TIME_ADDED = "time_added";
 		public static final String COLUMN_NAME_UNIQUE_ID = "unique_id";
 		public static final String COLUMN_SHARED = "shared";
+		public static final String COLUMN_USER = "user";
 		public static final String COLUMN_LOCATION = "location";
 	}
 
@@ -42,6 +46,7 @@ public class RecordingsDatabase extends SQLiteOpenHelper {
 					RecordingDatabaseItem.COLUMN_NAME_RECORDING_NAME + TEXT_TYPE + COMMA_SEP +
 					RecordingDatabaseItem.COLUMN_NAME_UNIQUE_ID + TEXT_TYPE + COMMA_SEP +
 					RecordingDatabaseItem.COLUMN_SHARED + TEXT_TYPE + COMMA_SEP +
+					RecordingDatabaseItem.COLUMN_USER + TEXT_TYPE + COMMA_SEP +
 					RecordingDatabaseItem.COLUMN_LOCATION + TEXT_TYPE + COMMA_SEP +
 					RecordingDatabaseItem.COLUMN_NAME_RECORDING_FILE_PATH + TEXT_TYPE + COMMA_SEP +
 					RecordingDatabaseItem.COLUMN_NAME_RECORDING_LENGTH + " INTEGER " + COMMA_SEP +
@@ -53,14 +58,16 @@ public class RecordingsDatabase extends SQLiteOpenHelper {
 	public RecordingsDatabase(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		mContext = context;
+		session = new SessionManager(context);
 	}
 
-	public long addRecording(String recordingName, String filePath, long length, String uniqueid, String shared, String location) {
+	public long addRecording(String recordingName, String filePath, long length, String uniqueid, String shared, String location, String user) {
 		SQLiteDatabase db = getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(RecordingDatabaseItem.COLUMN_NAME_RECORDING_NAME, recordingName);
 		values.put(RecordingDatabaseItem.COLUMN_NAME_UNIQUE_ID, uniqueid);
 		values.put(RecordingDatabaseItem.COLUMN_SHARED, shared);
+		values.put(RecordingDatabaseItem.COLUMN_USER, user);
 		values.put(RecordingDatabaseItem.COLUMN_LOCATION, location);
 		values.put(RecordingDatabaseItem.COLUMN_NAME_RECORDING_FILE_PATH, filePath);
 		values.put(RecordingDatabaseItem.COLUMN_NAME_RECORDING_LENGTH, length);
@@ -82,13 +89,14 @@ public class RecordingsDatabase extends SQLiteOpenHelper {
 				RecordingDatabaseItem.COLUMN_NAME_RECORDING_NAME,
 				RecordingDatabaseItem.COLUMN_NAME_UNIQUE_ID,
 				RecordingDatabaseItem.COLUMN_SHARED,
+				RecordingDatabaseItem.COLUMN_USER,
 				RecordingDatabaseItem.COLUMN_LOCATION,
 				RecordingDatabaseItem.COLUMN_NAME_RECORDING_FILE_PATH,
 				RecordingDatabaseItem.COLUMN_NAME_RECORDING_LENGTH,
 				RecordingDatabaseItem.COLUMN_NAME_TIME_ADDED
 		};
 
-		Cursor c = db.query(RecordingDatabaseItem.TABLE_NAME, projection, null, null, null, null, null, null);
+		Cursor c = db.query(RecordingDatabaseItem.TABLE_NAME, projection, RecordingDatabaseItem.COLUMN_USER + "=" + '"' + session.getUid() + '"', null, null, null, RecordingDatabaseItem._ID + " DESC", null);
 		if (c.moveToPosition(position)) {
 			RecordingItem item = new RecordingItem();
 			item.setId(c.getInt(c.getColumnIndex(RecordingDatabaseItem._ID)));
@@ -97,6 +105,7 @@ public class RecordingsDatabase extends SQLiteOpenHelper {
 			item.setName(c.getString(c.getColumnIndex(RecordingDatabaseItem.COLUMN_NAME_RECORDING_NAME)));
 			item.setUniqueid(c.getString(c.getColumnIndex(RecordingDatabaseItem.COLUMN_NAME_UNIQUE_ID)));
 			item.setShared(c.getString(c.getColumnIndex(RecordingDatabaseItem.COLUMN_SHARED)));
+			item.setUser(c.getString(c.getColumnIndex(RecordingDatabaseItem.COLUMN_USER)));
 			item.setLocation(c.getString(c.getColumnIndex(RecordingDatabaseItem.COLUMN_LOCATION)));
 			item.setTime(c.getLong(c.getColumnIndex(RecordingDatabaseItem.COLUMN_NAME_TIME_ADDED)));
 			c.close();
@@ -118,7 +127,7 @@ public class RecordingsDatabase extends SQLiteOpenHelper {
 	public int getCount() {
 		SQLiteDatabase db = getReadableDatabase();
 		String[] projection = { RecordingDatabaseItem._ID };
-		Cursor c = db.query(RecordingDatabaseItem.TABLE_NAME, projection, null, null, null, null, null, null);
+		Cursor c = db.query(RecordingDatabaseItem.TABLE_NAME, projection, RecordingDatabaseItem.COLUMN_USER + "=" + '"' + session.getUid() + '"', null, null, null, null, null);
 		int count = c.getCount();
 		c.close();
 		return count;
@@ -193,6 +202,7 @@ public class RecordingsDatabase extends SQLiteOpenHelper {
 		values.put(RecordingDatabaseItem.COLUMN_NAME_RECORDING_NAME, item.getName());
 		values.put(RecordingDatabaseItem.COLUMN_NAME_UNIQUE_ID, item.getUniqueid());
 		values.put(RecordingDatabaseItem.COLUMN_SHARED, item.getShared());
+		values.put(RecordingDatabaseItem.COLUMN_USER, item.getUser());
 		values.put(RecordingDatabaseItem.COLUMN_LOCATION, item.getLocation());
 		values.put(RecordingDatabaseItem.COLUMN_NAME_RECORDING_FILE_PATH, item.getFilePath());
 		values.put(RecordingDatabaseItem.COLUMN_NAME_RECORDING_LENGTH, item.getLength());

@@ -1,7 +1,10 @@
 package com.getsafetee;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.getsafetee.safetee.R;
+import com.squareup.picasso.Picasso;
+
+import java.lang.ref.WeakReference;
 
 public class MainActivityAdapter extends ArrayAdapter<String> {
 
@@ -41,9 +47,12 @@ public class MainActivityAdapter extends ArrayAdapter<String> {
 
 
         txtTitle.setText(itemname[position]);
-        imageView.setImageResource(imgid[position]);
+        //imageView.setImageResource(imgid[position]);
+        Picasso.with(context).load(imgid[position]).into(imageView);
         extratxt.setText(itemabout[position]);
         return rowView;
 
-    };
+    }
+
+
 }

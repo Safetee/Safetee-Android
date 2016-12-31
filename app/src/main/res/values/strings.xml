@@ -38,8 +38,8 @@
     <string name="need_interruption">Call I Need an Interruption</string>
     <string name="need_to_talk">I Need to Talk</string>
     <string name="cancel">Cancel</string>
-    <string name="come_get_me_message">Come and get me. I need help getting home Safely. Call ASAP to get my Location.Sent through Safetee\'s Circle of Friends.</string>
-    <string name="come_get_me_message_with_location">Come and get me. I need help getting home Safely. My location( #LOC_URL# ).Sent through Safetee\'s Circle of Friends.</string>
+    <string name="come_get_me_message">Come and get me. I need help getting home Safely. Call ASAP to get my Location. Sent through Safetee\'s Circle of Friends.</string>
+    <string name="come_get_me_message_with_location">Come and get me. I need help getting home Safely. My location( #LOC_URL# ). Sent through Safetee\'s Circle of Friends.</string>
     <string name="interruption_message">Call and pretend you need me. I need an interruption. Message sent through Safetee\'s Circle of Friends</string>
     <string name="need_to_talk_message">I need to talk. Message sent through First Aide\'s Circle of Trust</string>
     <string name="msg_sent">Message sent</string>
@@ -49,8 +49,8 @@
     <string name="choose_number">Choose a number</string>
     <string name="circle_of_trust_slide_two">When you are feeling insecure or need your emergency contacts\' attention.\nPress the button</string>
     <string name="confirmation_message1">This message is being sent to</string>
-    <string name="confirmation_message2">registered contacts.</string>
-    <string name="confirmation_message3">registered contact.</string>
+    <string name="confirmation_message2">friends.</string>
+    <string name="confirmation_message3">friend.</string>
     <string name="no_comrade_title">No Contacts Registered</string>
     <string name="no_comrade_msg">Failed to send message since no contacts have been registered</string>
     <string name="add_comrades_save">Save</string>
@@ -158,7 +158,7 @@
     <string name="prompt_password">Password</string>
     <string name="prompt_pin">Set Pin</string>
     <string name="prompt_fullname">Full Name</string>
-    <string name="sign_in_message">Safetee will send a one time SMS message to verify your phone number. Carrier SMS charges may apply. </string>
+    <string name="sign_in_message">Safetee will send a one time SMS message to verify your phone number, carrier SMS charges will not apply. </string>
     <string name="action_sign_in">Continue</string>
     <string name="action_sign_up">Sign Up</string>
     <string name="action_sign_in_short">Sign in</string>

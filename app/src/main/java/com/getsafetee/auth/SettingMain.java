@@ -25,8 +25,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.getsafetee.AboutActivity;
 import com.getsafetee.DonateToNGO;
 import com.getsafetee.MainActivityAdapter;
+import com.getsafetee.OrganizationView;
 import com.getsafetee.SessionManager;
 import com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity;
 import com.getsafetee.circleoffriends.FriendsList;
@@ -54,6 +56,7 @@ public class SettingMain extends AppCompatActivity {
     private RadioButton autoupload;
     private String getAutoupload;
     private String getPin;
+    private String oldpin;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +66,7 @@ public class SettingMain extends AppCompatActivity {
         message = new ShowMessage(this);
 
         if (session.getUPin().length() != 4 || session.getUName().isEmpty()) {
-            message.message("Account", "You are required to complete settings.", "Dismiss");
+            message.message("Error", "You are required to complete settings.", "Dismiss");
         }
 
         final String[] itemname ={
@@ -72,7 +75,8 @@ public class SettingMain extends AppCompatActivity {
                 "Pin Code",
                 "Auto Upload",
                 "About",
-                "Terms of Service",
+                "F.A.Q",
+                "Terms of Use",
                 "Privacy Policy",
                 "Log Out"
         };
@@ -94,10 +98,11 @@ public class SettingMain extends AppCompatActivity {
                 session.getUPhone(),
                 getPin,
                 getAutoupload,
-                "",
-                "",
-                "",
-                ""
+                "Learn about safetee",
+                "Frequently asked questions",
+                "Terms and conditions governing the use of safetee",
+                "Everything regarding privacy",
+                "log out of your account"
         };
 
         final Integer[] imgid = {
@@ -105,6 +110,7 @@ public class SettingMain extends AppCompatActivity {
                 R.drawable.ic_action_edit_low,
                 R.drawable.ic_action_edit_low,
                 R.drawable.ic_action_edit_low,
+                R.drawable.chevron_right_1,
                 R.drawable.chevron_right_1,
                 R.drawable.chevron_right_1,
                 R.drawable.chevron_right_1,
@@ -128,13 +134,25 @@ public class SettingMain extends AppCompatActivity {
                         autoUpload();
                         break;
                     case "Full Name":
-                        renameItem("name");
+                        renameItem("name", "Save");
                         break;
                     case "Phone Number":
-                        renameItem("phone");
+                        renameItem("phone", "Save");
                         break;
                     case "Pin Code":
-                        renameItem("pin");
+                        renameItem("pin", "Continue");
+                        break;
+                    case "About":
+                        startActivity(new Intent(SettingMain.this, AboutActivity.class));
+                        break;
+                    case "F.A.Q":
+                        organizationView("faq");
+                        break;
+                    case "Privacy Policy":
+                        organizationView("pp");
+                        break;
+                    case "Terms of Use":
+                        organizationView("tou");
                         break;
                     case "Log Out":
                         logoutUser();
@@ -189,7 +207,7 @@ public class SettingMain extends AppCompatActivity {
     }
 
     // reset fullname, phone number, pin
-    public void renameItem(final String type) {
+    public void renameItem(final String type, final String btn) {
         lf = LayoutInflater.from(getApplicationContext());
         renameprompt = lf.inflate(R.layout.input_for_dialog, null);
         final AlertDialog.Builder renamebuilder = new AlertDialog.Builder(this);
@@ -200,45 +218,63 @@ public class SettingMain extends AppCompatActivity {
             heading.setText("FULL NAME");
             input.setText(session.getUName());
         } else if(type.equals("phone")){
-            input.setInputType(InputType.TYPE_CLASS_NUMBER);
+            input.setInputType(InputType.TYPE_CLASS_PHONE);
             input.setMaxLines(11);
             heading.setText("PHONE NUMBER");
             input.setText(session.getUPhone());
         } else if(type.equals("pin")){
-            input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD );
+            input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
             input.setMaxLines(4);
-            heading.setText("PIN CODE");
+            heading.setText("ENTER PIN CODE");
+        } else if(type.equals("rpin")){
+            input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+            input.setMaxLines(4);
+            heading.setText("NEW PIN CODE");
         }
-        renamebuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        renamebuilder.setPositiveButton(btn, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 //
                 final String inputVal = input.getText().toString();
                 if (inputVal.length() > 0) {
-                    if(type.equals("name")){
-                        if(inputVal.contains(" ")){
-
+                    if (type.equals("name")) {
+                        if (inputVal.contains(" ")) {
                             saveSetting(inputVal, "");
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Please set a proper full name", Toast.LENGTH_LONG).show();
+                        } else {
+                            message.message("Error", "Please set a proper full name", "Dismiss");
+                            //Toast.makeText(getApplicationContext(), "Please set a proper full name", Toast.LENGTH_LONG).show();
                         }
-                    } else if(type.equals("phone")){
-                        if(inputVal.length() == 11) {
+                    } else if (type.equals("phone")) {
+                        if (inputVal.length() >= 11) {
                             saveSetting("", inputVal);
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Phone number should not be less or more than 11 digits", Toast.LENGTH_LONG).show();
+                        } else {
+                            message.message("Error", "Phone number should not be less or more than 14 digits, eg +2348012345678", "Dismiss");
+                            //Toast.makeText(getApplicationContext(), "Phone number should not be less or more than 14 digits, eg +2348012345678", Toast.LENGTH_LONG).show();
                         }
-                    } else if(type.equals("pin")){
-                        if(inputVal.length() == 4) {
+                    } else if (type.equals("pin")) {
+                        if (inputVal.length() == 4) {
+                            oldpin = inputVal;
+                            renameItem("rpin", "Save");
+                        } else {
+                            message.message("Error", "Pin code should not be less or more than 4 digits", "Dismiss");
+                            //Toast.makeText(getApplicationContext(), "Pin code should not be less or more than 4 digits", Toast.LENGTH_LONG).show();
+                        }
+                    } else if (type.equals("rpin")) {
+                        if (inputVal.length() != 4) {
+                            message.message("Error", "Pin code should not be less or more than 4 digits", "Dismiss");
+                            //Toast.makeText(getApplicationContext(), "Pin code should not be less or more than 4 digits", Toast.LENGTH_LONG).show();
+                        } else if (session.getUPin().equals(oldpin)) {
                             session.setUPin(inputVal);
-                            Toast.makeText(getApplicationContext(), "Pin code successfully set", Toast.LENGTH_LONG).show();
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Pin code should not be less or more than 4 digits", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Pin code successfully changed", Toast.LENGTH_LONG).show();
+                        } else {
+                            message.message("Error", "Incorrect pin entered", "Dismiss");
                         }
-                    }
 
+                    } else {
+                    }
                 }
+
             }
-        });
+    });
         //
         AlertDialog renamedialog = renamebuilder.create();
         renamedialog.show();
@@ -313,7 +349,8 @@ public class SettingMain extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof NoConnectionError){
                     Log.i("SAFETEE", "Request Response: " + "Network connection failed");
-                    Toast.makeText(getApplicationContext(), "Network connection failed", Toast.LENGTH_LONG).show();
+                    message.message("Error", "Network connection failed", "Dismiss");
+                    //Toast.makeText(getApplicationContext(), "Network connection failed", Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -355,6 +392,12 @@ public class SettingMain extends AppCompatActivity {
         startActivity(intent);
         finish();
 
+    }
+
+    private void organizationView(final String type){
+        Intent i = new Intent(SettingMain.this, OrganizationView.class);
+        i.putExtra("title", type);
+        startActivity(i);
     }
 
 }

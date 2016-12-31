@@ -3,34 +3,39 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBlackDarker"
+    android:background="@color/colorTealDarker"
     android:gravity="center"
     android:layout_centerInParent="true">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+    <LinearLayout
         android:id="@+id/reportcontainer"
-        android:padding="40dp"
-        android:visibility="visible">
-
-    <ImageView
-        android:id="@+id/reporticon"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_finish"
-        android:layout_centerHorizontal="true"/>
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/reportsent"
-        android:layout_below="@id/reporticon"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/colorWhite"
-        android:textSize="16dp"/>
+        <ImageView
+            android:id="@+id/reporticon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ok"/>
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/reportsent"
+            android:textColor="@color/colorWhite"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-light"
+            android:textSize="16sp"/>
+
+
+    </LinearLayout>
 
 </LinearLayout>

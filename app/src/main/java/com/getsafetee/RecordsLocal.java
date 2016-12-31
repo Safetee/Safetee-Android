@@ -14,24 +14,31 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.getsafetee.FragmentHolderActivity;
+import com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity;
 import com.getsafetee.audiorecorder.fragments.AboutFragment;
 import com.getsafetee.audiorecorder.fragments.RecordingControlsFragment;
 import com.getsafetee.audiorecorder.fragments.RecordingStatusFragment;
 import com.getsafetee.audiorecorder.fragments.RecordingsListFragment;
 import com.getsafetee.audiorecorder.fragments.SettingsFragment;
 import com.getsafetee.audiorecorder.models.RecordingMode;
+import com.getsafetee.audiorecorder.models.RecordingsDatabase;
 import com.getsafetee.audiorecorder.services.RecordingService;
 import com.getsafetee.auth.SettingActivity;
 import com.getsafetee.auth.SettingRecords;
 import com.getsafetee.circleoffriends.FriendsList;
 import com.getsafetee.safetee.R;
+
+import org.w3c.dom.Text;
 
 
 public class RecordsLocal extends AppCompatActivity {
@@ -42,6 +49,10 @@ public class RecordsLocal extends AppCompatActivity {
     private RecordingControlsFragment mRecordingControlsFragment;
     private RecordingsListFragment mRecordingsListFragment;
     private Toolbar toolbar;
+    private RecordingsDatabase recordingsDatabase;
+    private TextView recordsInfo;
+    private RelativeLayout records_info_container;
+    private FloatingActionButton record;
 
 
 
@@ -58,6 +69,23 @@ public class RecordsLocal extends AppCompatActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        recordingsDatabase = new RecordingsDatabase(this);
+        recordsInfo = (TextView) findViewById(R.id.records_info);
+        records_info_container = (RelativeLayout) findViewById(R.id.records_info_container);
+        if (recordingsDatabase.getCount() < 1){
+            recordsInfo.setText("You have no records");
+            records_info_container.setVisibility(View.VISIBLE);
+            recordsInfo.setVisibility(View.VISIBLE);
+        }
+
+        record = (FloatingActionButton) findViewById(R.id.launchrecord);
+        record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RecordsLocal.this, VoiceRecorderMainActivity.class));
+            }
+        });
 
 
 

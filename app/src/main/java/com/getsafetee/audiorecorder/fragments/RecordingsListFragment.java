@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.cocosw.undobar.UndoBarController;
 import com.cocosw.undobar.UndoBarStyle;
 import com.getsafetee.RecordView;
+import com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity;
 import com.getsafetee.safetee.R;
 import com.getsafetee.audiorecorder.models.RecordingItem;
 import com.getsafetee.audiorecorder.adapters.RecordingsAdapter;
@@ -42,7 +43,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class RecordingsListFragment extends ListFragment implements OnDismissCallback, OnItemLongClickListener, UndoBarController.UndoListener {
+public class RecordingsListFragment extends ListFragment implements OnDismissCallback, UndoBarController.UndoListener {
 	private RecordingsAdapter mAdapter;
 	private MediaPlayer mPlayer;
 	private TextView mCurrentPositionTextView;
@@ -57,9 +58,9 @@ public class RecordingsListFragment extends ListFragment implements OnDismissCal
 		getListView().setBackgroundColor(getResources().getColor(R.color.card_gray));
 		adapter.setAbsListView(getListView());
 
-		setEmptyText(getString(R.string.no_recordings));
+		//setEmptyText(getString(R.string.no_recordings));
 
-		getListView().setOnItemLongClickListener(this);
+		//getListView().setOnItemLongClickListener(this);
 		getListView().setDividerHeight(0);
 		getListView().setDivider(null);
 		getListView().setSelector(new ColorDrawable(android.R.color.transparent));
@@ -70,6 +71,7 @@ public class RecordingsListFragment extends ListFragment implements OnDismissCal
 		getListView().setClipToPadding(false);
 	}
 
+	/*
 	@Override
 	public boolean onItemLongClick(AdapterView<?> av, final View v, final int position, long id) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -89,6 +91,7 @@ public class RecordingsListFragment extends ListFragment implements OnDismissCal
 		builder.show();
 		return true;
 	}
+	*/
 
 	protected void renameItem(final RecordingItem item) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -359,4 +362,6 @@ public class RecordingsListFragment extends ListFragment implements OnDismissCal
 
 		}
 	}
+
+
 }

@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlack2"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
             <EditText
                 android:id="@+id/comrade1EditText"
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlack2"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
             <EditText
                 android:id="@+id/comrade2EditText"
@@ -125,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlack2"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
             <EditText
                 android:id="@+id/comrade3EditText"
@@ -167,7 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlack2"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
             <EditText
                 android:id="@+id/comrade4EditText"
@@ -209,7 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlack2"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
             <EditText
                 android:id="@+id/comrade5EditText"
@@ -251,7 +251,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlack2"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
             <EditText
                 android:id="@+id/comrade6EditText"

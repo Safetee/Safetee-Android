@@ -12,6 +12,7 @@
         android:layout_gravity="end|bottom"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
         android:clickable="true"
         android:onClick="launchrecord"
@@ -27,6 +28,9 @@
         android:layout_alignParentTop="true"
         android:divider="@color/colorGrey"
         android:padding="5dp"
+        android:smoothScrollbar="true"
+        android:scrollingCache="false"
+        android:animationCache="false"
         android:dividerHeight="4dp">
     </ListView>
 

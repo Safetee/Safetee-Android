@@ -20,7 +20,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getsafetee.MainActivity2;
 import com.getsafetee.safetee.R;
+import com.getsafetee.util.ShowMessage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,9 +37,11 @@ public class FriendsList extends AppCompatActivity {
     List<TextView> comradeEditTextName = new ArrayList<>(NUMBER_OF_COMRADES);
     List<Integer> indexesUpdated = new ArrayList<>();
     Toolbar toolbar;
-
+    ShowMessage messager;
     private View selectedButton;
     private Button okButton;
+
+    private EditText mEd1, mEd2, mEd3, mEd4, mEd5, mEd6;
 
     public static final String MY_PREFERENCES = "Safetee_rock_eagle_2"; // don't change, it controls all app prefs
     public static final List<String> COMRADE_KEY = Arrays.asList("comrade1Key", "comrade2Key", "comrade3Key", "comrade4Key", "comrade5Key", "comrade6Key");
@@ -56,19 +60,43 @@ public class FriendsList extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        comradeEditText.add((EditText) findViewById(R.id.comrade1EditText));
+        messager = new ShowMessage(this);
+
+        mEd1 = (EditText) findViewById(R.id.comrade1EditText);
+        mEd1.setKeyListener(null);
+        comradeEditText.add(mEd1);
+        mEd2 = (EditText) findViewById(R.id.comrade2EditText);
+        mEd2.setKeyListener(null);
+        comradeEditText.add(mEd2);
+        mEd3 = (EditText) findViewById(R.id.comrade3EditText);
+        mEd3.setKeyListener(null);
+        comradeEditText.add(mEd3);
+        mEd4 = (EditText) findViewById(R.id.comrade4EditText);
+        mEd4.setKeyListener(null);
+        comradeEditText.add(mEd4);
+        mEd5 = (EditText) findViewById(R.id.comrade5EditText);
+        mEd5.setKeyListener(null);
+        comradeEditText.add(mEd5);
+        mEd6 = (EditText) findViewById(R.id.comrade6EditText);
+        mEd6.setKeyListener(null);
+        comradeEditText.add(mEd6);
+
+        /* methods are useless, bin redefined above
         comradeEditText.add((EditText) findViewById(R.id.comrade2EditText));
         comradeEditText.add((EditText) findViewById(R.id.comrade3EditText));
         comradeEditText.add((EditText) findViewById(R.id.comrade4EditText));
         comradeEditText.add((EditText) findViewById(R.id.comrade5EditText));
         comradeEditText.add((EditText) findViewById(R.id.comrade6EditText));
+        */
 
-        //comradeEditTextName.add((TextView) findViewById(R.id.comrade1EditTextName));
-        //comradeEditTextName.add((TextView) findViewById(R.id.comrade2EditTextName));
-        //comradeEditTextName.add((TextView) findViewById(R.id.comrade3EditTextName));
-        //comradeEditTextName.add((TextView) findViewById(R.id.comrade4EditTextName));
-        //comradeEditTextName.add((TextView) findViewById(R.id.comrade5EditTextName));
-        //comradeEditTextName.add((TextView) findViewById(R.id.comrade6EditTextName));
+        comradeEditTextName.add((TextView) findViewById(R.id.comrade1EditTextName));
+        comradeEditTextName.add((TextView) findViewById(R.id.comrade2EditTextName));
+        comradeEditTextName.add((TextView) findViewById(R.id.comrade3EditTextName));
+        comradeEditTextName.add((TextView) findViewById(R.id.comrade4EditTextName));
+        comradeEditTextName.add((TextView) findViewById(R.id.comrade5EditTextName));
+        comradeEditTextName.add((TextView) findViewById(R.id.comrade6EditTextName));
+
+
 
         okButton = (Button) findViewById(R.id.okButton);
         okButton.setFocusable(true);
@@ -77,12 +105,9 @@ public class FriendsList extends AppCompatActivity {
         editor = sharedpreferences.edit();
 
         for(int i = 0; i < NUMBER_OF_COMRADES; i++) {
-            //comradeEditTextName.get(i).setText(sharedpreferences.getString(COMRADE_NAME.get(i), ""));
-             String spacer = "";
-            if(!sharedpreferences.getString(COMRADE_NAME.get(i), "").isEmpty() && !sharedpreferences.getString(COMRADE_KEY.get(i), "").isEmpty()){
-                spacer = " ";
-            }
-            comradeEditText.get(i).setText(sharedpreferences.getString(COMRADE_NAME.get(i), "") + spacer +  sharedpreferences.getString(COMRADE_KEY.get(i), ""));
+            comradeEditTextName.get(i).setText(sharedpreferences.getString(COMRADE_NAME.get(i), ""));
+
+            comradeEditText.get(i).setText(sharedpreferences.getString(COMRADE_KEY.get(i), ""));
         }
         okButton.setOnClickListener(new View.OnClickListener() {
 
@@ -110,14 +135,16 @@ public class FriendsList extends AppCompatActivity {
                 //Retrieving new values
                 for(int i = 0; i < NUMBER_OF_COMRADES; i++) {
                     final String comradeInfo = comradeEditText.get(i).getText().toString();
+                    /*
                     if(comradeInfo.isEmpty() || comradeInfo.length() < 11){
                         new_comrade.add("");
                         new_comrade_name.add("");
                     }else {
                         final String[] comradeInfo_f = comradeInfo.split(" ");
-                        new_comrade.add(comradeInfo_f[1].toString());
-                        new_comrade_name.add(comradeInfo_f[0].toString());
-                    }
+                        */
+                        new_comrade.add(comradeEditText.get(i).getText().toString());
+                        new_comrade_name.add(comradeEditTextName.get(i).getText().toString());
+
                 }
 
 
@@ -145,22 +172,26 @@ public class FriendsList extends AppCompatActivity {
 
                         //Nothing to update
                         if (!needToUpdate) {
-                            Toast.makeText(getApplicationContext(), getString(R.string.not_updated_phone_numbers), Toast.LENGTH_LONG).show();
+                            //messager.message("Error", getString(R.string.not_updated_phone_numbers), "Dismiss");
+                            //Toast.makeText(getApplicationContext(), getString(R.string.not_updated_phone_numbers), Toast.LENGTH_LONG).show();
                         }
 
                         //Need to update
                         else {
-                            Toast.makeText(getApplicationContext(), getString(R.string.updated_phone_numbers), Toast.LENGTH_LONG).show();
+                            messager.message("Success", getString(R.string.updated_phone_numbers), "Dismiss");
+                            //Toast.makeText(getApplicationContext(), getString(R.string.updated_phone_numbers), Toast.LENGTH_LONG).show();
                         }
 
-                        //close activity after save
-                        finish();
+                        //go back to main activiyty
+                        startActivity(new Intent(FriendsList.this, MainActivity2.class));
                     } else {
-                        Toast.makeText(getApplicationContext(), getString(R.string.updated_phone_numbers_fail), Toast.LENGTH_LONG).show();
+                        messager.message("Error",  getString(R.string.updated_phone_numbers_fail), "Dismiss");
+                        //Toast.makeText(getApplicationContext(), getString(R.string.updated_phone_numbers_fail), Toast.LENGTH_LONG).show();
                     }
 
                 } else {
-                    Toast.makeText(getApplicationContext(), getString(R.string.duplicate_number_errormessage), Toast.LENGTH_LONG).show();
+                    messager.message("Error", getString(R.string.duplicate_number_errormessage), "Dismiss");
+                    //Toast.makeText(getApplicationContext(), getString(R.string.duplicate_number_errormessage), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -202,12 +233,35 @@ public class FriendsList extends AppCompatActivity {
         return null;
     }
 
+    private TextView findInputName(View view) {
+        if (view != null) {
+            int index = -1;
+            String tag = (String) view.getTag();
+            try{
+                index = Integer.parseInt( tag ) - 1 ;
+            }
+            catch ( ClassCastException | NumberFormatException e ){
+                e.printStackTrace();
+            }
+
+            if(index != -1)
+                return comradeEditTextName.get(index);
+            else
+                return null;
+        }
+        return null;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == REQUEST_SELECT_CONTACT) {
             final EditText phoneInput = findInput(selectedButton);
+            final TextView nameInput = findInputName(selectedButton);
             int tag = Integer.parseInt(selectedButton.getTag().toString());
             if(phoneInput == null){
+                return;
+            }
+            if(nameInput == null){
                 return;
             }
             Cursor cursor = null;
@@ -261,10 +315,12 @@ public class FriendsList extends AppCompatActivity {
                                         //selectedName = "No Name";
                                     }
                                     if (noDuplicateContactNumber(selectedNumber)) {
-                                        phoneInput.setText(selectedName + " " + selectedNumber);
+                                        phoneInput.setText(selectedNumber);
+                                        nameInput.setText(selectedName);
                                         setFocusOnNextView();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), getString(R.string.duplicate_number_errormessage), Toast.LENGTH_LONG).show();
+                                        messager.message("Error", getString(R.string.duplicate_number_errormessage), "Dismiss");
+                                        //Toast.makeText(getApplicationContext(), getString(R.string.duplicate_number_errormessage), Toast.LENGTH_LONG).show();
                                     }
                                     dialog.dismiss();
                                 }
@@ -281,18 +337,20 @@ public class FriendsList extends AppCompatActivity {
                         //selectedName = "No Name";
                     }
                     if(noDuplicateContactNumber(selectedNumber)) {
-                        phoneInput.setText(selectedName + " " + selectedNumber);
+                        phoneInput.setText(selectedNumber);
+                        nameInput.setText(selectedName);
                         setFocusOnNextView();
                     }
                     else {
-
-                        Toast.makeText(getApplicationContext(), getString(R.string.duplicate_number_errormessage), Toast.LENGTH_LONG).show();
+                        messager.message("Error", getString(R.string.duplicate_number_errormessage), "Dismiss");
+                       // Toast.makeText(getApplicationContext(), getString(R.string.duplicate_number_errormessage), Toast.LENGTH_LONG).show();
                     }
                 }
 
                 if (phoneNumber.length() == 0) {
                     //no numbers found actions
-                    phoneInput.setText("" + "" + "");
+                    //phoneInput.setText("");
+                    //nameInput.setText("");
                     showNoPhoneNumberToast();
                 }
             }
@@ -320,13 +378,26 @@ public class FriendsList extends AppCompatActivity {
                     comradeEditText.get(i).requestFocus();
                 }
             }
+            //if (!isEmpty)
+                //okButton.requestFocus();
+        }
+        //
+        if(index >=0 && index <= comradeEditTextName.size()) {
+            boolean isEmpty = false;
+            for (int i = 0; i < comradeEditTextName.size() && !isEmpty; ++i) {
+                if (comradeEditTextName.get(i).getText().toString().equals("")) {
+                    isEmpty = true;
+                    comradeEditTextName.get(i).requestFocus();
+                }
+            }
             if (!isEmpty)
                 okButton.requestFocus();
         }
     }
 
     private void showNoPhoneNumberToast() {
-        Toast.makeText(FriendsList.this, R.string.no_phone_number, Toast.LENGTH_LONG).show();
+        messager.message("Error", getString(R.string.no_phone_number), "Dismiss");
+        //Toast.makeText(FriendsList.this, R.string.no_phone_number, Toast.LENGTH_LONG).show();
     }
 
     /**

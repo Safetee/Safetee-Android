@@ -399,7 +399,7 @@ public class RecordingService extends Service {
 		length = getWavDuration(newFile);
 		mElpasedSeconds = 0;
 
-		mDatabase.addRecording(mPrettyRecordingName, newFile.getAbsolutePath(), length, uniqueid, "false", String.valueOf(location.getLat()) + "," + String.valueOf(location.getLong()));
+		mDatabase.addRecording(mPrettyRecordingName, newFile.getAbsolutePath(), length, uniqueid, "false", String.valueOf(location.getLat()) + "," + String.valueOf(location.getLong()), session.getUid());
 
 		stopForeground(true);
 
