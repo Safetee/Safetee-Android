@@ -51,10 +51,10 @@ public class SettingMain extends AppCompatActivity {
     ShowMessage message;
     LayoutInflater lf;
     View renameprompt;
-    private RadioGroup uploadoption;
-    private RadioButton noautoupload;
-    private RadioButton autoupload;
-    private String getAutoupload;
+    private RadioGroup uploadoption, discreetoption;
+    private RadioButton noautoupload, discreet;
+    private RadioButton autoupload, nodiscreet;
+    private String getAutoupload, getDiscreet;
     private String getPin;
     private String oldpin;
 
@@ -74,6 +74,7 @@ public class SettingMain extends AppCompatActivity {
                 "Phone Number",
                 "Pin Code",
                 "Auto Upload",
+                "Safetee Mode",
                 "About",
                 "F.A.Q",
                 "Terms of Use",
@@ -87,6 +88,12 @@ public class SettingMain extends AppCompatActivity {
             getAutoupload = "Off";
         }
 
+        if(session.isDiscreet()){
+            getDiscreet = "Discreet";
+        }else{
+            getDiscreet = "Normal";
+        }
+
         if(session.getUPin().length() == 4 && !session.getUPin().isEmpty()){
             getPin = "****";
         }else{
@@ -98,6 +105,7 @@ public class SettingMain extends AppCompatActivity {
                 session.getUPhone(),
                 getPin,
                 getAutoupload,
+                getDiscreet,
                 "Learn about safetee",
                 "Frequently asked questions",
                 "Terms and conditions governing the use of safetee",
@@ -106,6 +114,7 @@ public class SettingMain extends AppCompatActivity {
         };
 
         final Integer[] imgid = {
+                R.drawable.ic_action_edit_low,
                 R.drawable.ic_action_edit_low,
                 R.drawable.ic_action_edit_low,
                 R.drawable.ic_action_edit_low,
@@ -132,6 +141,9 @@ public class SettingMain extends AppCompatActivity {
                 switch (menu) {
                     case "Auto Upload":
                         autoUpload();
+                        break;
+                    case "Safetee Mode":
+                        discreet();
                         break;
                     case "Full Name":
                         renameItem("name", "Save");
@@ -163,6 +175,47 @@ public class SettingMain extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void discreet() {
+        lf = LayoutInflater.from(getApplicationContext());
+        View discreetprompt = lf.inflate(R.layout.discreet_mode, null);
+        discreetoption = (RadioGroup) discreetprompt.findViewById(R.id.discreetoption);
+        discreet = (RadioButton) discreetprompt.findViewById(R.id.discreet);
+        nodiscreet = (RadioButton) discreetprompt.findViewById(R.id.nodiscreet);
+
+        // check if discreet is set already
+        if(session.isDiscreet()){
+            discreet.setChecked(true);
+        } else {
+            nodiscreet.setChecked(true);
+        }
+        // if discreet is clicked
+        discreet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                session.setMode(true);
+                Toast.makeText(getApplicationContext(), "Safetee will go to discreet mode.", Toast.LENGTH_LONG).show();
+            }
+        });
+        // if no discreet is clicked
+        nodiscreet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                session.setMode(false);
+                Toast.makeText(getApplicationContext(), "Safetee will go back to normal mode", Toast.LENGTH_LONG).show();
+            }
+        });
+        final AlertDialog.Builder discreetbuilder = new AlertDialog.Builder(this);
+        discreetbuilder.setView(discreetprompt);
+        discreetbuilder.setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //
+            }
+        });
+        //
+        AlertDialog discreetdialog = discreetbuilder.create();
+        discreetdialog.show();
     }
 
     public void autoUpload() {

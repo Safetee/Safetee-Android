@@ -54,8 +54,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passworded;
     private Button signin;
 
-    private long VIBRATION_TIME = 300; // Length of vibration in milliseconds
-    private long VIBRATION_PAUSE = 200;
 
 
     private SessionManager session;
@@ -67,9 +65,6 @@ public class LoginActivity extends AppCompatActivity {
     private int ccode;
 
     private ProgressDialog pDialog;
-    private LinearLayout verify;
-    private LinearLayout signinform;
-    private LinearLayout verified;
     private TextView confirming;
     private TextView verifying;
     private String mPhoneNumber = "";
@@ -81,13 +76,6 @@ public class LoginActivity extends AppCompatActivity {
     private String userphone = "";
 
 
-    private long[] patternSuccess = {0, // Start immediately
-            VIBRATION_TIME
-    };
-
-    private long[] patternFailure = {0, // Start immediately
-            VIBRATION_TIME, VIBRATION_PAUSE, VIBRATION_TIME, // Each element then alternates between vibrate, sleep, vibrate, sleep...
-    };
 
 
     @Override
@@ -122,14 +110,16 @@ public class LoginActivity extends AppCompatActivity {
         phoned = (EditText) findViewById(R.id.phone);
         passworded = (EditText) findViewById(R.id.password);
         signin = (Button) findViewById(R.id.sign_in_button);
-        verify = (LinearLayout) findViewById(R.id.verification);
-        verified = (LinearLayout) findViewById(R.id.verified);
         confirming = (TextView) findViewById(R.id.confirming);
         verifying = (TextView) findViewById(R.id.verifying);
-        signinform = (LinearLayout) findViewById(R.id.signin);
+
         //
         phoned.setInputType(InputType.TYPE_CLASS_PHONE);
         phoned.setText(mPhoneNumber);
+
+        // Progress dialog
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
 
         //
         mBroadcastReceiver = new BroadcastReceiver() {
@@ -154,8 +144,14 @@ public class LoginActivity extends AppCompatActivity {
                                 String getcode = sms.replaceAll("[^0-9]", "");
 
                                 if (senderMobile.equals(mobile) && getcode.equals(String.valueOf(ccode))) {
+                                    LinearLayout verify;
+                                    LinearLayout verified;
+                                    verify = (LinearLayout) findViewById(R.id.verification);
+                                    verified = (LinearLayout) findViewById(R.id.verified);
                                     verify.setVisibility(View.GONE);
                                     verified.setVisibility(View.VISIBLE);
+                                    pDialog.dismiss();
+                                    pDialog.hide();
                                     verifying.setText("Your phone number was successfully verified, you may now continue");
                                     // set user login to true
                                     session.setLogin(true);
@@ -182,9 +178,6 @@ public class LoginActivity extends AppCompatActivity {
         registerReceiver(mBroadcastReceiver, mIntentFilter);
 
 
-        // Progress dialog
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
 
         //
         // Login button Click Event
@@ -221,6 +214,10 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i("SAFETEE", "Request Response: " + response);
                 pDialog.hide();
                 pDialog.dismiss();
+                LinearLayout verify;
+                LinearLayout signinform;
+                signinform = (LinearLayout) findViewById(R.id.signin);
+                verify = (LinearLayout) findViewById(R.id.verification);
                 signinform.setVisibility(View.GONE);
                 verify.setVisibility(View.VISIBLE);
 
@@ -272,6 +269,9 @@ public class LoginActivity extends AppCompatActivity {
                     Log.i("SAFETEE", "Request Response: " + "Network connection failed");
                     message.message("Error", "Network connection failed", "Dismiss");
                 }
+                message.message("Error", "Check your network connection", "Dismiss");
+                pDialog.dismiss();
+                pDialog.hide();
             }
         }
         ){

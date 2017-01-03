@@ -28,6 +28,7 @@ public class SessionManager {
     private static final String KEY_PIN = "pin";
     private static final String KEY_TOUR = "isToured";
     private static final String KEY_AUTO_UPLOAD = "isAutoupload";
+    private static final String KEY_DISCREET_MODE = "isDiscreet";
     //
     public static final int NUMBER_OF_COMRADES = 6;
     public static final List<String> COMRADE_KEY = Arrays.asList("comrade1Key", "comrade2Key", "comrade3Key", "comrade4Key", "comrade5Key", "comrade6Key");
@@ -46,9 +47,20 @@ public class SessionManager {
         Log.d(TAG, "User login session modified!");
     }
 
+    public void setMode(boolean isDiscreet) {
+
+        editor.putBoolean(KEY_DISCREET_MODE, isDiscreet);
+        editor.commit();
+    }
+
     public boolean isLoggedIn(){
 
         return pref.getBoolean(KEY_IS_LOGGEDIN, false);
+    }
+
+    public boolean isDiscreet(){
+
+        return pref.getBoolean(KEY_DISCREET_MODE, false);
     }
 
     public void setUid(final String uid){

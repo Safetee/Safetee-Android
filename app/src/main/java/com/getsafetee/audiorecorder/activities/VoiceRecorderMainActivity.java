@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.getsafetee.FragmentHolderActivity;
 import com.getsafetee.MainActivity2;
@@ -48,6 +49,8 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
     private RecordingsListFragment mRecordingsListFragment;
     private AboutFragment mAboutFragment;
     private SettingsFragment mSettingsFragment;
+
+    private Intent getIntent;
 
     //start recording once button clicked
     private boolean mRecordingQueued = true;
@@ -80,6 +83,7 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
             if (mRecordingQueued) {
                 mRecordingService.startRecording();
                 mRecordingQueued = false;
+                ifDescreet();
             }
 
             if (mRecordingService.isRecording()) {
@@ -114,8 +118,13 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice_recorder_main);
+        getIntent = getIntent();
 
         findViewById(R.id.launchrecord).setVisibility(View.GONE);
+
+        if (getIntent.hasExtra("discreet")){
+            findViewById(R.id.main).setVisibility(View.INVISIBLE);
+        }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mBackButtonAlwaysQuits = prefs.getBoolean(SettingsFragment.BACK_BUTTON_ALWAYS_QUITS, false);
@@ -229,10 +238,22 @@ public class VoiceRecorderMainActivity extends AppCompatActivity implements Reco
     }
 
     protected void startRecording() {
-        if (mRecordingService != null)
+        if (mRecordingService != null) {
             mRecordingService.startRecording();
-        else
+        }else {
             mRecordingQueued = true;
+        }
+    }
+
+    public void ifDescreet(){
+        //Toast.makeText(getApplicationContext(), ".......", Toast.LENGTH_SHORT).show();
+        // if coming from discreet mode
+        if (getIntent.hasExtra("discreet")){
+            // then return back to main activity
+            Intent iM = new Intent(VoiceRecorderMainActivity.this, MainActivity2.class);
+            iM.putExtra("discreetRecord", "success");
+            startActivity(iM);
+        }
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -34,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity;
+import com.getsafetee.audiorecorder.services.RecordingService;
 import com.getsafetee.auth.LoginActivity;
 import com.getsafetee.auth.SettingActivity;
 import com.getsafetee.auth.SettingMain;
@@ -71,6 +74,7 @@ public class MainActivity2 extends AppCompatActivity{
     LocationManager location;
     private ShowMessage messager;
     private String smsbody;
+    private RecordingService mRecordingService;
 
     public static final String TAG = MainActivity2.class.getSimpleName();
     private int SAFETEE_VOICE_RECORDER_PERMISSION = 100;
@@ -145,10 +149,13 @@ public class MainActivity2 extends AppCompatActivity{
         // location manager
         location = new LocationManager(this);
         messager = new ShowMessage(this);
+
         //
-        getLocation = String.valueOf(location.getLong()) +","+String.valueOf(location.getLat());
-        if (location == null || getLocation.equals("0.0,0.0")) {
-           Toast.makeText(MainActivity2.this, "You are required to turn on location, so friends and family can find you in case of emergency", Toast.LENGTH_LONG).show();
+        if (!session.isDiscreet()) {
+            getLocation = String.valueOf(location.getLong()) + "," + String.valueOf(location.getLat());
+            if (location == null || getLocation.equals("0.0,0.0")) {
+                Toast.makeText(MainActivity2.this, "You are required to turn on location, so friends and family can find you in case of emergency", Toast.LENGTH_LONG).show();
+            }
         }
 
         // Check if user is already logged in or not
@@ -173,6 +180,50 @@ public class MainActivity2 extends AppCompatActivity{
 
         MainActivityAdapter adapter=new MainActivityAdapter(this, itemname, itemabout, imgid);
         list=(ListView)findViewById(R.id.list);
+        // check safetee mode
+        if (session.isDiscreet()){
+            list.setVisibility(View.GONE);
+            getSupportActionBar().hide();
+            FloatingActionButton launchrec = (FloatingActionButton) findViewById(R.id.launchrecord);
+            FloatingActionButton exitdiscreet = (FloatingActionButton) findViewById(R.id.exitdiscreet);
+            launchrec.setVisibility(View.GONE);
+            exitdiscreet.setVisibility(View.VISIBLE);
+            LinearLayout discreetmenu = (LinearLayout) findViewById(R.id.discreet);
+            discreetmenu.setVisibility(View.VISIBLE);
+            // listen for intents from voicemainrecorder if sent back
+            if (getIntent().hasExtra("discreetRecord")){
+                Toast.makeText(getApplicationContext(), "Recording started", Toast.LENGTH_SHORT).show();
+            }
+            // listen for touch for help
+            LinearLayout gethelp = (LinearLayout) findViewById(R.id.gethelp);
+            gethelp.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    sendMessage(Constants.SmsConstants.COME_GET_ME);
+                    return false;
+                }
+            });
+            // listen for touch for record
+            LinearLayout startrecord = (LinearLayout) findViewById(R.id.startrecord);
+            startrecord.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    Intent iM = new Intent(MainActivity2.this, VoiceRecorderMainActivity.class);
+                    iM.putExtra("discreet", "ok");
+                    startActivity(iM);
+                    return false;
+                }
+            });
+            // listen to discreet menu screen for long press so as to return to normal mode
+            exitdiscreet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    session.setMode(false);
+                    startActivity(new Intent(MainActivity2.this, MainActivity2.class));
+                    finish();
+                }
+            });
+        }
         //
         list.setAdapter(adapter);
 
@@ -183,7 +234,7 @@ public class MainActivity2 extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // TODO Auto-generated method stub
-                String menu = itemname[+position].toString();
+                String menu = itemname[+position];
                 //
                 switch (menu){
                     case "Get Help":
@@ -400,7 +451,11 @@ public class MainActivity2 extends AppCompatActivity{
                 contentToPost = getString(R.string.confirmation_message1) + " " + counter + " " + getString(R.string.confirmation_message2);
             CustomAlertDialogFragment customAlertDialogFragment = CustomAlertDialogFragment.newInstance(getString(R.string.msg_sent), contentToPost);
             //customAlertDialogFragment.show(this.getSupportFragmentManager(), getString(R.string.dialog_tag));
-            messager.message("Success", contentToPost,"Dismiss");
+            if (session.isDiscreet()){
+                Toast.makeText(getApplicationContext(), contentToPost, Toast.LENGTH_SHORT).show();
+            }else {
+                messager.message("Success", contentToPost, "Dismiss");
+            }
         } else {
             CustomAlertDialogFragment customAlertDialogFragment = CustomAlertDialogFragment.newInstance(getString(R.string.no_comrade_title), getString(R.string.no_comrade_msg));
             //customAlertDialogFragment.show(this.getSupportFragmentManager(), getString(R.string.dialog_tag));

@@ -49,6 +49,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service android:name="com.getsafetee.audiorecorder.services.RecordingService" />
+        <service android:name="com.getsafetee.quickhelp.QuickRecord" />
 
 
         <activity

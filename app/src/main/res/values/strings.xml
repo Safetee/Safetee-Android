@@ -48,7 +48,7 @@
     <string name="no_phone_number">No phone number found</string>
     <string name="choose_number">Choose a number</string>
     <string name="circle_of_trust_slide_two">When you are feeling insecure or need your emergency contacts\' attention.\nPress the button</string>
-    <string name="confirmation_message1">This message is being sent to</string>
+    <string name="confirmation_message1">Help request is being sent to</string>
     <string name="confirmation_message2">friends.</string>
     <string name="confirmation_message3">friend.</string>
     <string name="no_comrade_title">No Contacts Registered</string>

@@ -6,6 +6,50 @@
     android:padding="0dp">
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/exitdiscreet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:src="@drawable/cancel" />
+
+    <LinearLayout
+        android:id="@+id/discreet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/gethelp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@color/colorWhite">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/startrecord"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@color/colorWhite">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/launchrecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
