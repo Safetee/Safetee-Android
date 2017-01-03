@@ -9,7 +9,10 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -57,6 +60,9 @@ public class SettingMain extends AppCompatActivity {
     private String getAutoupload, getDiscreet;
     private String getPin;
     private String oldpin;
+    private int settingPosition;
+    private String[] itemabout;
+    private SettingsAdapter adapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +106,7 @@ public class SettingMain extends AppCompatActivity {
             getPin = "not set";
         }
 
-        final String[] itemabout = {
+         itemabout = new String[] {
                 session.getUName(),
                 session.getUPhone(),
                 getPin,
@@ -126,17 +132,17 @@ public class SettingMain extends AppCompatActivity {
                 R.drawable.chevron_right_1
         };
 
-        SettingsAdapter adapter = new SettingsAdapter(this, itemname, itemabout, imgid);
+        adapter = new SettingsAdapter(this, itemname, itemabout, imgid);
         list = (ListView) findViewById(R.id.list);
         //
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-                String menu = itemname[+position].toString();
+                String menu = itemname[+position];
+                settingPosition = position;
                 //
                 switch (menu) {
                     case "Auto Upload":
@@ -144,6 +150,7 @@ public class SettingMain extends AppCompatActivity {
                         break;
                     case "Safetee Mode":
                         discreet();
+
                         break;
                     case "Full Name":
                         renameItem("name", "Save");
@@ -196,6 +203,8 @@ public class SettingMain extends AppCompatActivity {
             public void onClick(View view){
                 session.setMode(true);
                 Toast.makeText(getApplicationContext(), "Safetee will go to discreet mode.", Toast.LENGTH_LONG).show();
+                updateSetting(settingPosition, "Discreet");
+
             }
         });
         // if no discreet is clicked
@@ -204,11 +213,12 @@ public class SettingMain extends AppCompatActivity {
             public void onClick(View view) {
                 session.setMode(false);
                 Toast.makeText(getApplicationContext(), "Safetee will go back to normal mode", Toast.LENGTH_LONG).show();
+                updateSetting(settingPosition, "Normal");
             }
         });
         final AlertDialog.Builder discreetbuilder = new AlertDialog.Builder(this);
         discreetbuilder.setView(discreetprompt);
-        discreetbuilder.setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
+        discreetbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 //
             }
@@ -237,6 +247,7 @@ public class SettingMain extends AppCompatActivity {
             public void onClick(View view){
                 session.setAutoupload(true);
                 Toast.makeText(getApplicationContext(), "Your recordings will now be uploaded to safetee immediately after recording stops.", Toast.LENGTH_LONG).show();
+                updateSetting(settingPosition, "On");
             }
         });
         // if not auto upload is clicked
@@ -245,11 +256,12 @@ public class SettingMain extends AppCompatActivity {
             public void onClick(View view) {
                 session.setAutoupload(false);
                 Toast.makeText(getApplicationContext(), "Your recordings will not be uploaded to safetee immediately after recording stops.", Toast.LENGTH_LONG).show();
+                updateSetting(settingPosition, "Off");
             }
         });
         final AlertDialog.Builder autouploadbuilder = new AlertDialog.Builder(this);
         autouploadbuilder.setView(autouploadprompt);
-        autouploadbuilder.setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
+        autouploadbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 //
             }
@@ -292,6 +304,7 @@ public class SettingMain extends AppCompatActivity {
                     if (type.equals("name")) {
                         if (inputVal.contains(" ")) {
                             saveSetting(inputVal, "");
+                            updateSetting(settingPosition, inputVal);
                         } else {
                             message.message("Error", "Please set a proper full name", "Dismiss");
                             //Toast.makeText(getApplicationContext(), "Please set a proper full name", Toast.LENGTH_LONG).show();
@@ -299,6 +312,7 @@ public class SettingMain extends AppCompatActivity {
                     } else if (type.equals("phone")) {
                         if (inputVal.length() >= 11) {
                             saveSetting("", inputVal);
+                            updateSetting(settingPosition, inputVal);
                         } else {
                             message.message("Error", "Phone number should not be less or more than 14 digits, eg +2348012345678", "Dismiss");
                             //Toast.makeText(getApplicationContext(), "Phone number should not be less or more than 14 digits, eg +2348012345678", Toast.LENGTH_LONG).show();
@@ -327,7 +341,7 @@ public class SettingMain extends AppCompatActivity {
                 }
 
             }
-    });
+        });
         //
         AlertDialog renamedialog = renamebuilder.create();
         renamedialog.show();
@@ -451,6 +465,27 @@ public class SettingMain extends AppCompatActivity {
         Intent i = new Intent(SettingMain.this, OrganizationView.class);
         i.putExtra("title", type);
         startActivity(i);
+    }
+
+    // update setting item
+
+    public View updateSettingItem(int position,View view,ViewGroup parent) {
+        LayoutInflater inflater= getLayoutInflater();
+        View rowView=inflater.inflate(R.layout.settings_main_list, null,true);
+        TextView extratxt = (TextView) rowView.findViewById(R.id.textView1);
+        extratxt.setText(itemabout[position]);
+        return rowView;
+    }
+
+
+    private void updateSetting(int index, String update){
+        View v = list.getChildAt(index - list.getFirstVisiblePosition());
+
+        if(v == null)
+            return;
+
+        TextView body = (TextView) v.findViewById(R.id.textView1);
+        body.setText(update);
     }
 
 }

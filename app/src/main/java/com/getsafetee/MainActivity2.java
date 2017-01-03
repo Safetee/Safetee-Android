@@ -151,8 +151,8 @@ public class MainActivity2 extends AppCompatActivity{
         messager = new ShowMessage(this);
 
         //
+        getLocation = String.valueOf(location.getLong()) + "," + String.valueOf(location.getLat());
         if (!session.isDiscreet()) {
-            getLocation = String.valueOf(location.getLong()) + "," + String.valueOf(location.getLat());
             if (location == null || getLocation.equals("0.0,0.0")) {
                 Toast.makeText(MainActivity2.this, "You are required to turn on location, so friends and family can find you in case of emergency", Toast.LENGTH_LONG).show();
             }
@@ -192,7 +192,7 @@ public class MainActivity2 extends AppCompatActivity{
             discreetmenu.setVisibility(View.VISIBLE);
             // listen for intents from voicemainrecorder if sent back
             if (getIntent().hasExtra("discreetRecord")){
-                Toast.makeText(getApplicationContext(), "Recording started", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Recording...", Toast.LENGTH_SHORT).show();
             }
             // listen for touch for help
             LinearLayout gethelp = (LinearLayout) findViewById(R.id.gethelp);
