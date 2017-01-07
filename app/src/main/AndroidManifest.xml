@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.getsafetee.safetee">
+    package="com.getsafeteeapp.safetee">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -19,14 +19,14 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
 
     <application
-        android:name="com.getsafetee.app.AppController"
+        android:name="com.getsafeteeapp.app.AppController"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.getsafetee.auth.LoginActivity"
+            android:name="com.getsafeteeapp.auth.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,167 +35,167 @@
         </activity>
 
         <activity
-            android:name="com.getsafetee.circleoffriends.FriendsList"
+            android:name="com.getsafeteeapp.circleoffriends.FriendsList"
             android:label="@string/title_activity_friends_list"
-            android:parentActivityName="com.getsafetee.MainActivity2"
+            android:parentActivityName="com.getsafeteeapp.MainActivity2"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.MainActivity2" />
+                android:value="com.getsafeteeapp.MainActivity2" />
         </activity>
         <activity
-            android:name="com.getsafetee.audiorecorder.activities.VoiceRecorderMainActivity"
-            android:parentActivityName="com.getsafetee.MainActivity2"
+            android:name="com.getsafeteeapp.audiorecorder.activities.VoiceRecorderMainActivity"
+            android:parentActivityName="com.getsafeteeapp.MainActivity2"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <service android:name="com.getsafetee.audiorecorder.services.RecordingService" />
-        <service android:name="com.getsafetee.quickhelp.QuickRecord" />
+        <service android:name="com.getsafeteeapp.audiorecorder.services.RecordingService" />
+        <service android:name="com.getsafeteeapp.quickhelp.QuickRecord" />
 
 
         <activity
-            android:name="com.getsafetee.FragmentHolderActivity"
+            android:name="com.getsafeteeapp.FragmentHolderActivity"
             android:label="@string/app_name" />
 
         <activity
-        android:name="com.getsafetee.IntroActivity"
+        android:name="com.getsafeteeapp.IntroActivity"
         android:theme="@style/Theme.Intro" />
 
         <activity
-            android:name="com.getsafetee.util.ReportSent"
+            android:name="com.getsafeteeapp.util.ReportSent"
             android:theme="@style/Theme.Intro" />
 
         <activity
-            android:name="com.getsafetee.incidencereport.ReportActivity"
+            android:name="com.getsafeteeapp.incidencereport.ReportActivity"
             android:label="@string/title_activity_report"
-            android:parentActivityName="com.getsafetee.MainActivity2">
+            android:parentActivityName="com.getsafeteeapp.MainActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.MainActivity2" />
+                android:value="com.getsafeteeapp.MainActivity2" />
         </activity>
 
         <activity
-            android:name="com.getsafetee.MainActivity2"
+            android:name="com.getsafeteeapp.MainActivity2"
             android:label="@string/app_name"/>
 
         <activity
-            android:name="com.getsafetee.auth.SignupActivity"
+            android:name="com.getsafeteeapp.auth.SignupActivity"
             android:label="Sign up"
-            android:parentActivityName="com.getsafetee.auth.LoginActivity"/>
+            android:parentActivityName="com.getsafeteeapp.auth.LoginActivity"/>
 
         <activity
-        android:name="com.getsafetee.safetytips.SafetyTips"
+        android:name="com.getsafeteeapp.safetytips.SafetyTips"
         android:label="@string/title_activity_safety_tips"
-        android:parentActivityName="com.getsafetee.MainActivity2"
+        android:parentActivityName="com.getsafeteeapp.MainActivity2"
         android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.getsafetee.MainActivity2" />
+            android:value="com.getsafeteeapp.MainActivity2" />
     </activity>
 
         <activity
-            android:name="com.getsafetee.safetytips.TipsLocal"
+            android:name="com.getsafeteeapp.safetytips.TipsLocal"
             android:label="@string/title_activity_safety_tips"
-            android:parentActivityName="com.getsafetee.MainActivity2"
+            android:parentActivityName="com.getsafeteeapp.MainActivity2"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.MainActivity2" />
+                android:value="com.getsafeteeapp.MainActivity2" />
         </activity>
 
         <activity
-            android:name="com.getsafetee.safetytips.TipView"
+            android:name="com.getsafeteeapp.safetytips.TipView"
             android:label="Tip"
-            android:parentActivityName="com.getsafetee.safetytips.TipsLocal">
+            android:parentActivityName="com.getsafeteeapp.safetytips.TipsLocal">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.safetytips.TipsLocal" />
+                android:value="com.getsafeteeapp.safetytips.TipsLocal" />
         </activity>
 
         <service
-            android:name="com.getsafetee.safetytips.TipsUpdate" android:exported="false"/>
+            android:name="com.getsafeteeapp.safetytips.TipsUpdate" android:exported="false"/>
 
         <activity
-            android:name="com.getsafetee.auth.SettingMain"
+            android:name="com.getsafeteeapp.auth.SettingMain"
             android:label="Settings"
-            android:parentActivityName="com.getsafetee.MainActivity2">
+            android:parentActivityName="com.getsafeteeapp.MainActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.MainActivity2" />
+                android:value="com.getsafeteeapp.MainActivity2" />
         </activity>
 
         <activity
-            android:name="com.getsafetee.auth.SettingActivity"
+            android:name="com.getsafeteeapp.auth.SettingActivity"
             android:label="Account"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName="com.getsafetee.MainActivity2">
+            android:parentActivityName="com.getsafeteeapp.MainActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.MainActivity2" />
+                android:value="com.getsafeteeapp.MainActivity2" />
         </activity>
 
         <activity
-            android:name="com.getsafetee.AboutActivity"
+            android:name="com.getsafeteeapp.AboutActivity"
             android:label="About"
-            android:parentActivityName="com.getsafetee.MainActivity2"
+            android:parentActivityName="com.getsafeteeapp.MainActivity2"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.MainActivity2" />
+                android:value="com.getsafeteeapp.MainActivity2" />
         </activity>
 
         <activity
-            android:name="com.getsafetee.RecordsActivity"
+            android:name="com.getsafeteeapp.RecordsActivity"
             android:label="Records"
-            android:parentActivityName="com.getsafetee.MainActivity2">
+            android:parentActivityName="com.getsafeteeapp.MainActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.MainActivity2" />
+                android:value="com.getsafeteeapp.MainActivity2" />
         </activity>
 
         <activity
-            android:name="com.getsafetee.RecordsLocal"
+            android:name="com.getsafeteeapp.RecordsLocal"
             android:label="Records"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName="com.getsafetee.MainActivity2">
+            android:parentActivityName="com.getsafeteeapp.MainActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.MainActivity2" />
+                android:value="com.getsafeteeapp.MainActivity2" />
         </activity>
 
         <activity
-            android:name="com.getsafetee.auth.SettingRecords"
+            android:name="com.getsafeteeapp.auth.SettingRecords"
             android:label="Settings"
-            android:parentActivityName="com.getsafetee.RecordsLocal">
+            android:parentActivityName="com.getsafeteeapp.RecordsLocal">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.RecordsLocal" />
+                android:value="com.getsafeteeapp.RecordsLocal" />
         </activity>
 
         <activity
-            android:name="com.getsafetee.RecordView"
+            android:name="com.getsafeteeapp.RecordView"
             android:label="Safetee"
-            android:parentActivityName="com.getsafetee.RecordsActivity">
+            android:parentActivityName="com.getsafeteeapp.RecordsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.RecordsActivity" />
+                android:value="com.getsafeteeapp.RecordsActivity" />
         </activity>
 
         <activity
-            android:name="com.getsafetee.DonateToNGO"
+            android:name="com.getsafeteeapp.DonateToNGO"
             android:label="Donate"
-            android:parentActivityName="com.getsafetee.MainActivity2">
+            android:parentActivityName="com.getsafeteeapp.MainActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.MainActivity2" />
+                android:value="com.getsafeteeapp.MainActivity2" />
         </activity>
 
         <activity
-            android:name="com.getsafetee.OrganizationView"
+            android:name="com.getsafeteeapp.OrganizationView"
             android:label=""
-            android:parentActivityName="com.getsafetee.auth.SettingMain">
+            android:parentActivityName="com.getsafeteeapp.auth.SettingMain">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.getsafetee.auth.SettingMain" />
+                android:value="com.getsafeteeapp.auth.SettingMain" />
         </activity>
 
     </application>

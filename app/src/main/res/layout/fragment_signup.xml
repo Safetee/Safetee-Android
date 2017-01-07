@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorTealDarker"
     android:orientation="vertical"
-    tools:context="com.getsafetee.auth.LoginActivity">
+    tools:context="com.getsafeteeapp.auth.LoginActivity">
 
 
     <LinearLayout

@@ -14,7 +14,7 @@
         android:text="@string/touch_mic_to_start"
         android:textSize="22sp" />
 
-    <com.getsafetee.audiorecorder.views.MicrophoneLevelsView
+    <com.getsafeteeapp.audiorecorder.views.MicrophoneLevelsView
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
