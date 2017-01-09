@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/filename_textview" >
 
-        <com.getsafeteeapp.audiorecorder.views.RecordingStateView
+        <com.getsafetee.audiorecorder.views.RecordingStateView
             android:id="@+id/state_view"
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -46,7 +46,7 @@
         android:textStyle="bold"
         android:visibility="invisible" />
 
-    <com.getsafeteeapp.audiorecorder.views.SoundLevelBarsView
+    <com.getsafetee.audiorecorder.views.SoundLevelBarsView
         android:id="@+id/bars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
