@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <com.getsafetee.audiorecorder.views.RoundButton
+        <com.safeteeapp.audiorecorder.views.RoundButton
             android:id="@+id/pause_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="48dp" />
 
-        <com.getsafetee.audiorecorder.views.RoundButton
+        <com.safeteeapp.audiorecorder.views.RoundButton
             android:id="@+id/stop_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

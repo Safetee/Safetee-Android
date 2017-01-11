@@ -5,7 +5,7 @@
     android:background="@color/colorTealDarker"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.getsafetee.auth.LoginActivity">
+    tools:context="com.safeteeapp.auth.LoginActivity">
 
     <LinearLayout
         android:id="@+id/verification"

@@ -1,4 +1,4 @@
-package com.getsafetee.safetee;
+package com.safeteeapp.safetee;
 
 import org.junit.Test;
 
