@@ -32,7 +32,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:background="@color/colorTealDarker">
+            android:background="@color/colorTealDarker"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ghelp"/>
 
         </LinearLayout>
 
@@ -42,7 +48,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:background="@color/colorTealDarker">
+            android:background="@color/colorTealDarker"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/srecord"/>
 
         </LinearLayout>
 

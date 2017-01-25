@@ -108,6 +108,16 @@
 
     </RelativeLayout>
 
+    <ProgressBar
+        android:id="@+id/recordtimer"
+        android:layout_width="fill_parent"
+        android:layout_height="5dp"
+        android:layout_gravity="bottom"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/custom_progressbar"
+        android:layout_below="@id/player"
+        android:visibility="invisible"/>
+
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -115,7 +125,7 @@
         android:id="@+id/privacy"
         android:layout_margin="10dp"
         android:padding="10dp"
-        android:layout_below="@id/player"
+        android:layout_below="@id/recordtimer"
         android:visibility="invisible"
         android:background="@color/colorWhite">
 

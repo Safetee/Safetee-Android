@@ -13,6 +13,7 @@
     <color name="colorTeal">#008080</color>
     <color name="colorTealDark">#80008080</color>
     <color name="colorTealDarker">#90008080</color>
+    <color name="colorPurple">#800080</color>
 
     <color name="genre">#666666</color>
     <color name="year">#888888</color>

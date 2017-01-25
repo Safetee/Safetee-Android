@@ -9,6 +9,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -36,15 +38,18 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Future;
-import java.util.logging.Handler;
+import android.os.Handler;
 
 import com.safeteeapp.util.ShowMessage;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.safeteeapp.util.Utilities;
 
 
-public class RecordView extends AppCompatActivity{
+public class RecordView extends AppCompatActivity implements MediaPlayer.OnCompletionListener{
+
+    private Handler phandler = new Handler();
 
     private String title;
     private String rid;
@@ -72,6 +77,7 @@ public class RecordView extends AppCompatActivity{
     static MediaPlayer mPlayer;
     SessionManager session;
     private ShowMessage message;
+    private ProgressBar recordtimer;
 
     LinearLayout enterpin;
     RelativeLayout player;
@@ -87,8 +93,12 @@ public class RecordView extends AppCompatActivity{
 
     private RecordingsAdapter mAdapter;
     Future<String> uploadrequest;
+    private double gLat;
+    private double gLong;
+    private Utilities utils;
 
-    protected void onCreate(Bundle savedInstanceState) {
+
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record_view);
 
@@ -97,6 +107,7 @@ public class RecordView extends AppCompatActivity{
         geocoder = new Geocoder(this, Locale.getDefault());
         mlocation = new LocationManager(this);
         message = new ShowMessage(this);
+        utils = new Utilities();
         // Enable global Ion logging
         Ion.getDefault(RecordView.this).configure().setLogging("ion-sample", Log.DEBUG);
         //
@@ -128,6 +139,7 @@ public class RecordView extends AppCompatActivity{
         privacy = (RelativeLayout) findViewById(R.id.privacy);
         support = (LinearLayout) findViewById(R.id.support);
         place = (TextView) findViewById(R.id.place);
+        recordtimer = (ProgressBar) findViewById(R.id.recordtimer);
         //
         recordtitle.setText(title);
         //
@@ -201,6 +213,10 @@ public class RecordView extends AppCompatActivity{
             }
         });
 
+        mPlayer = new MediaPlayer();
+        // Listeners
+        mPlayer.setOnCompletionListener(this); // Important
+
         //
         buttonPlay = (ImageView) findViewById(R.id.play);
         buttonStop = (ImageView) findViewById(R.id.stop);
@@ -210,32 +226,22 @@ public class RecordView extends AppCompatActivity{
             public void onClick(View v) {
                 buttonPlay.setVisibility(View.INVISIBLE);
                 buttonStop.setVisibility(View.VISIBLE);
-                mPlayer = new MediaPlayer();
                 mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 try {
                     mPlayer.setDataSource(audio);
                 } catch (IllegalArgumentException e) {
-                    Toast.makeText(getApplicationContext(), "Error fetching record", Toast.LENGTH_LONG).show();
-                    showMessage("Safetee", "Error fetching record", "OK");
                 } catch (SecurityException e) {
-                    Toast.makeText(getApplicationContext(), "Error fetching record", Toast.LENGTH_LONG).show();
-                    showMessage("Safetee", "Error fetching record", "OK");
                 } catch (IllegalStateException e) {
-                    Toast.makeText(getApplicationContext(), "Error fetching record", Toast.LENGTH_LONG).show();
-                    showMessage("Safetee", "Error fetching record", "OK");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 try {
                     mPlayer.prepare();
                 } catch (IllegalStateException e) {
-                    Toast.makeText(getApplicationContext(), "Error fetching record", Toast.LENGTH_LONG).show();
-                    showMessage("Safetee", "Error fetching record", "OK");
                 } catch (IOException e) {
-                    Toast.makeText(getApplicationContext(), "Error fetching record", Toast.LENGTH_LONG).show();
-                    showMessage("Safetee", "Error fetching record", "OK");
                 }
                 mPlayer.start();
+                updatePlayProgressBar();
 
             }
         });
@@ -256,8 +262,73 @@ public class RecordView extends AppCompatActivity{
         // decipher location here
         String decipherlocation[] = location.split(",");
         // get location where record was made
-        getLocation(Double.parseDouble(decipherlocation[0]), Double.parseDouble(decipherlocation[1]));
+        //getLocation(Double.parseDouble(decipherlocation[0]), Double.parseDouble(decipherlocation[1]));
+        gLat = Double.parseDouble(decipherlocation[0]);
+        gLong = Double.parseDouble(decipherlocation[1]);
     }
+
+    /**
+     * Update timer on seekbar
+     * */
+    public void updatePlayProgressBar() {
+        phandler.postDelayed(mUpdateTimeTask, 100);
+    }
+
+    /**
+     * Background Runnable thread
+     * */
+    private Runnable mUpdateTimeTask = new Runnable() {
+        int progressStatus = 0;
+        public void run() {
+            recordtimer.setVisibility(View.VISIBLE);
+            progressStatus += 1;
+            long totalDuration = mPlayer.getDuration();
+            long currentDuration = mPlayer.getCurrentPosition();
+
+
+            // Updating progress bar
+            int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
+            //Log.d("Progress", ""+progress);
+            recordtimer.setProgress(progress);
+
+            // Running this thread after 100 milliseconds
+            phandler.postDelayed(this, 100);
+        }
+    };
+
+
+    public void getRecordLocation() {
+        new AsyncTask<Void, Void, Void>(){
+            @Override
+            protected Void doInBackground(Void... voids) {
+                phandler.postDelayed(mLocation, 100);
+                return null;
+            }
+        }.execute();
+    }
+
+    /**
+     * Background Runnable thread
+     * */
+    private Runnable mLocation = new Runnable() {
+        public void run() {
+
+            try {
+                address = geocoder.getFromLocation(gLat, gLong, 1);
+            }catch (IOException e){
+                Toast.makeText(RecordView.this, "unable to fetch location", Toast.LENGTH_LONG).show();
+            }
+            //
+            if(address != null && address.size() > 0) {
+                place.setText(address.get(0).getAddressLine(0) + ", " + address.get(0).getLocality());
+            }else{
+                place.setText("unable to fetch location");
+            }
+            // Running this thread after 100 milliseconds
+            //phandler.postDelayed(this, 100);
+        }
+    };
+
 
 
 
@@ -293,8 +364,10 @@ public class RecordView extends AppCompatActivity{
                 privacy.setVisibility(View.VISIBLE);
                 support.setVisibility(View.VISIBLE);
                 locationlayout.setVisibility(View.VISIBLE);
+                recordtimer.setVisibility(View.VISIBLE);
+                getRecordLocation();
             } else if (!getpin.equals(session.getUPin())) {
-                showMessage("Safetee", "Entered pin is incorrect", "Try Again");
+                message.message("Error", "Entered pin is incorrect", "Dismiss");
             }
         }
     }
@@ -305,6 +378,7 @@ public class RecordView extends AppCompatActivity{
         if (mPlayer != null) {
             mPlayer.release();
             mPlayer = null;
+            phandler.removeCallbacks(mUpdateTimeTask);
         }
     }
 
@@ -363,16 +437,15 @@ public class RecordView extends AppCompatActivity{
         startActivity(intent);
     }
 
-
-
-
-
     public void sendHelpRequest(final String cat) {
-
-
 
     }
 
+    @Override
+    public void onCompletion(MediaPlayer arg0) {
+        buttonPlay.setVisibility(View.VISIBLE);
+        buttonStop.setVisibility(View.INVISIBLE);
+    }
 
 }
 

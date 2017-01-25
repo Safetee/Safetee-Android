@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.safeteeapp.MainActivity2;
@@ -27,6 +28,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import it.sephiroth.android.library.tooltip.Tooltip;
 
 public class FriendsList extends AppCompatActivity {
     public static final int REQUEST_SELECT_CONTACT = 100;
@@ -78,6 +81,22 @@ public class FriendsList extends AppCompatActivity {
         mEd6 = (EditText) findViewById(R.id.comrade6EditText);
         mEd6.setKeyListener(null);
         comradeEditText.add(mEd6);
+
+        ImageButton addcontact = (ImageButton) findViewById(R.id.comrade1Button);
+        Tooltip.make(this, new Tooltip.Builder(101)
+                        .anchor(addcontact, Tooltip.Gravity.BOTTOM)
+                        .closePolicy(new Tooltip.ClosePolicy()
+                                .insidePolicy(true, false)
+                                .outsidePolicy(true, false), 4000)
+                        .activateDelay(500)
+                        .showDelay(200)
+                        .text("Click icon to add or edit contact")
+                        .maxWidth(450)
+                        .withArrow(true)
+                        .withStyleId(R.style.ToolTipLayout)
+                        .withOverlay(true).build()
+        ).show();
+
 
         /* methods are useless, bin redefined above
         comradeEditText.add((EditText) findViewById(R.id.comrade2EditText));

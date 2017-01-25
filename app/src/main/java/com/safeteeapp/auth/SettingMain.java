@@ -50,7 +50,7 @@ public class SettingMain extends AppCompatActivity {
     private RadioButton noautoupload, discreet;
     private RadioButton autoupload, nodiscreet;
     private String getAutoupload, getDiscreet;
-    private String getPin;
+    private String getPin, getHelpMessage;
     private String oldpin;
     private int settingPosition;
     private String[] itemabout;
@@ -60,7 +60,7 @@ public class SettingMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_main);
 
-        session = new SessionManager(getApplicationContext());
+        session = new SessionManager(this);
         message = new ShowMessage(this);
 
         if (session.getUPin().length() != 4 || session.getUName().isEmpty()) {
@@ -73,6 +73,7 @@ public class SettingMain extends AppCompatActivity {
                 "Pin Code",
                 "Auto Upload",
                 "Safetee Mode",
+                "Custom Help Message",
                 "About",
                 "F.A.Q",
                 "Terms of Use",
@@ -95,7 +96,13 @@ public class SettingMain extends AppCompatActivity {
         if(session.getUPin().length() == 4 && !session.getUPin().isEmpty()){
             getPin = "****";
         }else{
-            getPin = "not set";
+            getPin = "Not Set";
+        }
+
+        if(session.getUHelpMessage().length() > 1 && !session.getUHelpMessage().isEmpty()){
+            getHelpMessage = "Drafted";
+        }else{
+            getHelpMessage = "Default";
         }
 
          itemabout = new String[] {
@@ -104,14 +111,16 @@ public class SettingMain extends AppCompatActivity {
                 getPin,
                 getAutoupload,
                 getDiscreet,
+                 getHelpMessage,
                 "Learn about safetee",
                 "Frequently asked questions",
                 "Terms and conditions governing the use of safetee",
                 "Everything regarding privacy",
-                "log out of your account"
+                "Log out of your account"
         };
 
         final Integer[] imgid = {
+                R.drawable.ic_action_edit_low,
                 R.drawable.ic_action_edit_low,
                 R.drawable.ic_action_edit_low,
                 R.drawable.ic_action_edit_low,
@@ -142,10 +151,12 @@ public class SettingMain extends AppCompatActivity {
                         break;
                     case "Safetee Mode":
                         discreet();
-
                         break;
                     case "Full Name":
                         renameItem("name", "Save");
+                        break;
+                    case "Custom Help Message":
+                        renameItem("helpMessage", "Save");
                         break;
                     case "Phone Number":
                         renameItem("phone", "Save");
@@ -283,10 +294,13 @@ public class SettingMain extends AppCompatActivity {
             input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
             input.setMaxLines(4);
             heading.setText("ENTER PIN CODE");
-        } else if(type.equals("rpin")){
+        } else if(type.equals("rpin")) {
             input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
             input.setMaxLines(4);
             heading.setText("NEW PIN CODE");
+        }else if(type.equals("helpMessage")){
+            heading.setText("HELP MESSAGE");
+            input.setText(session.getUHelpMessage());
         }
         renamebuilder.setPositiveButton(btn, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -326,6 +340,12 @@ public class SettingMain extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Pin code successfully changed", Toast.LENGTH_LONG).show();
                         } else {
                             message.message("Error", "Incorrect pin entered", "Dismiss");
+                        }
+                    } else if (type.equals("helpMessage")) {
+                        if (inputVal.length() > 1) {
+                            session.setUHelpMessage(inputVal);
+                            updateSetting(settingPosition, "Drafted");
+                            Toast.makeText(getApplicationContext(), "Custom help message drafted", Toast.LENGTH_LONG).show();
                         }
 
                     } else {
@@ -432,7 +452,7 @@ public class SettingMain extends AppCompatActivity {
                 }
                 params.put("uid", session.getUid());
                 params.put("fullname", getfname);
-                params.put("phone_no", getfphone);
+                params.put("phone_no", session.getUPhone());
                 return params;
             }
         };

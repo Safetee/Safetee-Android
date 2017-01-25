@@ -38,15 +38,9 @@ public class RecordsLocal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_voice_recorder_main);
+        setContentView(R.layout.activity_records_local);
 
 
-
-       toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recordingsDatabase = new RecordingsDatabase(this);
         recordsInfo = (TextView) findViewById(R.id.records_info);

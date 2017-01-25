@@ -30,7 +30,7 @@ public class Constants {
 
 
     public static final class SmsConstants {
-        public static final String COME_GET_ME = "Come Get Me";
+        public static final String COME_GET_ME = "I Need Help";
         public static final String CALL_NEED_INTERRUPTION = "Call I Need an Interruption";
         public static final String NEED_TO_TALK = "I Need to Talk";
     }

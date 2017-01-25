@@ -25,6 +25,15 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="ToolTipLayout">
+        <item name="ttlm_padding">25dip</item>
+        <item name="ttlm_strokeColor">@null</item>
+        <item name="ttlm_backgroundColor">@color/colorAccent</item>
+        <item name="ttlm_strokeWeight">2dip</item>
+        <item name="ttlm_cornerRadius">8dip</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceInverse</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

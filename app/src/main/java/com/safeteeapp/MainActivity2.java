@@ -52,6 +52,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import it.sephiroth.android.library.tooltip.Tooltip;
+
 import static com.safeteeapp.circleoffriends.FriendsList.NUMBER_OF_COMRADES;
 
 
@@ -97,12 +99,12 @@ public class MainActivity2 extends AppCompatActivity{
     };
 
     String[] itemabout = {
-            "add your circle of friends",
-            "get help from your circle of friends",
-            "record scene in real time",
-            "report a case with visual evidence",
-            "get safety tips to keep you safe",
-            "donate to support ngos around"
+            "Add Your Circle Of Friends",
+            "Get Help From Your Circle Of Friends",
+            "Record Scene In Real Time",
+            "Report A Case With Visual Evidence",
+            "Get Safety Tips To Keep You Safe",
+            "Donate To Support NGOs Around"
     };
 
     Integer[] imgid={
@@ -177,12 +179,48 @@ public class MainActivity2 extends AppCompatActivity{
             exitdiscreet.setVisibility(View.VISIBLE);
             LinearLayout discreetmenu = (LinearLayout) findViewById(R.id.discreet);
             discreetmenu.setVisibility(View.VISIBLE);
+            LinearLayout gethelp = (LinearLayout) findViewById(R.id.gethelp);
+            LinearLayout startrecord = (LinearLayout) findViewById(R.id.startrecord);
+            TextView ghelp = (TextView) findViewById(R.id.ghelp);
+            TextView srecord = (TextView) findViewById(R.id.srecord);
+            //
+            if (!session.isDiscreetTutorial()) {
+                Tooltip.make(this, new Tooltip.Builder(101)
+                                .anchor(ghelp, Tooltip.Gravity.TOP)
+                                .closePolicy(new Tooltip.ClosePolicy()
+                                        .insidePolicy(true, false)
+                                        .outsidePolicy(true, false), 20000)
+                                .activateDelay(930000)
+                                .showDelay(100)
+                                .text("Touch anywhere on the upper half area of screen to send help message to your circle of friends.")
+                                .maxWidth(650)
+                                .withArrow(true)
+                                .withStyleId(R.style.ToolTipLayout)
+                                .withOverlay(true).build()
+                ).show();
+                //
+                Tooltip.make(this, new Tooltip.Builder(101)
+                                .anchor(srecord, Tooltip.Gravity.TOP)
+                                .closePolicy(new Tooltip.ClosePolicy()
+                                        .insidePolicy(true, false)
+                                        .outsidePolicy(true, false), 20000)
+                                .activateDelay(930000)
+                                .showDelay(100)
+                                .text("Touch anywhere on the lower half area of screen to start recording.")
+                                .maxWidth(650)
+                                .withArrow(true)
+                                .withStyleId(R.style.ToolTipLayout)
+                                .withOverlay(true).build()
+                ).show();
+                //
+                session.setDiscreetTutorial(true);
+            }
+            //
             // listen for intents from voicemainrecorder if sent back
             if (getIntent().hasExtra("discreetRecord")){
                 Toast.makeText(getApplicationContext(), "Recording...", Toast.LENGTH_SHORT).show();
             }
             // listen for touch for help
-            LinearLayout gethelp = (LinearLayout) findViewById(R.id.gethelp);
             gethelp.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -191,7 +229,6 @@ public class MainActivity2 extends AppCompatActivity{
                 }
             });
             // listen for touch for record
-            LinearLayout startrecord = (LinearLayout) findViewById(R.id.startrecord);
             startrecord.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -371,11 +408,17 @@ public class MainActivity2 extends AppCompatActivity{
             case Constants.SmsConstants.COME_GET_ME:
                //Location location = locationHelper.retrieveLocation(false);
                 //Location location = null;
+                String getMessage;
+                if(session.getUHelpMessage().length() > 1 && !session.getUHelpMessage().isEmpty()){
+                    getMessage = session.getUHelpMessage();
+                }else{
+                    getMessage = getString(R.string.come_get_me_message);
+                }
 
                 if (location == null || getLocation.equals("0.0,0.0")) {
-                    smsbody = getString(R.string.come_get_me_message);
+                    smsbody = getMessage + "\n" + getString(R.string.message_with_footer);
                 } else {
-                    smsbody = getString(R.string.come_get_me_message_with_location);
+                    smsbody = getMessage + "\n" + "My location ( #LOC_URL# ), " + getString(R.string.message_with_footer);
                     smsbody = smsbody.replace(Constants.TAG_LOCATION, location.getLat() + "," + location.getLong());
                     String locationUrl = Constants.LOCATION_URL.replace("LAT", String.valueOf(location.getLat()))
                             .replace("LON", String.valueOf(location.getLong()));

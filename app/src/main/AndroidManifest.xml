@@ -155,7 +155,6 @@
         <activity
             android:name="com.safeteeapp.RecordsLocal"
             android:label="Records"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName="com.safeteeapp.MainActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
