@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
@@ -35,6 +36,8 @@ import com.safeteeapp.circleoffriends.FriendsList;
 import com.safeteeapp.circleoffriends.MessageDialogBox;
 import com.safeteeapp.circleoffriends.fragments.CustomAlertDialogFragment;
 import com.safeteeapp.circleoffriends.helpers.LocationHelper;
+import com.safeteeapp.cof2.CofDatabase;
+import com.safeteeapp.cof2.CofLocal;
 import com.safeteeapp.incidencereport.ReportActivity;
 import com.safeteeapp.safetee.R;
 import com.safeteeapp.safetytips.TipsLocal;
@@ -68,9 +71,11 @@ public class MainActivity2 extends AppCompatActivity{
     public static final String TAG = MainActivity2.class.getSimpleName();
     private int SAFETEE_VOICE_RECORDER_PERMISSION = 100;
     private String numbers[];
+    private String[] numbersCof;
     LocationHelper locationHelper;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    private CofDatabase mCofDatabase;
     private String[] phoneNumbers;
     ArrayList<PendingIntent> sentIntents = new ArrayList<>();
     public final static String SENT = "300";
@@ -135,6 +140,7 @@ public class MainActivity2 extends AppCompatActivity{
 
         // session manager
         session = new SessionManager(getApplicationContext());
+        mCofDatabase = new CofDatabase(getApplicationContext());
         // location manager
         location = new LocationManager(this);
         messager = new ShowMessage(this);
@@ -277,7 +283,7 @@ public class MainActivity2 extends AppCompatActivity{
                         startActivity(new Intent(MainActivity2.this, DonateToNGO.class));
                         break;
                     case "Add Contacts":
-                        startActivity(new Intent(MainActivity2.this, FriendsList.class));
+                        startActivity(new Intent(MainActivity2.this, CofLocal.class));
                         break;
 
 
@@ -335,7 +341,7 @@ public class MainActivity2 extends AppCompatActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.nav_circle_friends) {
-            startActivity(new Intent(MainActivity2.this, FriendsList.class));
+            startActivity(new Intent(MainActivity2.this, CofLocal.class));
         } else if(id == R.id.nav_settings){
             startActivity(new Intent(MainActivity2.this, SettingMain.class));
         } else if(id == R.id.nav_about){
@@ -343,7 +349,7 @@ public class MainActivity2 extends AppCompatActivity{
         } else if(id == R.id.nav_records){
             startActivity(new Intent(MainActivity2.this, RecordsLocal.class));
         } else if (id == R.id.nav_circle) {
-            startActivity(new Intent(MainActivity2.this, FriendsList.class));
+            startActivity(new Intent(MainActivity2.this, CofLocal.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -432,7 +438,24 @@ public class MainActivity2 extends AppCompatActivity{
                 smsbody = getString(R.string.need_to_talk_message);
                 break;
         }
+        //
+        int counter = 0;
 
+        //Fix sending messages if the length is more than single sms limit
+        ArrayList<String> parts = sms.divideMessage(smsbody);
+        int numParts = parts.size();
+        for (int i = 0; i < numParts; i++) {
+            sentIntents.add(PendingIntent.getBroadcast(this, 0, new Intent(SENT), 0));
+        }
+        int countCofs = mCofDatabase.getCount();
+        for(int i = 0; i < countCofs; i++){
+            String number = mCofDatabase.getCofs(i);
+            sms.sendMultipartTextMessage(number, null, parts, sentIntents, null);
+            //sms.sendTextMessage(number, null, smsbody, null, null); // assume we keep msg to standard characters
+            //Toast.makeText(getApplicationContext(), mCofDatabase.getCofs(i), Toast.LENGTH_SHORT).show();
+            counter ++;
+        }
+        /*
 
         sharedPreferences = this.getSharedPreferences(FriendsList.MY_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -471,6 +494,7 @@ public class MainActivity2 extends AppCompatActivity{
                 counter++;
             }
         }
+        */
         if (counter != 0) {
             String contentToPost;
 
@@ -492,6 +516,7 @@ public class MainActivity2 extends AppCompatActivity{
             messager.message("Error", getString(R.string.no_comrade_msg),"Click Here to Add Friends");
         }
     }
+    /*
 
     private boolean loadPhoneNumbers() {
         sharedPreferences = this.getSharedPreferences(FriendsList.MY_PREFERENCES, Context.MODE_PRIVATE);
@@ -541,7 +566,7 @@ public class MainActivity2 extends AppCompatActivity{
         phoneNumbers = null;
         //loadContactPhotos();
     }
-
+*/
     public void launchrecord(View view){
         Intent openrecord = new Intent(this, VoiceRecorderMainActivity.class);
         startActivity(openrecord);

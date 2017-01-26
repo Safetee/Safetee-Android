@@ -95,8 +95,7 @@
         <activity
             android:name="com.safeteeapp.safetytips.TipsLocal"
             android:label="@string/title_activity_safety_tips"
-            android:parentActivityName="com.safeteeapp.MainActivity2"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName="com.safeteeapp.MainActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.safeteeapp.MainActivity2" />
@@ -195,6 +194,24 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.safeteeapp.auth.SettingMain" />
+        </activity>
+
+        <activity
+            android:name="com.safeteeapp.cof2.CofLocal"
+            android:label="Circle of Friends"
+            android:parentActivityName="com.safeteeapp.MainActivity2">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.safeteeapp.MainActivity2" />
+        </activity>
+
+        <activity
+            android:name="com.safeteeapp.cof2.CofView"
+            android:label="Tip"
+            android:parentActivityName="com.safeteeapp.cof2.CofLocal">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.safeteeapp.cof2.CofLocal" />
         </activity>
 
     </application>

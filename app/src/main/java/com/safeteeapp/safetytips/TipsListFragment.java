@@ -34,15 +34,15 @@ public class TipsListFragment extends ListFragment implements OnDismissCallback 
         getListView().setBackgroundColor(getResources().getColor(R.color.card_gray));
         adapter.setAbsListView(getListView());
 
-        setEmptyText(getString(R.string.no_recordings));
+        setEmptyText("No Tips");
 
         getListView().setDividerHeight(0);
         getListView().setDivider(null);
         getListView().setSelector(new ColorDrawable(android.R.color.transparent));
         getListView().setHeaderDividersEnabled(true);
         getListView().setPadding(getListView().getPaddingLeft(),
-                getListView().getPaddingTop() + 120, getListView().getPaddingRight(),
-                getListView().getPaddingBottom() + 20);
+                getListView().getPaddingTop() + 10, getListView().getPaddingRight(),
+                getListView().getPaddingBottom() + 10);
         getListView().setClipToPadding(false);
     }
 

@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         // Session manager
-        session = new SessionManager(this);
+        session = new SessionManager(getApplicationContext());
         message = new ShowMessage(this);
         // generate confirmation code
         ccode = (int)(Math.random()*9000)+1000;
@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
         };
         IntentFilter mIntentFilter = new IntentFilter();
         mIntentFilter.addAction("android.provider.Telephony.SMS_RECEIVED");
-        registerReceiver(mBroadcastReceiver, mIntentFilter);
+        //registerReceiver(mBroadcastReceiver, mIntentFilter); // do not forget to activate back
 
 
 
@@ -247,6 +247,9 @@ public class LoginActivity extends AppCompatActivity {
                         verify.setVisibility(View.VISIBLE);
                         confirming.setText("Please wait while we verify your phone number " +phone);
 
+                        // skip sms for now
+                        gotoHome2();
+
                         // now wait for sms confirmation
 
                     } else {
@@ -326,7 +329,15 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, SettingActivity.class);
         startActivity(intent);
         finish();
+    }
 
+    // go to settings completion instead
+    public void gotoHome2(){
+        session.setLogin(true);
+        session.setAutoupload(true);
+        Intent intent = new Intent(LoginActivity.this, SettingActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 

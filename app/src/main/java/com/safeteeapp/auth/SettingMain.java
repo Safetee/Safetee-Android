@@ -29,7 +29,9 @@ import com.android.volley.toolbox.Volley;
 import com.safeteeapp.AboutActivity;
 import com.safeteeapp.OrganizationView;
 import com.safeteeapp.SessionManager;
+import com.safeteeapp.cof2.CofDatabase;
 import com.safeteeapp.safetee.R;
+import com.safeteeapp.safetytips.TipsDatabase;
 import com.safeteeapp.util.Constants;
 import com.safeteeapp.util.ShowMessage;
 
@@ -55,13 +57,17 @@ public class SettingMain extends AppCompatActivity {
     private int settingPosition;
     private String[] itemabout;
     private SettingsAdapter adapter;
+    private CofDatabase mCofDatabase;
+    private TipsDatabase mTipsDatabase;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_main);
 
-        session = new SessionManager(this);
+        session = new SessionManager(getApplicationContext());
         message = new ShowMessage(this);
+        mCofDatabase = new CofDatabase(getApplicationContext());
+        mTipsDatabase = new TipsDatabase(getApplicationContext());
 
         if (session.getUPin().length() != 4 || session.getUName().isEmpty()) {
             message.message("Error", "You are required to complete settings.", "Dismiss");
@@ -466,6 +472,8 @@ public class SettingMain extends AppCompatActivity {
         session.setLogin(false);
         session.freeUser();
         session.freeCircleFriends();
+        mCofDatabase.resetDatabase();
+        mTipsDatabase.resetDatabase();
         // Launching the login activity
         Intent intent = new Intent(SettingMain.this, LoginActivity.class);
         startActivity(intent);

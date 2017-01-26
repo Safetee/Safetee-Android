@@ -138,6 +138,12 @@ public class TipsDatabase extends SQLiteOpenHelper {
         }
     }
 
+    public void resetDatabase() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + TipDatabaseItem.TABLE_NAME);
+        db.execSQL(SQL_CREATE_ENTRIES);
+        db.close();
+    }
 
 
     public void setOnDatabaseChangedListener(OnDatabaseChangedListener listener) {

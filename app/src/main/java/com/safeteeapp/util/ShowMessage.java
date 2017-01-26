@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.safeteeapp.circleoffriends.FriendsList;
+import com.safeteeapp.cof2.CofLocal;
 import com.safeteeapp.safetee.R;
 
 
@@ -39,10 +40,10 @@ public class ShowMessage{
                 builder.setPositiveButton(rbtn, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         if (btn.equals("Click Here to Add Friends")) {
-                            _context.startActivity(new Intent(_context, FriendsList.class));
+                            _context.startActivity(new Intent(_context, CofLocal.class));
                         }
                         if (btn.equals("Click Here to Get Started")) {
-                            _context.startActivity(new Intent(_context, FriendsList.class));
+                            _context.startActivity(new Intent(_context, CofLocal.class));
                         }
                     }
                 });

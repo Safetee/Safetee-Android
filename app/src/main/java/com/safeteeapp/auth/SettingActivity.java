@@ -1,5 +1,6 @@
 package com.safeteeapp.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.safeteeapp.MainActivity2;
 import com.safeteeapp.SessionManager;
 import com.safeteeapp.safetee.R;
 import com.safeteeapp.util.Constants;
@@ -58,7 +60,7 @@ public class SettingActivity extends AppCompatActivity {
 
 
         // Session manager
-        session = new SessionManager(this);
+        session = new SessionManager(getApplicationContext());
         message = new ShowMessage(this);
 
         if (session.getUPin().length() != 4 || session.getUName().isEmpty()) {
@@ -114,6 +116,11 @@ public class SettingActivity extends AppCompatActivity {
                 }
             }
         });
+
+        if (session.getUPin().length() == 4 && !session.getUName().isEmpty()) {
+            startActivity(new Intent(SettingActivity.this, MainActivity2.class));
+            finish();
+        }
 
     }
     private void saveSetting(final String fullname, final String phone){
