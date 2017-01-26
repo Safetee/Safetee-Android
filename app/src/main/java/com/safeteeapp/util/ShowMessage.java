@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.safeteeapp.MainActivity2;
 import com.safeteeapp.circleoffriends.FriendsList;
 import com.safeteeapp.cof2.CofLocal;
 import com.safeteeapp.safetee.R;
@@ -43,7 +44,7 @@ public class ShowMessage{
                             _context.startActivity(new Intent(_context, CofLocal.class));
                         }
                         if (btn.equals("Click Here to Get Started")) {
-                            _context.startActivity(new Intent(_context, CofLocal.class));
+                            _context.startActivity(new Intent(_context, MainActivity2.class));
                         }
                     }
                 });

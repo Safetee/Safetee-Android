@@ -67,6 +67,8 @@ public class SettingActivity extends AppCompatActivity {
             message.message("Error", "You are required to complete settings.", "Dismiss");
         }
 
+
+
         fullnameed = (EditText) findViewById(R.id.fullname);
         phoned = (EditText) findViewById(R.id.phone);
         pined = (EditText) findViewById(R.id.pin);
@@ -117,7 +119,7 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        if (session.getUPin().length() == 4 && !session.getUName().isEmpty()) {
+        if (session.getUPin().length() == 4 && session.getUName().length() > 1) {
             startActivity(new Intent(SettingActivity.this, MainActivity2.class));
             finish();
         }
