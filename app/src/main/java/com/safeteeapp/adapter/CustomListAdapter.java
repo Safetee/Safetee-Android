@@ -1,4 +1,4 @@
-package com.safeteeapp.adater;
+package com.safeteeapp.adapter;
 
 
 import com.safeteeapp.app.AppController;

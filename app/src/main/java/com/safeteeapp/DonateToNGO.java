@@ -1,6 +1,6 @@
 package com.safeteeapp;
 
-import com.safeteeapp.adater.CustomListAdapter;
+import com.safeteeapp.adapter.CustomListAdapter;
 import com.safeteeapp.app.AppController;
 import com.safeteeapp.model.GetRecords;
 
