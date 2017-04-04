@@ -59,31 +59,6 @@ public class IntroActivity extends MaterialIntroActivity {
 
                 .build());
 
-        addSlide(new SlideFragmentBuilder()
-
-                        .backgroundColor(R.color.colorBlack2)
-
-                        .buttonsColor(R.color.colorAccent)
-
-                        .image(R.drawable.pincode)
-
-                        .title("Pin Code")
-
-                        .description("Protect your records")
-
-                        .build(),
-
-                new MessageButtonBehaviour(new View.OnClickListener() {
-
-                    @Override
-
-                    public void onClick(View v) {
-
-                        Toast.makeText(IntroActivity.this, "", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                }, ""));
 
 
         addSlide(new SlideFragmentBuilder()

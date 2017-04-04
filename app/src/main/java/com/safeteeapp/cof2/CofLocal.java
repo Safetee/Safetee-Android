@@ -112,7 +112,7 @@ public class CofLocal extends AppCompatActivity {
             Set<String> allNames = new HashSet<>();
             Set<String> allTypes = new HashSet<>();
             int phoneIdx;
-            String contactDisplayName;
+            final String contactDisplayName;
             String contactType;
             try {
                 Uri result = data.getData();
@@ -143,7 +143,7 @@ public class CofLocal extends AppCompatActivity {
                 if (cursor != null) {
                     cursor.close();
                 }
-
+                final String phoneNameL = phoneName;
                 if (allNumbers.size() > 1) {
                     final CharSequence[] items = allNumbers.toArray(new String[allNumbers.size()]);
                     final CharSequence[] itemsname = allNames.toArray(new String[allNames.size()]);
@@ -156,12 +156,12 @@ public class CofLocal extends AppCompatActivity {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     String selectedNumber = items[position - 1].toString();
-                                    String selectedName = itemsname[position - 1].toString();
-                                    String selectedType = itemstype[position - 1].toString();
+                                    String selectedName = phoneNameL;
+                                    //String selectedType = itemstype[position - 1].toString();
                                     selectedNumber = selectedNumber.replace("-", "");
-                                    if(selectedName.equals(selectedNumber)){
-                                        //selectedName = "No Name";
-                                    }
+
+                                    saveContact(selectedName, selectedNumber, "");
+                                    dialog.dismiss();
 
                                 }
                             });
@@ -204,7 +204,7 @@ public class CofLocal extends AppCompatActivity {
         if(!fphone.isEmpty()) {
             if (mDatabase.findCof(fphone) == 0) {
                 mDatabase.addCof(fname, fphone, fphone, session.getUid());
-                message.message("Success", fname + " was successfully added to your Circle of Friends", "Dismiss");
+                message.message("Success", fname + " was successfully added to your Circle of Friends.\n\nswipe contact to right or left to delete.", "Dismiss");
                 refreshCof();
             } else {
                 message.message("Error", fname + " is already added to your Circle of Friends", "Dismiss");

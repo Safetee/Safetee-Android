@@ -36,4 +36,9 @@
         android:title="About"
         android:visible="false"/>
 
+    <item
+        android:id="@+id/nav_discreet"
+        android:icon="@drawable/ic_contacts_black_24dp"
+        android:title="Discreet"/>
+
 </menu>

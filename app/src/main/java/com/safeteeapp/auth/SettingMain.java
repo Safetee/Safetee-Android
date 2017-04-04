@@ -305,14 +305,14 @@ public class SettingMain extends AppCompatActivity {
             input.setMaxLines(4);
             heading.setText("NEW PIN CODE");
         }else if(type.equals("helpMessage")){
-            heading.setText("HELP MESSAGE");
+            heading.setText("I NEED HELP MESSAGE");
             input.setText(session.getUHelpMessage());
         }
         renamebuilder.setPositiveButton(btn, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 //
                 final String inputVal = input.getText().toString();
-                if (inputVal.length() > 0) {
+                if (inputVal.length() > 0 || type.equals("helpMessage") && inputVal.length() < 1) {
                     if (type.equals("name")) {
                         if (inputVal.contains(" ")) {
                             saveSetting(inputVal, "");
@@ -352,6 +352,11 @@ public class SettingMain extends AppCompatActivity {
                             session.setUHelpMessage(inputVal);
                             updateSetting(settingPosition, "Drafted");
                             Toast.makeText(getApplicationContext(), "Custom help message drafted", Toast.LENGTH_LONG).show();
+                        }
+                        if (inputVal.isEmpty()) {
+                            session.setUHelpMessage("");
+                            updateSetting(settingPosition, "Default");
+                            Toast.makeText(getApplicationContext(), "Custom help message set to default", Toast.LENGTH_LONG).show();
                         }
 
                     } else {
