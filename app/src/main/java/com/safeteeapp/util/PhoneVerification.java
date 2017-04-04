@@ -26,7 +26,7 @@ public class PhoneVerification extends BroadcastReceiver{
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
-                        .setSmallIcon(R.drawable.logo)
+                        .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Safetee")
                         .setContentText(sms);
         mBuilder.setContentIntent(contentIntent);
