@@ -116,7 +116,7 @@ public class TipsUpdate extends IntentService {
         NotificationCompat.Builder noti = new NotificationCompat.Builder(this)
                 .setContentTitle("Safetee")
                 .setContentText(msg)
-                .setSmallIcon(R.drawable.logo)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pIntent);
 
         noti.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));

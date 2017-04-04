@@ -25,7 +25,7 @@ public class AboutActivity extends MaterialIntroActivity {
 
                         .buttonsColor(R.color.colorAccent)
 
-                        .image(R.drawable.logo)
+                        .image(R.mipmap.ic_launcher)
 
 
                         .title("Safetee")
