@@ -6,7 +6,7 @@ package com.safeteeapp.util;
 public class Constants {
 
     // API URLs
-    public static final String API_DNS = "https://wwww.getsafetee.com/";
+    public static final String API_DNS = "http://www.getsafetee.com/";
     public static final String API_V1 = "api/v1/";
     public static final String UPLOAD_SERVICE_URL = API_DNS + API_V1 + "record/add";
     public static final String LOGIN_URL = API_DNS + API_V1 + "user/login";
