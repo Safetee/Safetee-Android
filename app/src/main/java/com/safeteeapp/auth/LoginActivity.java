@@ -86,8 +86,8 @@ public class LoginActivity extends AppCompatActivity {
         // generate confirmation code
         ccode = (int)(Math.random()*9000)+1000;
         // get device phone number
-        TelephonyManager tMgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-        mPhoneNumber = tMgr.getLine1Number();
+//        TelephonyManager tMgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+//        mPhoneNumber = tMgr.getLine1Number();
 
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
